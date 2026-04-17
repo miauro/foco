@@ -1834,7 +1834,7 @@
   <body>
     <!-- FULLSCREEN TIMER OVERLAY -->
     <div id="fsOverlay" class="fs-overlay">
-      <div class="fs-mode-badge" id="fsModeLabel">STOPWATCH</div>
+      <div class="fs-mode-badge" id="fsModeLabel">CRONÓMETRO</div>
       <div class="fs-timer" id="fsDisplay">00:00</div>
       <div class="fs-wo" id="fsWorkingOn">
         <div class="wo-chips" id="fsWoProjects"></div>
@@ -1844,10 +1844,10 @@
       </div>
       <div class="fs-controls">
         <button class="btn btn-lg" onclick="doPause()">
-          <i class="ph ph-pause"></i> Pause
+          <i class="ph ph-pause"></i> Pausar
         </button>
         <button class="btn btn-discard btn-lg" onclick="doReset()">
-          <i class="ph ph-trash"></i> Discard
+          <i class="ph ph-trash"></i> Descartar
         </button>
       </div>
       <div class="fs-bar-wrap" id="fsBarWrap" style="display: none">
@@ -1859,7 +1859,7 @@
       <!-- LOGO -->
       <div class="logo-wrap">
         <div class="logo-mark">FO<span>:</span>CO</div>
-        <div class="logo-sub">focus · timer</div>
+        <div class="logo-sub">foco · tiempo</div>
       </div>
 
       <!-- TABS -->
@@ -1878,7 +1878,7 @@
           onclick="goTab('tasks')"
           role="tab"
         >
-          <i class="ph ph-folder"></i> Tasks
+          <i class="ph ph-folder"></i> Tareas
         </button>
         <button
           class="tab-btn"
@@ -1899,22 +1899,22 @@
               id="modeSwBtn"
               onclick="setMode('stopwatch')"
             >
-              Stopwatch
+              Cronómetro
             </button>
             <button
               class="mode-btn"
               id="modeCdBtn"
               onclick="setMode('countdown')"
             >
-              Countdown
+              Cuenta atrás
             </button>
           </div>
 
           <div class="working-on" id="workingOnBox">
-            <div class="wo-label">Working on</div>
+            <div class="wo-label">Trabajando en</div>
             <div class="wo-chips" id="woProjects"></div>
             <div class="wo-task-row" id="woTaskRow">
-              <div class="wo-task-label">Task (optional)</div>
+              <div class="wo-task-label">Tarea (opcional)</div>
               <div class="wo-chips" id="woTasks"></div>
             </div>
           </div>
@@ -1934,18 +1934,18 @@
           </div>
 
           <div class="timer-display" id="timerDisplay">00:00</div>
-          <p class="timer-label" id="timerLabel">Ready to focus?</p>
+          <p class="timer-label" id="timerLabel">¿Listo para enfocarte?</p>
 
           <div class="timer-controls">
             <button class="btn" id="resetBtn" onclick="doReset()">
-              <i class="ph ph-arrow-counter-clockwise"></i> Reset
+              <i class="ph ph-arrow-counter-clockwise"></i> Reiniciar
             </button>
             <button
               class="btn btn-primary btn-lg"
               id="startBtn"
               onclick="doToggle()"
             >
-              <i class="ph ph-play"></i> Start
+              <i class="ph ph-play"></i> Iniciar
             </button>
             <button
               class="btn"
@@ -1953,7 +1953,7 @@
               onclick="doLog()"
               style="display: none"
             >
-              <i class="ph ph-flag-checkered"></i> Log
+              <i class="ph ph-flag-checkered"></i> Registrar
             </button>
           </div>
 
@@ -1962,22 +1962,22 @@
 
         <div class="card">
           <div class="card-title">
-            <i class="ph ph-calendar-blank"></i> Today
+            <i class="ph ph-calendar-blank"></i> Hoy
           </div>
           <div class="summary-row">
             <div class="sum-item">
               <div class="sum-val" id="todaySessions">0</div>
-              <div class="sum-lbl">Sessions</div>
+              <div class="sum-lbl">Sesiones</div>
             </div>
             <div class="sum-divider"></div>
             <div class="sum-item">
               <div class="sum-val" id="todayMinutes">0</div>
-              <div class="sum-lbl">Minutes</div>
+              <div class="sum-lbl">Minutos</div>
             </div>
             <div class="sum-divider"></div>
             <div class="sum-item">
               <div class="sum-val" id="todayStreak">0</div>
-              <div class="sum-lbl">Streak</div>
+              <div class="sum-lbl">Racha</div>
             </div>
           </div>
         </div>
@@ -1988,24 +1988,24 @@
       <div class="panel" id="panel-tasks">
         <div class="card">
           <div class="card-title">
-            <i class="ph ph-folder-open"></i> Projects & Tasks
+            <i class="ph ph-folder-open"></i> Proyectos y Tareas
           </div>
 
-          <div class="section-lbl" style="margin-top: 0">New Project</div>
+          <div class="section-lbl" style="margin-top: 0">Nuevo Proyecto</div>
           <div class="color-picker-row" id="colorPickerRow"></div>
           <div class="add-proj-row">
             <input
               class="task-input"
               id="projInput"
               type="text"
-              placeholder="Project name…"
+              placeholder="Nombre del proyecto…"
               maxlength="80"
               onkeydown="if (event.key === 'Enter') addProject();"
             />
             <button
               class="btn-add"
               onclick="addProject()"
-              aria-label="Add project"
+              aria-label="Agregar proyecto"
             >
               <i class="ph ph-plus"></i>
             </button>
@@ -2023,37 +2023,37 @@
             <i class="ph-fill ph-fire"></i>
             <div>
               <div class="sc-val" id="statStreak">0</div>
-              <div class="sc-lbl">Day Streak</div>
+              <div class="sc-lbl">Racha de días</div>
             </div>
           </div>
           <div class="stat-card">
             <div class="sc-val" id="statToday">0</div>
-            <div class="sc-lbl">Today</div>
+            <div class="sc-lbl">Hoy</div>
           </div>
           <div class="stat-card">
             <div class="sc-val" id="statWeek">0</div>
-            <div class="sc-lbl">This Week</div>
+            <div class="sc-lbl">Esta semana</div>
           </div>
           <div class="stat-card">
             <div class="sc-val" id="statMonth">0</div>
-            <div class="sc-lbl">This Month</div>
+            <div class="sc-lbl">Este mes</div>
           </div>
           <div class="stat-card">
             <div class="sc-val" id="statMinutes">0</div>
-            <div class="sc-lbl">Total Mins</div>
+            <div class="sc-lbl">Mins totales</div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <i class="ph ph-target"></i> Time by Project
+            <i class="ph ph-target"></i> Tiempo por Proyecto
           </div>
           <div class="breakdown-list" id="projectBreakdown"></div>
         </div>
 
         <div class="card">
           <div class="card-title">
-            <i class="ph ph-trend-up"></i> Focus History
+            <i class="ph ph-trend-up"></i> Historial de Foco
           </div>
           <div class="chart-tabs">
             <button
@@ -2061,14 +2061,14 @@
               id="ctWeek"
               onclick="switchChart('week')"
             >
-              Week
+              Semana
             </button>
             <button
               class="chart-tab"
               id="ctMonth"
               onclick="switchChart('month')"
             >
-              Month
+              Mes
             </button>
           </div>
           <div class="chart-area">
@@ -2082,30 +2082,30 @@
                     border: 1px solid var(--azul);
                   "
                 ></span
-                >Sessions</span
+                >Sesiones</span
               >
               <span
                 ><span
                   class="legend-dot"
                   style="background: var(--amarillo)"
                 ></span
-                >Today</span
+                >Hoy</span
               >
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-title"><i class="ph ph-floppy-disk"></i> Data</div>
+          <div class="card-title"><i class="ph ph-floppy-disk"></i> Datos</div>
           <div class="data-row">
             <button class="btn-data" onclick="exportData()">
-              <i class="ph ph-export"></i> Export
+              <i class="ph ph-export"></i> Exportar
             </button>
             <button
               class="btn-data"
               onclick="document.getElementById('importFile').click()"
             >
-              <i class="ph ph-import"></i> Import
+              <i class="ph ph-import"></i> Importar
             </button>
           </div>
           <input
@@ -2125,7 +2125,7 @@
       <button
         class="panel-trigger"
         id="soundTrigger"
-        aria-label="Ambient sounds"
+        aria-label="Sonidos ambientales"
         onclick="if (noiseState.activeType) stopNoise();"
       >
         <i class="ph ph-speaker-slash" id="soundIcon"></i>
@@ -2207,7 +2207,7 @@
 
     <!-- THEME PANEL (right) -->
     <div class="side-panel theme-side" id="themePanel">
-      <button class="panel-trigger" id="themeTrigger" aria-label="Change theme">
+      <button class="panel-trigger" id="themeTrigger" aria-label="Cambiar tema">
         <i class="ph ph-star" id="themeIcon"></i>
       </button>
       <div class="panel-popup">
@@ -2647,7 +2647,7 @@
       function _logSegmentAndSwitch(newProjId, newTaskId) {
         if (tSegmentSecs >= 60) {
           pushSession(tSegmentSecs); // logs current selProjectId/selTaskId before switching
-          toast("Segment logged!", "ok");
+          toast("¡Segmento registrado!", "ok");
           beep("pop");
         }
         tSegmentSecs = 0;
@@ -2664,7 +2664,7 @@
         if (boxId) document.getElementById(boxId)?.classList.toggle("has-project", !!selProjectId);
 
         if (S.projects.length === 0) {
-          projEl.innerHTML = `<span class="wo-empty">No projects yet</span>`;
+          projEl.innerHTML = `<span class="wo-empty">Sin proyectos aún</span>`;
           if (taskRow) taskRow.style.display = "none";
           return;
         }
@@ -2680,10 +2680,10 @@
           const activeTasks = S.tasks.filter((t) => t.projectId === selProjectId && !t.done);
           if (taskRow) taskRow.classList.add("open");
           if (taskEl) taskEl.innerHTML = activeTasks.length === 0
-            ? `<span class="wo-empty">No active tasks</span>`
+            ? `<span class="wo-empty">Sin tareas activas</span>`
             : activeTasks.map((t) =>
                 `<button class="wo-chip${selTaskId === t.id ? " active" : ""}" onclick="selectTask(${t.id})">
-                  ${esc(t.text)}<i class="ph ph-check wo-chip-done" onclick="event.stopPropagation();completeTask(${t.id})" title="Mark done"></i>
+                  ${esc(t.text)}<i class="ph ph-check wo-chip-done" onclick="event.stopPropagation();completeTask(${t.id})" title="Marcar como hecha"></i>
                 </button>`
               ).join("");
         } else {
@@ -2710,14 +2710,14 @@
         overlay.classList.add("open");
         renderWorkingOn();
         document.getElementById("fsModeLabel").textContent =
-          tMode === "stopwatch" ? "STOPWATCH" : "COUNTDOWN";
+          tMode === "stopwatch" ? "CRONÓMETRO" : "CUENTA ATRÁS";
         document.getElementById("fsBarWrap").style.display =
           tMode === "countdown" ? "block" : "none";
         document.getElementById("startBtn").innerHTML =
-          '<i class="ph ph-play"></i> Resume';
+          '<i class="ph ph-play"></i> Reanudar';
         document.getElementById("timerDisplay").className =
           "timer-display running";
-        document.getElementById("timerLabel").textContent = "In session...";
+        document.getElementById("timerLabel").textContent = "En sesión...";
         document.getElementById("logBtn").style.display = "inline-flex";
 
         tInterval = setInterval(() => {
@@ -2744,10 +2744,10 @@
         tInterval = null;
         document.getElementById("fsOverlay").classList.remove("open");
         document.getElementById("startBtn").innerHTML =
-          '<i class="ph ph-play"></i> Resume';
+          '<i class="ph ph-play"></i> Reanudar';
         document.getElementById("timerDisplay").className =
           "timer-display paused";
-        document.getElementById("timerLabel").textContent = "Paused";
+        document.getElementById("timerLabel").textContent = "Pausado";
       }
 
       function doReset() {
@@ -2759,21 +2759,21 @@
         tStartTs = null;
         document.getElementById("fsOverlay").classList.remove("open");
         document.getElementById("startBtn").innerHTML =
-          '<i class="ph ph-play"></i> Start';
+          '<i class="ph ph-play"></i> Iniciar';
         document.getElementById("timerDisplay").className = "timer-display";
-        document.getElementById("timerLabel").textContent = "Ready to focus?";
+        document.getElementById("timerLabel").textContent = "¿Listo para enfocarte?";
         document.getElementById("logBtn").style.display = "none";
         refreshDisplay();
       }
 
       function doLog() {
         if (tSegmentSecs < 60) {
-          toast("Segment too short (min 1 min)", "err");
+          toast("Segmento muy corto (mín. 1 min)", "err");
           return;
         }
         pushSession(tSegmentSecs);
         doReset();
-        toast("Session logged!", "ok");
+        toast("¡Sesión registrada!", "ok");
         beep("done");
       }
 
@@ -2786,11 +2786,11 @@
         tSegmentSecs = 0;
         document.getElementById("fsOverlay").classList.remove("open");
         document.getElementById("startBtn").innerHTML =
-          '<i class="ph ph-play"></i> Start';
+          '<i class="ph ph-play"></i> Iniciar';
         document.getElementById("timerDisplay").className = "timer-display";
-        document.getElementById("timerLabel").textContent = "Session complete!";
+        document.getElementById("timerLabel").textContent = "¡Sesión completa!";
         document.getElementById("logBtn").style.display = "none";
-        toast("Session complete! Great work!", "ok");
+        toast("¡Sesión completa! ¡Buen trabajo!", "ok");
       }
 
       function refreshDisplay() {
@@ -2883,7 +2883,7 @@
           (c) =>
             `<button class="color-swatch${pickedColor === c ? " selected" : ""}"
              style="background:${c}" onclick="pickColor('${c}')"
-             aria-label="Select color"></button>`,
+             aria-label="Seleccionar color"></button>`,
         ).join("");
       }
 
@@ -2933,7 +2933,7 @@
       function renderProjects() {
         const el = document.getElementById("projectsList");
         if (S.projects.length === 0) {
-          el.innerHTML = `<div class="empty-state"><i class="ph ph-folder-open"></i>No projects yet — create one above!</div>`;
+          el.innerHTML = `<div class="empty-state"><i class="ph ph-folder-open"></i>Sin proyectos aún — ¡crea uno arriba!</div>`;
           return;
         }
         el.innerHTML = "";
@@ -2948,14 +2948,14 @@
         <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};flex-shrink:0"></span>
         <span class="project-header-name">${esc(p.name)}</span>
         <span class="proj-task-count">${active.length} active</span>
-        <button class="proj-del-btn" onclick="deleteProject(${p.id})" aria-label="Delete"><i class="ph ph-x"></i></button>
+        <button class="proj-del-btn" onclick="deleteProject(${p.id})" aria-label="Eliminar"><i class="ph ph-x"></i></button>
       </div>
       <div class="project-body">
         <div class="proj-task-add">
           <input class="proj-task-input" id="taskInp_${p.id}" type="text"
-                 placeholder="Add a task…" maxlength="150"
+                 placeholder="Agregar tarea…" maxlength="150"
                  onkeydown="if(event.key==='Enter')addTask(${p.id})" />
-          <button class="btn-add-sm" onclick="addTask(${p.id})" aria-label="Add task"><i class="ph ph-plus"></i></button>
+          <button class="btn-add-sm" onclick="addTask(${p.id})" aria-label="Agregar tarea"><i class="ph ph-plus"></i></button>
         </div>
         <div class="task-list" id="taskList_${p.id}"></div>
       </div>`;
@@ -2963,7 +2963,7 @@
           const listEl = sec.querySelector(`#taskList_${p.id}`);
           const all = [...active, ...done];
           if (all.length === 0) {
-            listEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text2);padding:4px 2px;font-style:italic">No tasks yet</div>`;
+            listEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text2);padding:4px 2px;font-style:italic">Sin tareas aún</div>`;
           } else {
             all.forEach((t) => listEl.appendChild(makeTaskItem(t)));
           }
@@ -2979,7 +2979,7 @@
          onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(${t.id})"
     >${t.done ? '<i class="ph ph-check"></i>' : ""}</div>
     <span class="task-txt${t.done ? " done" : ""}" onclick="toggleTask(${t.id})">${esc(t.text)}</span>
-    <button class="task-del" onclick="deleteTask(${t.id})" aria-label="Delete"><i class="ph ph-x"></i></button>`;
+    <button class="task-del" onclick="deleteTask(${t.id})" aria-label="Eliminar"><i class="ph ph-x"></i></button>`;
         return d;
       }
 
@@ -3016,7 +3016,7 @@
           t.done = true;
           t.doneAt = Date.now();
         }
-        toast("Task done!", "ok");
+        toast("¡Tarea completada!", "ok");
         beep("done");
         saveS();
         renderProjects();
@@ -3029,7 +3029,7 @@
         t.done = !t.done;
         t.doneAt = t.done ? Date.now() : undefined;
         if (t.done) {
-          toast("Task done!", "ok");
+          toast("¡Tarea completada!", "ok");
           beep("done");
           if (selTaskId === id) {
             selTaskId = null;
@@ -3067,7 +3067,7 @@
       function renderProjectStats() {
         const el = document.getElementById("projectBreakdown");
         if (S.sessions.length === 0) {
-          el.innerHTML = `<div class="empty-state" style="padding:16px 0"><i class="ph ph-chart-bar"></i>Log some sessions to see breakdowns!</div>`;
+          el.innerHTML = `<div class="empty-state" style="padding:16px 0"><i class="ph ph-chart-bar"></i>¡Registra sesiones para ver el desglose!</div>`;
           return;
         }
         const map = {};
@@ -3180,7 +3180,7 @@
           if (v > 0) {
             const tip = document.createElement("div");
             tip.className = "bar-tip";
-            tip.textContent = `${v} session${v !== 1 ? "s" : ""}`;
+            tip.textContent = `${v} sesión${v !== 1 ? "es" : ""}`;
             bar.appendChild(tip);
           }
           const lbl = document.createElement("div");
@@ -3202,7 +3202,7 @@
         a.download = `foco-${today()}.json`;
         a.click();
         URL.revokeObjectURL(a.href);
-        toast("Exported!", "ok");
+        toast("¡Exportado!", "ok");
       }
 
       function importData(ev) {
@@ -3222,9 +3222,9 @@
             renderProjectStats();
             refreshTodaySummary();
             refreshPomoDots();
-            toast("Imported!", "ok");
+            toast("¡Importado!", "ok");
           } catch {
-            toast("Invalid file", "err");
+            toast("Archivo inválido", "err");
           }
           ev.target.value = "";
         };
