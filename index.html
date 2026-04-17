@@ -1,2106 +1,2949 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foco</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-  <style>
-    /* ============================================
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foco</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <style>
+      /* ============================================
        DESIGN TOKENS
     ============================================ */
-    :root {
-      --bg:         #f5f2ec;
-      --surface:    #ffffff;
-      --surface2:   #ede9e1;
-      --border:     #d0cdc6;
-      --border2:    #b0ada6;
-      --text:       #1e1c1a;
-      --text2:      #78756e;
-      --accent:     #e8430a;
-      --accent-bg:  rgba(232, 67, 10, 0.08);
-      --accent2:    #c73808;
-      --rojo:       #d62828;    --rojo-bg:     rgba(214, 40, 40, 0.09);
-      --amarillo:   #b8900a;    --amarillo-bg: rgba(184,144, 10, 0.09);
-      --verde:      #1b8a4a;    --verde-bg:    rgba( 27,138, 74, 0.09);
-      --azul:       #3a7fd4;    --azul-bg:     rgba( 58,127,212, 0.09);
-      --violeta:    #7c5cbf;    --violeta-bg:  rgba(124, 92,191, 0.09);
-      --gris:       #9a9790;    --gris-bg:     rgba(154,151,144, 0.09);
-      /* Soft pastel fills */
-      --p-yellow:   #fef9e8;
-      --p-green:    #eaf6ee;
-      --p-blue:     #eaf1fb;
-      --p-red:      #fdeaea;
-      --p-purple:   #f4f0fa;
-      --p-cream:    #fffef8;
+      :root {
+        --bg: #f5f2ec;
+        --surface: #ffffff;
+        --surface2: #ede9e1;
+        --border: #d0cdc6;
+        --border2: #b0ada6;
+        --text: #1e1c1a;
+        --text2: #78756e;
+        --accent: #7c3aed;
+        --accent-bg: rgba(124, 58, 237, 0.08);
+        --accent2: #6d28d9;
+        --rojo: #d62828;
+        --rojo-bg: rgba(214, 40, 40, 0.09);
+        --amarillo: #b8900a;
+        --amarillo-bg: rgba(184, 144, 10, 0.09);
+        --verde: #1b8a4a;
+        --verde-bg: rgba(27, 138, 74, 0.09);
+        --azul: #3a7fd4;
+        --azul-bg: rgba(58, 127, 212, 0.09);
+        --violeta: #7c5cbf;
+        --violeta-bg: rgba(124, 92, 191, 0.09);
+        --gris: #9a9790;
+        --gris-bg: rgba(154, 151, 144, 0.09);
+        /* Soft pastel fills */
+        --p-yellow: #fef9e8;
+        --p-green: #eaf6ee;
+        --p-blue: #eaf1fb;
+        --p-red: #fdeaea;
+        --p-purple: #f4f0fa;
+        --p-cream: #fffef8;
 
-      --mono: 'Space Mono', monospace;
-      --sans: 'Inter', sans-serif;
+        --mono: "Space Mono", monospace;
+        --sans: "Inter", sans-serif;
 
-      --r-sm:  6px;
-      --r-md:  10px;
-      --r-lg:  14px;
-      --r-pill: 999px;
+        --r-sm: 6px;
+        --r-md: 10px;
+        --r-lg: 14px;
+        --r-pill: 999px;
 
-      --card-shadow:       3px 4px 0 var(--border);
-      --card-shadow-hover: 5px 6px 0 var(--border2);
-      --btn-shadow:        2px 3px 0 var(--border);
-      --btn-shadow-hover:  3px 4px 0 var(--border2);
-    }
+        --card-shadow: 3px 4px 0 var(--border);
+        --card-shadow-hover: 5px 6px 0 var(--border2);
+        --btn-shadow: 2px 3px 0 var(--border);
+        --btn-shadow-hover: 3px 4px 0 var(--border2);
+      }
 
-    body.dark {
-      --bg:       #131210;
-      --surface:  #1e1c1a;
-      --surface2: #282520;
-      --border:   #3a3730;
-      --border2:  #524e46;
-      --text:     #e5e2db;
-      --text2:    #948f87;
-      --p-yellow:  rgba(184,144,10,0.10);
-      --p-green:   rgba(27,138,74,0.10);
-      --p-blue:    rgba(58,127,212,0.10);
-      --p-red:     rgba(214,40,40,0.10);
-      --p-purple:  rgba(124,92,191,0.10);
-      --p-cream:   rgba(255,255,255,0.03);
-      --card-shadow:       3px 4px 0 rgba(0,0,0,0.45);
-      --card-shadow-hover: 5px 6px 0 rgba(0,0,0,0.65);
-      --btn-shadow:        2px 3px 0 rgba(0,0,0,0.35);
-      --btn-shadow-hover:  3px 4px 0 rgba(0,0,0,0.55);
-    }
+      body.dark {
+        --bg: #131210;
+        --surface: #1e1c1a;
+        --surface2: #282520;
+        --border: #3a3730;
+        --border2: #524e46;
+        --text: #e5e2db;
+        --text2: #948f87;
+        --p-yellow: rgba(184, 144, 10, 0.1);
+        --p-green: rgba(27, 138, 74, 0.1);
+        --p-blue: rgba(58, 127, 212, 0.1);
+        --p-red: rgba(214, 40, 40, 0.1);
+        --p-purple: rgba(124, 92, 191, 0.1);
+        --p-cream: rgba(255, 255, 255, 0.03);
+        --card-shadow: 3px 4px 0 rgba(0, 0, 0, 0.45);
+        --card-shadow-hover: 5px 6px 0 rgba(0, 0, 0, 0.65);
+        --btn-shadow: 2px 3px 0 rgba(0, 0, 0, 0.35);
+        --btn-shadow-hover: 3px 4px 0 rgba(0, 0, 0, 0.55);
+      }
 
-    body.amber {
-      --bg:        #0a0700;
-      --surface:   #130e00;
-      --surface2:  #1e1600;
-      --border:    #3a2c00;
-      --border2:   #564200;
-      --text:      #ffc200;
-      --text2:     #b88a00;
-      --accent:    #ffc200;
-      --accent2:   #e0a800;
-      --accent-bg: rgba(255,194,0,0.08);
-      --verde:     #80d060;   --verde-bg: rgba(128,208,96,0.08);
-      --p-yellow:  rgba(255,194,0,0.08);
-      --p-green:   rgba(128,208,96,0.08);
-      --p-blue:    rgba(80,160,255,0.08);
-      --p-red:     rgba(220,80,60,0.08);
-      --p-purple:  rgba(180,120,255,0.08);
-      --p-cream:   rgba(255,194,0,0.04);
-      --card-shadow:       3px 4px 0 #3a2c00;
-      --card-shadow-hover: 5px 6px 0 #564200;
-      --btn-shadow:        2px 3px 0 #3a2c00;
-      --btn-shadow-hover:  3px 4px 0 #564200;
-    }
+      body.cyber {
+        --bg: #080810;
+        --surface: #0d0d1e;
+        --surface2: #121228;
+        --border: rgba(255, 0, 136, 0.25);
+        --border2: rgba(255, 0, 136, 0.55);
+        --text: #f0f0ff;
+        --text2: #8080c8;
+        --accent: #ff0088;
+        --accent2: #cc0066;
+        --accent-bg: rgba(255, 0, 136, 0.1);
+        --verde: #00ffcc;
+        --verde-bg: rgba(0, 255, 204, 0.08);
+        --azul: #00ddff;
+        --azul-bg: rgba(0, 221, 255, 0.08);
+        --amarillo: #ffee00;
+        --amarillo-bg: rgba(255, 238, 0, 0.09);
+        --rojo: #ff3366;
+        --rojo-bg: rgba(255, 51, 102, 0.1);
+        --violeta: #cc44ff;
+        --violeta-bg: rgba(204, 68, 255, 0.1);
+        --p-yellow: rgba(255, 238, 0, 0.06);
+        --p-green: rgba(0, 255, 204, 0.06);
+        --p-blue: rgba(0, 221, 255, 0.06);
+        --p-red: rgba(255, 51, 102, 0.07);
+        --p-purple: rgba(204, 68, 255, 0.07);
+        --p-cream: rgba(255, 0, 136, 0.04);
+        --card-shadow:
+          3px 4px 0 rgba(255, 0, 136, 0.45), 0 0 18px rgba(255, 0, 136, 0.08);
+        --card-shadow-hover:
+          5px 6px 0 rgba(0, 221, 255, 0.5), 0 0 22px rgba(0, 221, 255, 0.12);
+        --btn-shadow: 2px 3px 0 rgba(255, 0, 136, 0.35);
+        --btn-shadow-hover: 3px 4px 0 rgba(0, 221, 255, 0.5);
+      }
+      body.cyber::before {
+        opacity: 0.12;
+      }
 
-    body.lime {
-      --bg:        #eaf8d0;
-      --surface:   #f5ffea;
-      --surface2:  #d0edaa;
-      --border:    #96d660;
-      --border2:   #70be38;
-      --text:      #1a3808;
-      --text2:     #3a6018;
-      --accent:    #3aaa00;
-      --accent2:   #2d8800;
-      --accent-bg: rgba(58,170,0,0.10);
-      --verde:     #2d8800;  --verde-bg: rgba(45,136,0,0.10);
-      --p-yellow:  rgba(180,160,0,0.10);
-      --p-green:   rgba(30,130,30,0.10);
-      --p-blue:    rgba(30,110,200,0.10);
-      --p-red:     rgba(180,40,40,0.10);
-      --p-purple:  rgba(120,50,180,0.10);
-      --p-cream:   rgba(255,255,255,0.45);
-      --card-shadow:       3px 4px 0 #96d660;
-      --card-shadow-hover: 5px 6px 0 #70be38;
-      --btn-shadow:        2px 3px 0 #96d660;
-      --btn-shadow-hover:  3px 4px 0 #70be38;
-    }
+      body.forest {
+        --bg: #f2f5ee;
+        --surface: #ffffff;
+        --surface2: #e4edd8;
+        --border: #b8d0a0;
+        --border2: #88b068;
+        --text: #1c2c14;
+        --text2: #4a6840;
+        --accent: #2a7840;
+        --accent2: #1e5e30;
+        --accent-bg: rgba(42, 120, 64, 0.09);
+        --verde: #2a7840;
+        --verde-bg: rgba(42, 120, 64, 0.09);
+        --azul: #2a6ea0;
+        --azul-bg: rgba(42, 110, 160, 0.09);
+        --amarillo: #8a7020;
+        --amarillo-bg: rgba(138, 112, 32, 0.09);
+        --rojo: #b83020;
+        --rojo-bg: rgba(184, 48, 32, 0.09);
+        --violeta: #6a4890;
+        --violeta-bg: rgba(106, 72, 144, 0.09);
+        --p-yellow: #faf6e4;
+        --p-green: #e8f4e0;
+        --p-blue: #e0ecf4;
+        --p-red: #f4e4e0;
+        --p-purple: #ede8f8;
+        --p-cream: #fdfaf4;
+        --card-shadow: 3px 4px 0 #b8d0a0;
+        --card-shadow-hover: 5px 6px 0 #88b068;
+        --btn-shadow: 2px 3px 0 #b8d0a0;
+        --btn-shadow-hover: 3px 4px 0 #88b068;
+      }
+      body.forest::before {
+        opacity: 0.3;
+      }
 
-    /* ============================================
+      /* ============================================
        RESET & BASE
     ============================================ */
-    *, *::before, *::after {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-      transition: background 0.35s, color 0.35s;
-    }
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition:
+          background 0.35s,
+          color 0.35s;
+      }
 
-    /* Dotted grid background */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: radial-gradient(circle, var(--border) 1.2px, transparent 1.2px);
-      background-size: 26px 26px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
-      transition: opacity 0.35s;
-    }
-    body.dark::before  { opacity: 0.3; }
-    body.amber::before { opacity: 0.2; }
-    body.lime::before  { opacity: 0.4; }
+      /* Dotted grid background */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          var(--border) 1.2px,
+          transparent 1.2px
+        );
+        background-size: 26px 26px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.45;
+        transition: opacity 0.35s;
+      }
+      body.dark::before {
+        opacity: 0.3;
+      }
 
-    /* ============================================
+      /* ============================================
        LAYOUT
     ============================================ */
-    .app {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 20px 100px;
-      position: relative;
-      z-index: 1;
-    }
+      .app {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 20px 100px;
+        position: relative;
+        z-index: 1;
+      }
 
-    /* ============================================
-       TOP BAR
+      /* ============================================
+       LOGO
     ============================================ */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid var(--text);
-      padding: 14px 0;
-    }
+      .logo-wrap {
+        text-align: center;
+        padding: 32px 0 6px;
+        margin-bottom: 20px;
+      }
+      .logo-mark {
+        font-family: var(--mono);
+        font-size: 2.6rem;
+        font-weight: 700;
+        letter-spacing: 10px;
+        text-transform: uppercase;
+        color: var(--text);
+        line-height: 1;
+        transition: color 0.35s;
+      }
+      .logo-mark span {
+        color: var(--accent);
+        transition: color 0.35s;
+      }
+      .logo-sub {
+        font-family: var(--mono);
+        font-size: 0.52rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--text2);
+        margin-top: 8px;
+        transition: color 0.35s;
+      }
 
-    .topbar-logo {
-      font-family: var(--mono);
-      font-size: 1.2rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--text);
-      transition: color 0.35s;
-    }
-    .topbar-logo span { color: var(--accent); }
+      /* ============================================
+       SIDE PANELS
+    ============================================ */
+      .side-panel {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sound-side {
+        left: 16px;
+        flex-direction: row;
+      }
+      .theme-side {
+        right: 16px;
+        flex-direction: row-reverse;
+      }
 
-    .theme-cycle-btn {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text2);
-      border-radius: var(--r-pill);
-      box-shadow: var(--btn-shadow);
-      transition: all 0.2s;
-    }
-    .theme-cycle-btn:hover {
-      border-color: var(--border2);
-      color: var(--text);
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-1px) translateX(-1px);
-    }
-    .theme-cycle-btn:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
+      .panel-trigger {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text2);
+        font-size: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--btn-shadow);
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .side-panel:hover .panel-trigger {
+        border-color: var(--border2);
+        color: var(--text);
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .sound-side:hover .panel-trigger {
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .theme-side:hover .panel-trigger {
+        transform: translateY(-1px) translateX(1px);
+      }
+      .panel-trigger.playing {
+        border-color: var(--azul);
+        color: var(--azul);
+        background: var(--p-blue);
+        box-shadow: var(--btn-shadow-hover);
+      }
 
-    /* ============================================
+      .panel-popup {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 12px;
+        box-shadow: var(--card-shadow);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .sound-side .panel-popup {
+        transform: translateX(-10px);
+      }
+      .theme-side .panel-popup {
+        transform: translateX(10px);
+      }
+      .side-panel:hover .panel-popup {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(0);
+      }
+
+      .noise-row-panel {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .vol-row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--border);
+      }
+      .vol-icon {
+        font-size: 0.9rem;
+        color: var(--text2);
+        flex-shrink: 0;
+      }
+      .vol-slider {
+        flex: 1;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 4px;
+        background: var(--border);
+        border-radius: var(--r-pill);
+        outline: none;
+        cursor: pointer;
+        min-width: 100px;
+      }
+      .vol-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--azul);
+        border: 2px solid var(--surface);
+        box-shadow: 0 0 0 1px var(--azul);
+        cursor: pointer;
+        transition: transform 0.15s;
+      }
+      .vol-slider::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+      .vol-slider::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--azul);
+        border: 2px solid var(--surface);
+        cursor: pointer;
+      }
+
+      .theme-opts {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .theme-opt {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 7px 10px;
+        border: 1px solid transparent;
+        background: transparent;
+        cursor: pointer;
+        border-radius: var(--r-sm);
+        transition: all 0.15s;
+        width: 100%;
+      }
+      .theme-opt:hover {
+        background: var(--surface2);
+        border-color: var(--border);
+      }
+      .theme-opt.active {
+        background: var(--accent-bg);
+        border-color: var(--accent);
+      }
+      .theme-swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.12);
+        flex-shrink: 0;
+      }
+      .theme-opt-name {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      /* ============================================
        TABS
     ============================================ */
-    .tabs {
-      display: flex;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
+      .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
 
-    .tab-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 20px;
-      background: transparent;
-      border: none;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -1px;
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text2);
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .tab-btn i { font-size: 1rem; transition: transform 0.2s; }
-    .tab-btn:hover { color: var(--text); }
-    .tab-btn:hover i { transform: translateY(-2px); }
-    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .tab-btn.active i { transform: scale(1.15); }
+      .tab-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 20px;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -1px;
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .tab-btn i {
+        font-size: 1rem;
+        transition: transform 0.2s;
+      }
+      .tab-btn:hover {
+        color: var(--text);
+      }
+      .tab-btn:hover i {
+        transform: translateY(-2px);
+      }
+      .tab-btn.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .tab-btn.active i {
+        transform: scale(1.15);
+      }
 
-    /* ============================================
+      /* ============================================
        PANELS
     ============================================ */
-    .panel { display: none; }
-    .panel.active {
-      display: block;
-      animation: panelIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+      .panel {
+        display: none;
+      }
+      .panel.active {
+        display: block;
+        animation: panelIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      }
 
-    @keyframes panelIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+      @keyframes panelIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    /* ============================================
+      /* ============================================
        CARD
     ============================================ */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 22px 20px;
-      margin-bottom: 16px;
-      box-shadow: var(--card-shadow);
-      transition: box-shadow 0.2s, transform 0.2s, background 0.35s;
-    }
-    .card:hover {
-      box-shadow: var(--card-shadow-hover);
-      transform: translateY(-2px) translateX(-1px);
-    }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 22px 20px;
+        margin-bottom: 16px;
+        box-shadow: var(--card-shadow);
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s,
+          background 0.35s;
+      }
 
-    .card-title {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text2);
-    }
+      .card-title {
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text2);
+      }
 
-    /* ============================================
+      /* ============================================
        BUTTONS
     ============================================ */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 20px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text);
-      border-radius: var(--r-sm);
-      box-shadow: var(--btn-shadow);
-      transition: all 0.18s;
-    }
-    .btn:hover {
-      border-color: var(--border2);
-      background: var(--surface2);
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-1px) translateX(-1px);
-    }
-    .btn:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text);
+        border-radius: var(--r-sm);
+        box-shadow: var(--btn-shadow);
+        transition: all 0.18s;
+      }
+      .btn:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .btn:active {
+        transform: translateY(1px) translateX(1px);
+        box-shadow: none;
+      }
 
-    .btn-primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: var(--accent2);
-      border-color: var(--accent2);
-      color: #fff;
-    }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--accent2);
+        border-color: var(--accent2);
+        color: #fff;
+      }
 
-    /* Discard button — neutral, not alarming */
-    .btn-discard {
-      background: var(--surface2);
-      border-color: var(--border);
-      color: var(--text2);
-    }
-    .btn-discard:hover {
-      border-color: var(--rojo);
-      color: var(--rojo);
-      background: var(--rojo-bg);
-    }
+      /* Discard button — neutral, not alarming */
+      .btn-discard {
+        background: var(--surface2);
+        border-color: var(--border);
+        color: var(--text2);
+      }
+      .btn-discard:hover {
+        border-color: var(--rojo);
+        color: var(--rojo);
+        background: var(--rojo-bg);
+      }
 
-    .btn-lg { padding: 14px 36px; font-size: 0.92rem; }
+      .btn-lg {
+        padding: 14px 36px;
+        font-size: 0.92rem;
+      }
 
-    .btn-add {
-      width: 42px; height: 42px;
-      border: 1px solid var(--verde);
-      background: var(--verde);
-      color: #fff;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--r-sm);
-      box-shadow: var(--btn-shadow);
-      transition: all 0.18s;
-      flex-shrink: 0;
-    }
-    .btn-add:hover {
-      background: #146638;
-      border-color: #146638;
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-1px) translateX(-1px);
-    }
-    .btn-add:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
+      .btn-add {
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--verde);
+        background: var(--verde);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--r-sm);
+        box-shadow: var(--btn-shadow);
+        transition: all 0.18s;
+        flex-shrink: 0;
+      }
+      .btn-add:hover {
+        background: #146638;
+        border-color: #146638;
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .btn-add:active {
+        transform: translateY(1px) translateX(1px);
+        box-shadow: none;
+      }
 
-    .btn-add-sm {
-      width: 34px; height: 34px;
-      border: 1px solid var(--verde);
-      background: var(--verde);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--r-sm);
-      box-shadow: var(--btn-shadow);
-      transition: all 0.18s;
-      flex-shrink: 0;
-    }
-    .btn-add-sm:hover {
-      background: #146638;
-      border-color: #146638;
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-1px) translateX(-1px);
-    }
-    .btn-add-sm:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
+      .btn-add-sm {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--verde);
+        background: var(--verde);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--r-sm);
+        box-shadow: var(--btn-shadow);
+        transition: all 0.18s;
+        flex-shrink: 0;
+      }
+      .btn-add-sm:hover {
+        background: #146638;
+        border-color: #146638;
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .btn-add-sm:active {
+        transform: translateY(1px) translateX(1px);
+        box-shadow: none;
+      }
 
-    /* ============================================
+      /* ============================================
        INPUTS
     ============================================ */
-    .task-input,
-    .proj-task-input {
-      flex: 1;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      color: var(--text);
-      outline: none;
-      border-radius: var(--r-sm);
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.35s;
-    }
-    .task-input:focus,
-    .proj-task-input:focus {
-      border-color: var(--verde);
-      box-shadow: 0 0 0 3px var(--verde-bg);
-    }
-    .task-input::placeholder,
-    .proj-task-input::placeholder { color: var(--text2); }
+      .task-input,
+      .proj-task-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        color: var(--text);
+        outline: none;
+        border-radius: var(--r-sm);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.35s;
+      }
+      .task-input:focus,
+      .proj-task-input:focus {
+        border-color: var(--verde);
+        box-shadow: 0 0 0 3px var(--verde-bg);
+      }
+      .task-input::placeholder,
+      .proj-task-input::placeholder {
+        color: var(--text2);
+      }
 
-    /* ============================================
+      /* ============================================
        TIMER PANEL
     ============================================ */
-    .timer-card {
-      text-align: center;
-      background: var(--p-cream);
-    }
+      .timer-card {
+        text-align: center;
+        background: var(--p-cream);
+      }
 
-    .mode-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      gap: 8px;
-    }
+      .mode-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        gap: 8px;
+      }
 
-    .mode-btn {
-      padding: 7px 22px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text2);
-      border-radius: var(--r-pill);
-      box-shadow: var(--btn-shadow);
-      transition: all 0.18s;
-    }
-    .mode-btn:hover { border-color: var(--border2); color: var(--text); }
-    .mode-btn.active {
-      background: var(--text);
-      border-color: var(--text);
-      color: var(--surface);
-      box-shadow: var(--btn-shadow);
-    }
+      .mode-btn {
+        padding: 7px 22px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+        border-radius: var(--r-pill);
+        box-shadow: var(--btn-shadow);
+        transition: all 0.18s;
+      }
+      .mode-btn:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .mode-btn.active {
+        background: var(--text);
+        border-color: var(--text);
+        color: var(--surface);
+        box-shadow: var(--btn-shadow);
+      }
 
-    /* Working on */
-    .working-on {
-      text-align: left;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 12px 14px;
-      margin-bottom: 16px;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .working-on.has-project {
-      border-color: var(--verde);
-      background: var(--p-green);
-    }
+      /* Working on */
+      .working-on {
+        text-align: left;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-md);
+        padding: 12px 14px;
+        margin-bottom: 16px;
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+      }
+      .working-on.has-project {
+        border-color: var(--verde);
+        background: var(--p-green);
+      }
 
-    .wo-label {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text2);
-      margin-bottom: 8px;
-    }
+      .wo-label {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text2);
+        margin-bottom: 8px;
+      }
 
-    .wo-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+      .wo-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
 
-    .wo-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 13px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text);
-      border-radius: var(--r-pill);
-      box-shadow: 1px 2px 0 var(--border);
-      transition: all 0.18s;
-    }
-    .wo-chip:hover {
-      border-color: var(--border2);
-      background: var(--surface2);
-      transform: translateY(-1px);
-    }
-    .wo-chip.active {
-      background: var(--verde-bg);
-      border-color: var(--verde);
-      color: var(--verde);
-      box-shadow: 1px 2px 0 var(--verde);
-    }
+      .wo-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 13px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text);
+        border-radius: var(--r-pill);
+        box-shadow: 1px 2px 0 var(--border);
+        transition: all 0.18s;
+      }
+      .wo-chip:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+        transform: translateY(-1px);
+      }
+      .wo-chip.active {
+        background: var(--verde-bg);
+        border-color: var(--verde);
+        color: var(--verde);
+        box-shadow: 1px 2px 0 var(--verde);
+      }
+      .wo-chip-done {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        width: 16px; height: 16px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        opacity: 0.45;
+        transition: opacity 0.15s, background 0.15s, color 0.15s;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .wo-chip-done:hover {
+        opacity: 1;
+        background: var(--verde-bg);
+        color: var(--verde);
+      }
 
-    .wo-task-row {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border);
-      animation: panelIn 0.2s ease;
-    }
+      .wo-task-row {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 1px dashed transparent;
+        transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1),
+                    opacity 0.25s ease,
+                    padding-top 0.25s ease,
+                    margin-top 0.25s ease,
+                    border-color 0.25s ease;
+      }
+      .wo-task-row.open {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top-color: var(--border);
+      }
 
-    .wo-task-label {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text2);
-      margin-bottom: 6px;
-    }
+      .wo-task-label {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text2);
+        margin-bottom: 6px;
+      }
 
-    .wo-empty {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--text2);
-      letter-spacing: 0.4px;
-      font-style: italic;
-    }
+      .wo-empty {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--text2);
+        letter-spacing: 0.4px;
+        font-style: italic;
+      }
 
-    /* Presets */
-    .presets {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-      animation: panelIn 0.2s ease;
-    }
+      /* Presets */
+      .presets {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+        animation: panelIn 0.2s ease;
+      }
 
-    .preset-btn {
-      padding: 5px 14px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text2);
-      border-radius: var(--r-pill);
-      box-shadow: 1px 2px 0 var(--border);
-      transition: all 0.18s;
-    }
-    .preset-btn:hover {
-      background: var(--p-blue);
-      border-color: var(--azul);
-      color: var(--azul);
-      transform: translateY(-1px);
-    }
-    .preset-btn.active {
-      background: var(--p-blue);
-      border-color: var(--azul);
-      color: var(--azul);
-      box-shadow: 2px 3px 0 var(--azul);
-    }
+      .preset-btn {
+        padding: 5px 14px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text2);
+        border-radius: var(--r-pill);
+        box-shadow: 1px 2px 0 var(--border);
+        transition: all 0.18s;
+      }
+      .preset-btn:hover {
+        background: var(--p-blue);
+        border-color: var(--azul);
+        color: var(--azul);
+        transform: translateY(-1px);
+      }
+      .preset-btn.active {
+        background: var(--p-blue);
+        border-color: var(--azul);
+        color: var(--azul);
+        box-shadow: 2px 3px 0 var(--azul);
+      }
 
-    /* Progress bar */
-    .cd-bar-wrap {
-      width: 100%;
-      height: 6px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .cd-bar-fill {
-      height: 100%;
-      background: var(--verde);
-      transition: width 1s linear;
-      width: 100%;
-      border-radius: var(--r-pill);
-    }
+      /* Progress bar */
+      .cd-bar-wrap {
+        width: 100%;
+        height: 6px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-pill);
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+      .cd-bar-fill {
+        height: 100%;
+        background: var(--verde);
+        transition: width 1s linear;
+        width: 100%;
+        border-radius: var(--r-pill);
+      }
 
-    /* Timer display — NO animation when running */
-    .timer-display {
-      font-family: var(--mono);
-      font-size: 5.5rem;
-      font-weight: 700;
-      letter-spacing: 6px;
-      line-height: 1;
-      color: var(--text);
-      margin: 16px 0 8px;
-      transition: color 0.4s;
-    }
-    .timer-display.running { color: var(--verde); }
-    .timer-display.paused  { color: var(--text2); }
+      /* Timer display — NO animation when running */
+      .timer-display {
+        font-family: var(--mono);
+        font-size: 5.5rem;
+        font-weight: 700;
+        letter-spacing: 6px;
+        line-height: 1;
+        color: var(--text);
+        margin: 16px 0 8px;
+        transition: color 0.4s;
+      }
+      .timer-display.running {
+        color: var(--verde);
+      }
+      .timer-display.paused {
+        color: var(--text2);
+      }
 
-    .timer-label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text2);
-      margin-bottom: 20px;
-      min-height: 1.2em;
-      transition: color 0.3s;
-    }
+      .timer-label {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text2);
+        margin-bottom: 20px;
+        min-height: 1.2em;
+        transition: color 0.3s;
+      }
 
-    /* Controls */
-    .timer-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+      /* Controls */
+      .timer-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
 
-    /* Pomodoro dots */
-    .pomo-dots {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--border);
-    }
-    .pomo-dot {
-      width: 9px; height: 9px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .pomo-dot.on {
-      background: var(--verde);
-      border-color: var(--verde);
-      transform: scale(1.25);
-    }
+      /* Pomodoro dots */
+      .pomo-dots {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--border);
+      }
+      .pomo-dot {
+        width: 9px;
+        height: 9px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .pomo-dot.on {
+        background: var(--verde);
+        border-color: var(--verde);
+        transform: scale(1.25);
+      }
 
-    /* ============================================
+      /* ============================================
        WHITE NOISE BUTTONS
     ============================================ */
-    .noise-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--border);
-    }
+      .noise-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px dashed var(--border);
+      }
 
-    .noise-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
+      .noise-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
 
-    .noise-btn {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text2);
-      font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--btn-shadow);
-      transition: all 0.2s;
-    }
-    .noise-btn:hover {
-      border-color: var(--azul);
-      color: var(--azul);
-      background: var(--p-blue);
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-2px) translateX(-1px);
-    }
-    .noise-btn:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
-    .noise-btn.active {
-      background: var(--p-blue);
-      border-color: var(--azul);
-      color: var(--azul);
-      box-shadow: 2px 3px 0 var(--azul);
-    }
+      .noise-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text2);
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--btn-shadow);
+        transition: all 0.2s;
+      }
+      .noise-btn:hover {
+        border-color: var(--azul);
+        color: var(--azul);
+        background: var(--p-blue);
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-2px) translateX(-1px);
+      }
+      .noise-btn:active {
+        transform: translateY(1px) translateX(1px);
+        box-shadow: none;
+      }
+      .noise-btn.active {
+        background: var(--p-blue);
+        border-color: var(--azul);
+        color: var(--azul);
+        box-shadow: 2px 3px 0 var(--azul);
+      }
 
-    .noise-lbl {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text2);
-    }
+      .noise-lbl {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+      }
 
-    /* ============================================
+      /* ============================================
        TODAY SUMMARY
     ============================================ */
-    .summary-row {
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-      padding-top: 4px;
-    }
-    .sum-item { transition: transform 0.2s; cursor: default; }
-    .sum-item:hover { transform: translateY(-2px); }
+      .summary-row {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        padding-top: 4px;
+      }
+      .sum-item {
+        transition: transform 0.2s;
+        cursor: default;
+      }
 
-    .sum-val {
-      font-family: var(--mono);
-      font-size: 1.8rem;
-      font-weight: 700;
-      line-height: 1;
-    }
-    .sum-lbl {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text2);
-      margin-top: 4px;
-    }
-    .sum-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-    }
+      .sum-val {
+        font-family: var(--mono);
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .sum-lbl {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text2);
+        margin-top: 4px;
+      }
+      .sum-divider {
+        width: 1px;
+        background: var(--border);
+        align-self: stretch;
+      }
 
-    /* ============================================
+      /* ============================================
        PROJECTS & TASKS PANEL
     ============================================ */
-    .proj-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      vertical-align: middle;
-    }
+      .proj-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        vertical-align: middle;
+      }
 
-    .color-picker-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-    }
-    .color-swatch {
-      width: 24px; height: 24px;
-      border: 2px solid transparent;
-      cursor: pointer;
-      border-radius: 50%;
-      box-shadow: 1px 2px 0 var(--border);
-      transition: all 0.15s;
-    }
-    .color-swatch:hover { transform: translateY(-2px) scale(1.1); }
-    .color-swatch.selected {
-      border-color: var(--text);
-      box-shadow: 2px 3px 0 var(--border2);
-      transform: translateY(-1px) scale(1.05);
-    }
+      .color-picker-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .color-swatch {
+        width: 24px;
+        height: 24px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 1px 2px 0 var(--border);
+        transition: all 0.15s;
+      }
+      .color-swatch:hover {
+        transform: translateY(-2px) scale(1.1);
+      }
+      .color-swatch.selected {
+        border-color: var(--text);
+        box-shadow: 2px 3px 0 var(--border2);
+        transform: translateY(-1px) scale(1.05);
+      }
 
-    .add-proj-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+      .add-proj-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
 
-    .section-lbl {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text2);
-      margin: 14px 0 7px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
+      .section-lbl {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text2);
+        margin: 14px 0 7px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
 
-    .project-section {
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      overflow: hidden;
-      margin-bottom: 12px;
-      box-shadow: var(--card-shadow);
-      transition: all 0.2s;
-      animation: slideIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .project-section:hover {
-      box-shadow: var(--card-shadow-hover);
-      transform: translateY(-2px) translateX(-1px);
-    }
+      .project-section {
+        border: 1px solid var(--border);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: var(--card-shadow);
+        transition: all 0.2s;
+        animation: slideIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      }
 
-    .project-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-    }
+      .project-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+      }
 
-    .project-header-name {
-      flex: 1;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+      .project-header-name {
+        flex: 1;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
 
-    .proj-task-count {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text2);
-      padding: 2px 9px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-    }
+      .proj-task-count {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text2);
+        padding: 2px 9px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-pill);
+      }
 
-    .proj-del-btn {
-      background: none;
-      border: none;
-      color: var(--text2);
-      cursor: pointer;
-      font-size: 0.9rem;
-      padding: 4px 6px;
-      display: flex;
-      align-items: center;
-      transition: all 0.15s;
-      border-radius: var(--r-sm);
-    }
-    .proj-del-btn:hover { color: var(--rojo); background: var(--rojo-bg); }
+      .proj-del-btn {
+        background: none;
+        border: none;
+        color: var(--text2);
+        cursor: pointer;
+        font-size: 0.9rem;
+        padding: 4px 6px;
+        display: flex;
+        align-items: center;
+        transition: all 0.15s;
+        border-radius: var(--r-sm);
+      }
+      .proj-del-btn:hover {
+        color: var(--rojo);
+        background: var(--rojo-bg);
+      }
 
-    .project-body {
-      padding: 12px 14px 14px;
-      background: var(--surface);
-    }
+      .project-body {
+        padding: 12px 14px 14px;
+        background: var(--surface);
+      }
 
-    .proj-task-add {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+      .proj-task-add {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
 
-    .task-list { display: flex; flex-direction: column; gap: 5px; }
+      .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
 
-    .task-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      transition: all 0.18s;
-      animation: slideIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .task-item:hover {
-      border-color: var(--border2);
-      background: var(--surface2);
-      transform: translateX(3px);
-    }
-    .task-item.done { opacity: 0.5; background: var(--p-green); border-color: var(--verde); }
+      .task-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-sm);
+        transition: all 0.18s;
+        animation: slideIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .task-item.done {
+        opacity: 0.5;
+        background: var(--p-green);
+        border-color: var(--verde);
+      }
 
-    .task-cb {
-      width: 18px; height: 18px;
-      border: 1.5px solid var(--border);
-      background: var(--surface);
-      flex-shrink: 0;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem;
-      border-radius: 4px;
-      transition: all 0.18s;
-    }
-    .task-cb:hover { border-color: var(--verde); }
-    .task-cb.on { background: var(--verde); border-color: var(--verde); color: #fff; }
+      .task-cb {
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        flex-shrink: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        border-radius: 4px;
+        transition: all 0.18s;
+      }
+      .task-cb:hover {
+        border-color: var(--verde);
+      }
+      .task-cb.on {
+        background: var(--verde);
+        border-color: var(--verde);
+        color: #fff;
+      }
 
-    .task-txt {
-      flex: 1;
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      cursor: pointer;
-      word-break: break-word;
-    }
-    .task-txt.done { text-decoration: line-through; color: var(--text2); }
+      .task-txt {
+        flex: 1;
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        cursor: pointer;
+        word-break: break-word;
+      }
+      .task-txt.done {
+        text-decoration: line-through;
+        color: var(--text2);
+      }
 
-    .task-del {
-      background: none;
-      border: none;
-      color: var(--text2);
-      cursor: pointer;
-      font-size: 0.9rem;
-      padding: 2px 4px;
-      display: flex;
-      align-items: center;
-      border-radius: var(--r-sm);
-      transition: all 0.15s;
-    }
-    .task-del:hover { color: var(--rojo); background: var(--rojo-bg); }
+      .task-del {
+        background: none;
+        border: none;
+        color: var(--text2);
+        cursor: pointer;
+        font-size: 0.9rem;
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        border-radius: var(--r-sm);
+        transition: all 0.15s;
+      }
+      .task-del:hover {
+        color: var(--rojo);
+        background: var(--rojo-bg);
+      }
 
-    .empty-state {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      text-align: center;
-      padding: 32px 12px;
-      color: var(--text2);
-      letter-spacing: 0.5px;
-    }
-    .empty-state i { display: block; font-size: 2.2rem; margin-bottom: 10px; opacity: 0.4; }
+      .empty-state {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        text-align: center;
+        padding: 32px 12px;
+        color: var(--text2);
+        letter-spacing: 0.5px;
+      }
+      .empty-state i {
+        display: block;
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        opacity: 0.4;
+      }
 
-    /* ============================================
+      /* ============================================
        STATS PANEL
     ============================================ */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
 
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 18px 14px;
-      text-align: center;
-      box-shadow: var(--card-shadow);
-      transition: all 0.2s;
-    }
-    .stat-card:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-2px) translateX(-1px); }
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-md);
+        padding: 18px 14px;
+        text-align: center;
+        box-shadow: var(--card-shadow);
+        transition: all 0.2s;
+      }
 
-    .stat-card.sc-streak { background: var(--p-yellow); border-color: var(--amarillo); grid-column: 1 / -1; }
-    .stat-card.sc-today  { background: var(--p-green);  border-color: var(--verde); }
-    .stat-card.sc-week   { background: var(--p-blue);   border-color: var(--azul); }
-    .stat-card.sc-month  { background: var(--p-purple); border-color: var(--violeta); }
-    .stat-card.sc-mins   { background: var(--p-red);    border-color: var(--rojo); }
+      .stat-card.sc-streak {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 22px;
+      }
+      .sc-streak .sc-val {
+        font-size: 3rem;
+      }
+      .sc-streak i {
+        font-size: 2.2rem;
+        animation: flameDance 2s ease-in-out infinite;
+      }
 
-    .stat-card.sc-streak {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 22px;
-    }
-    .sc-streak .sc-val { font-size: 3rem; color: var(--amarillo); }
-    .sc-streak .sc-lbl { color: var(--amarillo); }
-    .sc-streak i { font-size: 2.2rem; color: var(--amarillo); animation: flameDance 2s ease-in-out infinite; }
+      @keyframes flameDance {
+        0%,
+        100% {
+          transform: scale(1) rotate(-4deg);
+        }
+        50% {
+          transform: scale(1.08) rotate(4deg);
+        }
+      }
 
-    @keyframes flameDance {
-      0%, 100% { transform: scale(1) rotate(-4deg); }
-      50%       { transform: scale(1.08) rotate(4deg); }
-    }
+      .sc-val {
+        font-family: var(--mono);
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .sc-lbl {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text2);
+      }
 
-    .sc-val {
-      font-family: var(--mono);
-      font-size: 1.8rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .sc-lbl {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text2);
-    }
+      /* Breakdown */
+      .breakdown-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
 
-    /* Breakdown */
-    .breakdown-list { display: flex; flex-direction: column; gap: 12px; }
+      .breakdown-row {
+        display: grid;
+        grid-template-columns: 130px 1fr 55px;
+        align-items: center;
+        gap: 10px;
+      }
 
-    .breakdown-row {
-      display: grid;
-      grid-template-columns: 130px 1fr 55px;
-      align-items: center;
-      gap: 10px;
-    }
+      .breakdown-name {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-    .breakdown-name {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+      .breakdown-bar-wrap {
+        height: 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-pill);
+        overflow: hidden;
+      }
 
-    .breakdown-bar-wrap {
-      height: 10px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-      overflow: hidden;
-    }
+      .breakdown-bar {
+        height: 100%;
+        min-width: 3px;
+        border-radius: var(--r-pill);
+        transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
 
-    .breakdown-bar {
-      height: 100%;
-      min-width: 3px;
-      border-radius: var(--r-pill);
-      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+      .breakdown-time {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        font-weight: 700;
+        white-space: nowrap;
+        text-align: right;
+      }
 
-    .breakdown-time {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      white-space: nowrap;
-      text-align: right;
-    }
+      .breakdown-tasks {
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: -6px;
+      }
 
-    .breakdown-tasks {
-      padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: -6px;
-    }
+      .breakdown-task-row {
+        display: grid;
+        grid-template-columns: 110px 1fr 55px;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.72;
+      }
 
-    .breakdown-task-row {
-      display: grid;
-      grid-template-columns: 110px 1fr 55px;
-      align-items: center;
-      gap: 10px;
-      opacity: 0.72;
-    }
+      .breakdown-task-name {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        color: var(--text2);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-    .breakdown-task-name {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--text2);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+      .breakdown-task-bar-wrap {
+        height: 6px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-pill);
+        overflow: hidden;
+      }
 
-    .breakdown-task-bar-wrap {
-      height: 6px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-      overflow: hidden;
-    }
+      .breakdown-task-bar {
+        height: 100%;
+        opacity: 0.65;
+        border-radius: var(--r-pill);
+      }
 
-    .breakdown-task-bar { height: 100%; opacity: 0.65; border-radius: var(--r-pill); }
+      .breakdown-task-time {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        color: var(--text2);
+        text-align: right;
+      }
 
-    .breakdown-task-time {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      color: var(--text2);
-      text-align: right;
-    }
+      /* Chart */
+      .chart-tabs {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
 
-    /* Chart */
-    .chart-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+      .chart-tab {
+        padding: 5px 16px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text2);
+        border-radius: var(--r-pill);
+        box-shadow: 1px 2px 0 var(--border);
+        transition: all 0.18s;
+      }
+      .chart-tab:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .chart-tab.active {
+        background: var(--p-blue);
+        border-color: var(--azul);
+        color: var(--azul);
+        box-shadow: 2px 3px 0 var(--azul);
+      }
 
-    .chart-tab {
-      padding: 5px 16px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text2);
-      border-radius: var(--r-pill);
-      box-shadow: 1px 2px 0 var(--border);
-      transition: all 0.18s;
-    }
-    .chart-tab:hover { border-color: var(--border2); color: var(--text); }
-    .chart-tab.active {
-      background: var(--p-blue);
-      border-color: var(--azul);
-      color: var(--azul);
-      box-shadow: 2px 3px 0 var(--azul);
-    }
+      .chart-area {
+        position: relative;
+        padding-left: 4px;
+        padding-bottom: 20px;
+      }
 
-    .chart-area { position: relative; padding-left: 4px; padding-bottom: 20px; }
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        height: 110px;
+        border-left: 2px solid var(--border2);
+        border-bottom: 2px solid var(--border2);
+        padding: 6px 4px 0 6px;
+      }
 
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 110px;
-      border-left:   2px solid var(--border2);
-      border-bottom: 2px solid var(--border2);
-      padding: 6px 4px 0 6px;
-    }
+      .bar-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        gap: 4px;
+      }
 
-    .bar-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-      gap: 4px;
-    }
+      .bar {
+        width: 100%;
+        background: var(--p-blue);
+        border: 1px solid var(--azul);
+        border-bottom: none;
+        border-radius: 4px 4px 0 0;
+        min-height: 3px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .bar:hover {
+        background: var(--azul);
+        transform: scaleY(1.04);
+        transform-origin: bottom;
+      }
+      .bar.today-bar {
+        background: var(--p-yellow);
+        border-color: var(--amarillo);
+      }
+      .bar.today-bar:hover {
+        background: var(--amarillo);
+      }
+      .bar.empty-bar {
+        background: transparent;
+        border-color: transparent;
+        min-height: 0;
+        height: 0;
+      }
 
-    .bar {
-      width: 100%;
-      background: var(--p-blue);
-      border: 1px solid var(--azul);
-      border-bottom: none;
-      border-radius: 4px 4px 0 0;
-      min-height: 3px;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .bar:hover { background: var(--azul); transform: scaleY(1.04); transform-origin: bottom; }
-    .bar.today-bar { background: var(--p-yellow); border-color: var(--amarillo); }
-    .bar.today-bar:hover { background: var(--amarillo); }
-    .bar.empty-bar { background: transparent; border-color: transparent; min-height: 0; height: 0; }
+      .bar-tip {
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text);
+        color: var(--surface);
+        padding: 2px 7px;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        white-space: nowrap;
+        border-radius: 4px;
+        display: none;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .bar:hover .bar-tip {
+        display: block;
+      }
 
-    .bar-tip {
-      position: absolute;
-      bottom: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--text);
-      color: var(--surface);
-      padding: 2px 7px;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      white-space: nowrap;
-      border-radius: 4px;
-      display: none;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .bar:hover .bar-tip { display: block; }
+      .bar-lbl {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        color: var(--text2);
+        text-align: center;
+        position: absolute;
+        bottom: -17px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
 
-    .bar-lbl {
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      color: var(--text2);
-      text-align: center;
-      position: absolute;
-      bottom: -17px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
+      .chart-legend {
+        display: flex;
+        gap: 16px;
+        margin-top: 22px;
+        font-family: var(--mono);
+        font-size: 0.63rem;
+        color: var(--text2);
+      }
+      .legend-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        vertical-align: middle;
+        margin-right: 4px;
+      }
 
-    .chart-legend {
-      display: flex;
-      gap: 16px;
-      margin-top: 22px;
-      font-family: var(--mono);
-      font-size: 0.63rem;
-      color: var(--text2);
-    }
-    .legend-dot {
-      display: inline-block;
-      width: 8px; height: 8px;
-      border-radius: 2px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
+      /* Data */
+      .data-row {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-data {
+        flex: 1;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-sm);
+        padding: 12px 8px;
+        cursor: pointer;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: var(--btn-shadow);
+        transition: all 0.18s;
+      }
+      .btn-data:hover {
+        border-color: var(--border2);
+        color: var(--text);
+        background: var(--surface);
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px) translateX(-1px);
+      }
+      .btn-data:active {
+        transform: translateY(1px) translateX(1px);
+        box-shadow: none;
+      }
 
-    /* Data */
-    .data-row { display: flex; gap: 8px; }
-    .btn-data {
-      flex: 1;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      padding: 12px 8px;
-      cursor: pointer;
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: var(--btn-shadow);
-      transition: all 0.18s;
-    }
-    .btn-data:hover {
-      border-color: var(--border2);
-      color: var(--text);
-      background: var(--surface);
-      box-shadow: var(--btn-shadow-hover);
-      transform: translateY(-1px) translateX(-1px);
-    }
-    .btn-data:active { transform: translateY(1px) translateX(1px); box-shadow: none; }
+      #importFile {
+        display: none;
+      }
 
-    #importFile { display: none; }
-
-    /* ============================================
+      /* ============================================
        FULLSCREEN TIMER OVERLAY
     ============================================ */
-    .fs-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: var(--bg);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 22px;
-    }
-    .fs-overlay::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, var(--border) 1.2px, transparent 1.2px);
-      background-size: 26px 26px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-    .fs-overlay.open {
-      display: flex;
-      animation: fsIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+      .fs-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+      .fs-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          var(--border) 1.2px,
+          transparent 1.2px
+        );
+        background-size: 26px 26px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+      .fs-overlay.open {
+        display: flex;
+        animation: fsIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
 
-    @keyframes fsIn {
-      from { opacity: 0; transform: scale(1.02); }
-      to   { opacity: 1; transform: scale(1); }
-    }
+      @keyframes fsIn {
+        from {
+          opacity: 0;
+          transform: scale(1.02);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
 
-    .fs-mode-badge {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--text2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-pill);
-      padding: 4px 16px;
-      position: relative;
-      z-index: 1;
-    }
+      .fs-mode-badge {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--text2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-pill);
+        padding: 4px 16px;
+        position: relative;
+        z-index: 1;
+      }
 
-    /* NO animation on the fullscreen timer display */
-    .fs-timer {
-      font-family: var(--mono);
-      font-size: clamp(5rem, 18vw, 10rem);
-      font-weight: 700;
-      letter-spacing: 8px;
-      line-height: 1;
-      color: var(--verde);
-      position: relative;
-      z-index: 1;
-    }
+      /* NO animation on the fullscreen timer display */
+      .fs-timer {
+        font-family: var(--mono);
+        font-size: clamp(5rem, 18vw, 10rem);
+        font-weight: 700;
+        letter-spacing: 8px;
+        line-height: 1;
+        color: var(--verde);
+        position: relative;
+        z-index: 1;
+      }
 
-    .fs-info {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text2);
-      text-align: center;
-      min-height: 1.2em;
-      position: relative;
-      z-index: 1;
-    }
+      .fs-wo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .fs-wo .wo-chips { justify-content: center; }
+      .fs-wo-task-row {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        padding-top: 0;
+        border-top: 1px dashed transparent;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1),
+                    opacity 0.25s ease,
+                    padding-top 0.25s ease,
+                    border-color 0.25s ease;
+      }
+      .fs-wo-task-row.open {
+        max-height: 200px;
+        opacity: 1;
+        padding-top: 8px;
+        border-top-color: var(--border);
+      }
+      .fs-wo .wo-empty { color: var(--text2); }
 
-    .fs-controls {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-      position: relative;
-      z-index: 1;
-    }
+      .fs-controls {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+        position: relative;
+        z-index: 1;
+      }
 
-    .fs-bar-wrap {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 5px;
-      background: var(--surface2);
-      z-index: 2;
-    }
-    .fs-bar-fill {
-      height: 100%;
-      background: var(--verde);
-      transition: width 1s linear;
-      border-radius: 0 var(--r-pill) var(--r-pill) 0;
-    }
+      .fs-bar-wrap {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--surface2);
+        z-index: 2;
+      }
+      .fs-bar-fill {
+        height: 100%;
+        background: var(--verde);
+        transition: width 1s linear;
+        border-radius: 0 var(--r-pill) var(--r-pill) 0;
+      }
 
-    /* ============================================
+      /* ============================================
        TOASTS
     ============================================ */
-    #toasts {
-      position: fixed;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-      pointer-events: none;
-    }
+      #toasts {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        pointer-events: none;
+      }
 
-    .toast {
-      background: var(--text);
-      color: var(--surface);
-      padding: 9px 20px;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border: 1px solid var(--border2);
-      border-radius: var(--r-pill);
-      white-space: nowrap;
-      box-shadow: 3px 4px 0 var(--border2);
-      animation: toastIn 0.25s cubic-bezier(0.22, 1, 0.36, 1), toastOut 0.3s ease 2.5s forwards;
-    }
-    .toast.ok  { background: var(--verde); border-color: #0f6030; color: #fff; box-shadow: 3px 4px 0 #0f6030; }
-    .toast.err { background: var(--rojo);  border-color: #8b1a1a; color: #fff; box-shadow: 3px 4px 0 #8b1a1a; }
-    .toast.inf { background: var(--azul);  border-color: #1a4a8b; color: #fff; box-shadow: 3px 4px 0 #1a4a8b; }
+      .toast {
+        background: var(--text);
+        color: var(--surface);
+        padding: 9px 20px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: 1px solid var(--border2);
+        border-radius: var(--r-pill);
+        white-space: nowrap;
+        box-shadow: 3px 4px 0 var(--border2);
+        animation:
+          toastIn 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+          toastOut 0.3s ease 2.5s forwards;
+      }
+      .toast.ok {
+        background: var(--verde);
+        border-color: #0f6030;
+        color: #fff;
+        box-shadow: 3px 4px 0 #0f6030;
+      }
+      .toast.err {
+        background: var(--rojo);
+        border-color: #8b1a1a;
+        color: #fff;
+        box-shadow: 3px 4px 0 #8b1a1a;
+      }
+      .toast.inf {
+        background: var(--azul);
+        border-color: #1a4a8b;
+        color: #fff;
+        box-shadow: 3px 4px 0 #1a4a8b;
+      }
 
-    @keyframes toastIn  {
-      from { opacity: 0; transform: translateY(12px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateY(8px); } }
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes toastOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    /* ============================================
+      /* ============================================
        RESPONSIVE
     ============================================ */
-    @media (max-width: 640px) {
-      .app { padding: 0 12px 80px; }
-      .topbar-logo { font-size: 1rem; letter-spacing: 2px; }
-      .tab-btn { padding: 10px 12px; font-size: 0.65rem; }
-      .timer-display { font-size: 4rem; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .breakdown-row { grid-template-columns: 90px 1fr 45px; }
-      .breakdown-task-row { grid-template-columns: 70px 1fr 45px; }
-      .btn-data { font-size: 0.63rem; padding: 10px 6px; }
-      .noise-btn { width: 42px; height: 42px; font-size: 1.1rem; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- FULLSCREEN TIMER OVERLAY -->
-<div id="fsOverlay" class="fs-overlay">
-  <div class="fs-mode-badge" id="fsModeLabel">STOPWATCH</div>
-  <div class="fs-timer" id="fsDisplay">00:00</div>
-  <div class="fs-info" id="fsInfo"></div>
-  <div class="fs-controls">
-    <button class="btn btn-lg" onclick="doPause()">
-      <i class="ph ph-pause"></i> Pause
-    </button>
-    <button class="btn btn-discard btn-lg" onclick="doReset()">
-      <i class="ph ph-trash"></i> Discard
-    </button>
-  </div>
-  <div class="fs-bar-wrap" id="fsBarWrap" style="display:none">
-    <div class="fs-bar-fill" id="fsBarFill"></div>
-  </div>
-</div>
-
-<div class="app">
-
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="topbar-logo">F<span>O</span>CO</div>
-    <button class="theme-cycle-btn" id="themeCycleBtn" onclick="cycleTheme()">
-      <i id="themeIcon" class="ph ph-sun"></i>
-      <span id="themeLabel">Light</span>
-      <i class="ph ph-arrows-clockwise" style="font-size:0.6rem;opacity:0.45"></i>
-    </button>
-  </header>
-
-  <!-- TABS -->
-  <nav class="tabs" role="tablist">
-    <button class="tab-btn active" id="tab-timer" onclick="goTab('timer')" role="tab">
-      <i class="ph ph-timer"></i> Timer
-    </button>
-    <button class="tab-btn" id="tab-tasks" onclick="goTab('tasks')" role="tab">
-      <i class="ph ph-folder"></i> Tasks
-    </button>
-    <button class="tab-btn" id="tab-stats" onclick="goTab('stats')" role="tab">
-      <i class="ph ph-chart-bar"></i> Stats
-    </button>
-  </nav>
-
-  <!-- TIMER PANEL -->
-  <div class="panel active" id="panel-timer">
-
-    <div class="card timer-card">
-      <div class="mode-row">
-        <button class="mode-btn active" id="modeSwBtn" onclick="setMode('stopwatch')">Stopwatch</button>
-        <button class="mode-btn"        id="modeCdBtn"  onclick="setMode('countdown')">Countdown</button>
-      </div>
-
-      <div class="working-on" id="workingOnBox">
-        <div class="wo-label">Working on</div>
-        <div class="wo-chips" id="woProjects"></div>
-        <div class="wo-task-row" id="woTaskRow" style="display:none">
-          <div class="wo-task-label">Task (optional)</div>
-          <div class="wo-chips" id="woTasks"></div>
+      @media (max-width: 640px) {
+        .app {
+          padding: 0 12px 80px;
+        }
+        .logo-mark {
+          font-size: 1.8rem;
+          letter-spacing: 7px;
+        }
+        .tab-btn {
+          padding: 10px 12px;
+          font-size: 0.65rem;
+        }
+        .timer-display {
+          font-size: 4rem;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .breakdown-row {
+          grid-template-columns: 90px 1fr 45px;
+        }
+        .breakdown-task-row {
+          grid-template-columns: 70px 1fr 45px;
+        }
+        .btn-data {
+          font-size: 0.63rem;
+          padding: 10px 6px;
+        }
+        .noise-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 1.05rem;
+        }
+        .side-panel {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- FULLSCREEN TIMER OVERLAY -->
+    <div id="fsOverlay" class="fs-overlay">
+      <div class="fs-mode-badge" id="fsModeLabel">STOPWATCH</div>
+      <div class="fs-timer" id="fsDisplay">00:00</div>
+      <div class="fs-wo" id="fsWorkingOn">
+        <div class="wo-chips" id="fsWoProjects"></div>
+        <div class="fs-wo-task-row" id="fsWoTaskRow">
+          <div class="wo-chips" id="fsWoTasks"></div>
         </div>
       </div>
-
-      <div class="presets" id="presetsRow" style="display:none">
-        <button class="preset-btn" onclick="setPreset(15)">15 min</button>
-        <button class="preset-btn active" onclick="setPreset(25)">25 min</button>
-        <button class="preset-btn" onclick="setPreset(45)">45 min</button>
-        <button class="preset-btn" onclick="setPreset(50)">50 min</button>
-        <button class="preset-btn" onclick="setPreset(60)">60 min</button>
-      </div>
-
-      <div class="cd-bar-wrap" id="cdBarWrap" style="display:none">
-        <div class="cd-bar-fill" id="cdBarFill"></div>
-      </div>
-
-      <div class="timer-display" id="timerDisplay">00:00</div>
-      <p class="timer-label" id="timerLabel">Ready to focus?</p>
-
-      <div class="timer-controls">
-        <button class="btn" id="resetBtn" onclick="doReset()">
-          <i class="ph ph-arrow-counter-clockwise"></i> Reset
+      <div class="fs-controls">
+        <button class="btn btn-lg" onclick="doPause()">
+          <i class="ph ph-pause"></i> Pause
         </button>
-        <button class="btn btn-primary btn-lg" id="startBtn" onclick="doToggle()">
-          <i class="ph ph-play"></i> Start
-        </button>
-        <button class="btn" id="logBtn" onclick="doLog()" style="display:none">
-          <i class="ph ph-flag-checkered"></i> Log
+        <button class="btn btn-discard btn-lg" onclick="doReset()">
+          <i class="ph ph-trash"></i> Discard
         </button>
       </div>
+      <div class="fs-bar-wrap" id="fsBarWrap" style="display: none">
+        <div class="fs-bar-fill" id="fsBarFill"></div>
+      </div>
+    </div>
 
-      <div class="pomo-dots" id="pomoDots"></div>
+    <div class="app">
+      <!-- LOGO -->
+      <div class="logo-wrap">
+        <div class="logo-mark">FO<span>:</span>CO</div>
+        <div class="logo-sub">focus · timer</div>
+      </div>
 
-      <!-- White noise -->
-      <div class="noise-row">
-        <div class="noise-item">
-          <button class="noise-btn" id="noise-sea" onclick="playNoise('sea')" title="Ocean waves">
-            <i class="ph ph-waves"></i>
+      <!-- TABS -->
+      <nav class="tabs" role="tablist">
+        <button
+          class="tab-btn active"
+          id="tab-timer"
+          onclick="goTab('timer')"
+          role="tab"
+        >
+          <i class="ph ph-timer"></i> Timer
+        </button>
+        <button
+          class="tab-btn"
+          id="tab-tasks"
+          onclick="goTab('tasks')"
+          role="tab"
+        >
+          <i class="ph ph-folder"></i> Tasks
+        </button>
+        <button
+          class="tab-btn"
+          id="tab-stats"
+          onclick="goTab('stats')"
+          role="tab"
+        >
+          <i class="ph ph-chart-bar"></i> Stats
+        </button>
+      </nav>
+
+      <!-- TIMER PANEL -->
+      <div class="panel active" id="panel-timer">
+        <div class="card timer-card">
+          <div class="mode-row">
+            <button
+              class="mode-btn active"
+              id="modeSwBtn"
+              onclick="setMode('stopwatch')"
+            >
+              Stopwatch
+            </button>
+            <button
+              class="mode-btn"
+              id="modeCdBtn"
+              onclick="setMode('countdown')"
+            >
+              Countdown
+            </button>
+          </div>
+
+          <div class="working-on" id="workingOnBox">
+            <div class="wo-label">Working on</div>
+            <div class="wo-chips" id="woProjects"></div>
+            <div class="wo-task-row" id="woTaskRow">
+              <div class="wo-task-label">Task (optional)</div>
+              <div class="wo-chips" id="woTasks"></div>
+            </div>
+          </div>
+
+          <div class="presets" id="presetsRow" style="display: none">
+            <button class="preset-btn" onclick="setPreset(15)">15 min</button>
+            <button class="preset-btn active" onclick="setPreset(25)">
+              25 min
+            </button>
+            <button class="preset-btn" onclick="setPreset(45)">45 min</button>
+            <button class="preset-btn" onclick="setPreset(50)">50 min</button>
+            <button class="preset-btn" onclick="setPreset(60)">60 min</button>
+          </div>
+
+          <div class="cd-bar-wrap" id="cdBarWrap" style="display: none">
+            <div class="cd-bar-fill" id="cdBarFill"></div>
+          </div>
+
+          <div class="timer-display" id="timerDisplay">00:00</div>
+          <p class="timer-label" id="timerLabel">Ready to focus?</p>
+
+          <div class="timer-controls">
+            <button class="btn" id="resetBtn" onclick="doReset()">
+              <i class="ph ph-arrow-counter-clockwise"></i> Reset
+            </button>
+            <button
+              class="btn btn-primary btn-lg"
+              id="startBtn"
+              onclick="doToggle()"
+            >
+              <i class="ph ph-play"></i> Start
+            </button>
+            <button
+              class="btn"
+              id="logBtn"
+              onclick="doLog()"
+              style="display: none"
+            >
+              <i class="ph ph-flag-checkered"></i> Log
+            </button>
+          </div>
+
+          <div class="pomo-dots" id="pomoDots"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <i class="ph ph-calendar-blank"></i> Today
+          </div>
+          <div class="summary-row">
+            <div class="sum-item">
+              <div class="sum-val" id="todaySessions">0</div>
+              <div class="sum-lbl">Sessions</div>
+            </div>
+            <div class="sum-divider"></div>
+            <div class="sum-item">
+              <div class="sum-val" id="todayMinutes">0</div>
+              <div class="sum-lbl">Minutes</div>
+            </div>
+            <div class="sum-divider"></div>
+            <div class="sum-item">
+              <div class="sum-val" id="todayStreak">0</div>
+              <div class="sum-lbl">Streak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /panel-timer -->
+
+      <!-- TASKS PANEL -->
+      <div class="panel" id="panel-tasks">
+        <div class="card">
+          <div class="card-title">
+            <i class="ph ph-folder-open"></i> Projects & Tasks
+          </div>
+
+          <div class="section-lbl" style="margin-top: 0">New Project</div>
+          <div class="color-picker-row" id="colorPickerRow"></div>
+          <div class="add-proj-row">
+            <input
+              class="task-input"
+              id="projInput"
+              type="text"
+              placeholder="Project name…"
+              maxlength="80"
+              onkeydown="if (event.key === 'Enter') addProject();"
+            />
+            <button
+              class="btn-add"
+              onclick="addProject()"
+              aria-label="Add project"
+            >
+              <i class="ph ph-plus"></i>
+            </button>
+          </div>
+
+          <div id="projectsList"></div>
+        </div>
+      </div>
+      <!-- /panel-tasks -->
+
+      <!-- STATS PANEL -->
+      <div class="panel" id="panel-stats">
+        <div class="stats-grid">
+          <div class="stat-card sc-streak">
+            <i class="ph-fill ph-fire"></i>
+            <div>
+              <div class="sc-val" id="statStreak">0</div>
+              <div class="sc-lbl">Day Streak</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-val" id="statToday">0</div>
+            <div class="sc-lbl">Today</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-val" id="statWeek">0</div>
+            <div class="sc-lbl">This Week</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-val" id="statMonth">0</div>
+            <div class="sc-lbl">This Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-val" id="statMinutes">0</div>
+            <div class="sc-lbl">Total Mins</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <i class="ph ph-target"></i> Time by Project
+          </div>
+          <div class="breakdown-list" id="projectBreakdown"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <i class="ph ph-trend-up"></i> Focus History
+          </div>
+          <div class="chart-tabs">
+            <button
+              class="chart-tab active"
+              id="ctWeek"
+              onclick="switchChart('week')"
+            >
+              Week
+            </button>
+            <button
+              class="chart-tab"
+              id="ctMonth"
+              onclick="switchChart('month')"
+            >
+              Month
+            </button>
+          </div>
+          <div class="chart-area">
+            <div class="bar-chart" id="barChart"></div>
+            <div class="chart-legend">
+              <span
+                ><span
+                  class="legend-dot"
+                  style="
+                    background: var(--p-blue);
+                    border: 1px solid var(--azul);
+                  "
+                ></span
+                >Sessions</span
+              >
+              <span
+                ><span
+                  class="legend-dot"
+                  style="background: var(--amarillo)"
+                ></span
+                >Today</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="ph ph-floppy-disk"></i> Data</div>
+          <div class="data-row">
+            <button class="btn-data" onclick="exportData()">
+              <i class="ph ph-export"></i> Export
+            </button>
+            <button
+              class="btn-data"
+              onclick="document.getElementById('importFile').click()"
+            >
+              <i class="ph ph-import"></i> Import
+            </button>
+          </div>
+          <input
+            type="file"
+            id="importFile"
+            accept=".json"
+            onchange="importData(event)"
+          />
+        </div>
+      </div>
+      <!-- /panel-stats -->
+    </div>
+    <!-- /.app -->
+
+    <!-- SOUND PANEL (left) -->
+    <div class="side-panel sound-side" id="soundPanel">
+      <button
+        class="panel-trigger"
+        id="soundTrigger"
+        aria-label="Ambient sounds"
+        onclick="if (noiseState.activeType) stopNoise();"
+      >
+        <i class="ph ph-speaker-slash" id="soundIcon"></i>
+      </button>
+      <div class="panel-popup">
+        <div class="noise-row-panel">
+          <div class="noise-item">
+            <button
+              class="noise-btn"
+              id="noise-seaside"
+              onclick="playNoise('seaside')"
+              title="Seaside"
+            >
+              <i class="ph ph-waves"></i>
+            </button>
+            <span class="noise-lbl">Seaside</span>
+          </div>
+          <div class="noise-item">
+            <button
+              class="noise-btn"
+              id="noise-rain"
+              onclick="playNoise('rain')"
+              title="Rain"
+            >
+              <i class="ph ph-cloud-rain"></i>
+            </button>
+            <span class="noise-lbl">Rain</span>
+          </div>
+          <div class="noise-item">
+            <button
+              class="noise-btn"
+              id="noise-riverside"
+              onclick="playNoise('riverside')"
+              title="Riverside"
+            >
+              <i class="ph ph-drop-half"></i>
+            </button>
+            <span class="noise-lbl">Riverside</span>
+          </div>
+          <div class="noise-item">
+            <button
+              class="noise-btn"
+              id="noise-lakeside"
+              onclick="playNoise('lakeside')"
+              title="Lakeside"
+            >
+              <i class="ph ph-mountains"></i>
+            </button>
+            <span class="noise-lbl">Lakeside</span>
+          </div>
+          <div class="noise-item">
+            <button
+              class="noise-btn"
+              id="noise-lofi"
+              onclick="playLofi()"
+              title="Lofi playlist"
+            >
+              <i class="ph ph-headphones"></i>
+            </button>
+            <span class="noise-lbl">Lofi</span>
+          </div>
+        </div>
+        <div class="vol-row">
+          <i class="ph ph-speaker-low vol-icon"></i>
+          <input
+            type="range"
+            id="volSlider"
+            class="vol-slider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+            oninput="setNoiseVolume(this.value)"
+          />
+          <i class="ph ph-speaker-high vol-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEME PANEL (right) -->
+    <div class="side-panel theme-side" id="themePanel">
+      <button class="panel-trigger" id="themeTrigger" aria-label="Change theme">
+        <i class="ph ph-star" id="themeIcon"></i>
+      </button>
+      <div class="panel-popup">
+        <div class="theme-opts" id="themeOpts">
+          <button class="theme-opt active" data-idx="0" onclick="applyTheme(0)">
+            <span class="theme-swatch" style="background: #7c3aed"></span>
+            <span class="theme-opt-name">Light</span>
           </button>
-          <span class="noise-lbl">Sea</span>
-        </div>
-        <div class="noise-item">
-          <button class="noise-btn" id="noise-rain" onclick="playNoise('rain')" title="Rain">
-            <i class="ph ph-cloud-rain"></i>
+          <button class="theme-opt" data-idx="1" onclick="applyTheme(1)">
+            <span class="theme-swatch" style="background: #524e46"></span>
+            <span class="theme-opt-name">Dark</span>
           </button>
-          <span class="noise-lbl">Rain</span>
-        </div>
-        <div class="noise-item">
-          <button class="noise-btn" id="noise-forest" onclick="playNoise('forest')" title="Forest">
-            <i class="ph ph-tree-evergreen"></i>
+          <button class="theme-opt" data-idx="2" onclick="applyTheme(2)">
+            <span class="theme-swatch" style="background: #ff0088"></span>
+            <span class="theme-opt-name">Cyber</span>
           </button>
-          <span class="noise-lbl">Forest</span>
-        </div>
-        <div class="noise-item">
-          <button class="noise-btn" id="noise-white" onclick="playNoise('white')" title="White noise">
-            <i class="ph ph-wind"></i>
+          <button class="theme-opt" data-idx="3" onclick="applyTheme(3)">
+            <span class="theme-swatch" style="background: #2a7840"></span>
+            <span class="theme-opt-name">Forest</span>
           </button>
-          <span class="noise-lbl">Noise</span>
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-title"><i class="ph ph-calendar-blank"></i> Today</div>
-      <div class="summary-row">
-        <div class="sum-item">
-          <div class="sum-val" id="todaySessions">0</div>
-          <div class="sum-lbl">Sessions</div>
-        </div>
-        <div class="sum-divider"></div>
-        <div class="sum-item">
-          <div class="sum-val" id="todayMinutes">0</div>
-          <div class="sum-lbl">Minutes</div>
-        </div>
-        <div class="sum-divider"></div>
-        <div class="sum-item">
-          <div class="sum-val" id="todayStreak">0</div>
-          <div class="sum-lbl">Streak</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /panel-timer -->
-
-  <!-- TASKS PANEL -->
-  <div class="panel" id="panel-tasks">
-    <div class="card">
-      <div class="card-title"><i class="ph ph-folder-open"></i> Projects & Tasks</div>
-
-      <div class="section-lbl" style="margin-top:0">New Project</div>
-      <div class="color-picker-row" id="colorPickerRow"></div>
-      <div class="add-proj-row">
-        <input class="task-input" id="projInput" type="text"
-               placeholder="Project name…" maxlength="80"
-               onkeydown="if(event.key==='Enter')addProject()" />
-        <button class="btn-add" onclick="addProject()" aria-label="Add project">
-          <i class="ph ph-plus"></i>
-        </button>
-      </div>
-
-      <div id="projectsList"></div>
-    </div>
-  </div><!-- /panel-tasks -->
-
-  <!-- STATS PANEL -->
-  <div class="panel" id="panel-stats">
-
-    <div class="stats-grid">
-      <div class="stat-card sc-streak">
-        <i class="ph-fill ph-fire"></i>
-        <div>
-          <div class="sc-val" id="statStreak">0</div>
-          <div class="sc-lbl">Day Streak</div>
-        </div>
-      </div>
-      <div class="stat-card sc-today">
-        <div class="sc-val" id="statToday">0</div>
-        <div class="sc-lbl">Today</div>
-      </div>
-      <div class="stat-card sc-week">
-        <div class="sc-val" id="statWeek">0</div>
-        <div class="sc-lbl">This Week</div>
-      </div>
-      <div class="stat-card sc-month">
-        <div class="sc-val" id="statMonth">0</div>
-        <div class="sc-lbl">This Month</div>
-      </div>
-      <div class="stat-card sc-mins">
-        <div class="sc-val" id="statMinutes">0</div>
-        <div class="sc-lbl">Total Mins</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ph ph-target"></i> Time by Project</div>
-      <div class="breakdown-list" id="projectBreakdown"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ph ph-trend-up"></i> Focus History</div>
-      <div class="chart-tabs">
-        <button class="chart-tab active" id="ctWeek"  onclick="switchChart('week')">Week</button>
-        <button class="chart-tab"        id="ctMonth" onclick="switchChart('month')">Month</button>
-      </div>
-      <div class="chart-area">
-        <div class="bar-chart" id="barChart"></div>
-        <div class="chart-legend">
-          <span><span class="legend-dot" style="background:var(--p-blue);border:1px solid var(--azul)"></span>Sessions</span>
-          <span><span class="legend-dot" style="background:var(--amarillo)"></span>Today</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><i class="ph ph-floppy-disk"></i> Data</div>
-      <div class="data-row">
-        <button class="btn-data" onclick="exportData()">
-          <i class="ph ph-export"></i> Export
-        </button>
-        <button class="btn-data" onclick="document.getElementById('importFile').click()">
-          <i class="ph ph-import"></i> Import
-        </button>
-      </div>
-      <input type="file" id="importFile" accept=".json" onchange="importData(event)" />
-    </div>
-
-  </div><!-- /panel-stats -->
-
-</div><!-- /.app -->
-
-<div id="toasts"></div>
-
-<script>
-'use strict';
-
-const KEY = 'focusTimerApp_v3';
-const PROJ_COLORS = ['#e8430a','#1b8a4a','#3a7fd4','#d62828','#b8900a','#7c5cbf'];
-
-const defaults = () => ({
-  projects: [],
-  tasks:    [],
-  sessions: [],
-  stats: { streak: 0, lastDate: null }
-});
-
-let S = defaults();
-
-function loadS() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (raw) {
-      S = Object.assign(defaults(), JSON.parse(raw));
-    } else {
-      const old = localStorage.getItem('focusTimerApp_v2');
-      if (old) { S = Object.assign(defaults(), JSON.parse(old)); saveS(); }
-    }
-  } catch {}
-}
-
-function saveS() {
-  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
-}
-
-const fmtTime = n => {
-  const t = Math.max(0, n);
-  return `${String(Math.floor(t / 60)).padStart(2,'0')}:${String(t % 60).padStart(2,'0')}`;
-};
-
-const fmtMins = secs => {
-  const m = Math.floor(secs / 60);
-  if (m === 0) return '0m';
-  return m >= 60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m}m`;
-};
-
-const today = () => new Date().toISOString().slice(0, 10);
-
-function weekStart() {
-  const d = new Date(); const day = d.getDay();
-  d.setDate(d.getDate() - (day === 0 ? 6 : day - 1));
-  d.setHours(0,0,0,0); return d;
-}
-
-function monthStart() {
-  const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1);
-}
-
-function esc(s) {
-  const d = document.createElement('div');
-  d.appendChild(document.createTextNode(String(s)));
-  return d.innerHTML;
-}
-
-function beep(type) {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const play = (freq, start, dur, vol = 0.25, wave = 'sine') => {
-      const o = ctx.createOscillator(), g = ctx.createGain();
-      o.connect(g); g.connect(ctx.destination);
-      o.type = wave; o.frequency.value = freq;
-      g.gain.setValueAtTime(vol, ctx.currentTime + start);
-      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
-      o.start(ctx.currentTime + start);
-      o.stop(ctx.currentTime + start + dur);
-    };
-    if (type === 'done')  { play(440,.00,.3); play(554,.12,.3); play(659,.24,.3); play(880,.36,.4); }
-    if (type === 'alarm') { [0,.35,.7].forEach(d => play(880, d, .28, .2, 'square')); }
-    if (type === 'tick')  { play(800, 0, .05, .06, 'square'); }
-    if (type === 'pop')   { play(600, 0, .08, .1); }
-  } catch {}
-}
-
-function toast(msg, cls = '') {
-  const el = Object.assign(document.createElement('div'), { className: `toast ${cls}`, textContent: msg });
-  document.getElementById('toasts').appendChild(el);
-  setTimeout(() => el.remove(), 3000);
-}
-
-// ─── THEME ────────────────────────────────────────────────────────────────────
-const THEMES = ['', 'dark', 'amber', 'lime'];
-const THEME_META = [
-  { label: 'Light', icon: 'ph-sun' },
-  { label: 'Dark',  icon: 'ph-moon' },
-  { label: 'Amber', icon: 'ph-monitor' },
-  { label: 'Lime',  icon: 'ph-leaf' },
-];
-let themeIdx = 0;
-
-function applyTheme(idx) {
-  themeIdx = ((idx % THEMES.length) + THEMES.length) % THEMES.length;
-  document.body.className = THEMES[themeIdx];
-  const meta = THEME_META[themeIdx];
-  document.getElementById('themeIcon').className = `ph ${meta.icon}`;
-  document.getElementById('themeLabel').textContent = meta.label;
-  try { localStorage.setItem('foco_theme', String(themeIdx)); } catch {}
-}
-
-function cycleTheme() { applyTheme(themeIdx + 1); }
-
-// ─── WHITE NOISE ─────────────────────────────────────────────────────────────
-const noiseState = { ctx: null, nodes: [], activeType: null };
-
-function makeNoiseBuffer(ctx, secs = 4) {
-  const rate = ctx.sampleRate;
-  const buf  = ctx.createBuffer(1, rate * secs, rate);
-  const data = buf.getChannelData(0);
-  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-  return buf;
-}
-
-function makeSrc(ctx, buf) {
-  const s = ctx.createBufferSource();
-  s.buffer = buf; s.loop = true; return s;
-}
-
-function playNoise(type) {
-  if (noiseState.activeType === type) { stopNoise(); return; }
-  stopNoise(false);
-  try {
-    if (!noiseState.ctx) noiseState.ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const ctx = noiseState.ctx;
-    if (ctx.state === 'suspended') ctx.resume();
-
-    const masterGain = ctx.createGain();
-    masterGain.gain.setValueAtTime(0, ctx.currentTime);
-    masterGain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 1.0);
-    masterGain.connect(ctx.destination);
-
-    const nodes = [masterGain];
-    const buf = makeNoiseBuffer(ctx);
-
-    if (type === 'sea') {
-      // Low-pass filtered noise with slow LFO for wave swells
-      const src = makeSrc(ctx, buf);
-      const lpf = ctx.createBiquadFilter();
-      lpf.type = 'lowpass'; lpf.frequency.value = 380; lpf.Q.value = 0.6;
-      const lfo = ctx.createOscillator();
-      const lfoGain = ctx.createGain();
-      lfo.type = 'sine'; lfo.frequency.value = 0.065;
-      lfoGain.gain.value = 0.055;
-      lfo.connect(lfoGain); lfoGain.connect(masterGain.gain);
-      lfo.start();
-      src.connect(lpf); lpf.connect(masterGain); src.start();
-      nodes.push(src, lpf, lfo, lfoGain);
-
-    } else if (type === 'rain') {
-      // High-pass + band-pass layered for pattering rain
-      const src = makeSrc(ctx, buf);
-      const hpf = ctx.createBiquadFilter();
-      hpf.type = 'highpass'; hpf.frequency.value = 500;
-      const bpf = ctx.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 4000; bpf.Q.value = 0.45;
-      src.connect(hpf); hpf.connect(bpf); bpf.connect(masterGain); src.start();
-      nodes.push(src, hpf, bpf);
-
-    } else if (type === 'forest') {
-      // Wind layer (low) + rustling leaves layer (mid)
-      const buf2 = makeNoiseBuffer(ctx, 4);
-      const wind = makeSrc(ctx, buf);
-      const lpf  = ctx.createBiquadFilter();
-      lpf.type = 'lowpass'; lpf.frequency.value = 650;
-      const gWind = ctx.createGain(); gWind.gain.value = 0.6;
-      wind.connect(lpf); lpf.connect(gWind); gWind.connect(masterGain); wind.start();
-
-      const leaves = makeSrc(ctx, buf2);
-      const bpf    = ctx.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 2400; bpf.Q.value = 1.2;
-      const gLeaves = ctx.createGain(); gLeaves.gain.value = 0.45;
-      leaves.connect(bpf); bpf.connect(gLeaves); gLeaves.connect(masterGain); leaves.start();
-
-      nodes.push(wind, leaves, lpf, bpf, gWind, gLeaves);
-
-    } else {
-      // Plain white noise, gently low-passed to soften harshness
-      const src = makeSrc(ctx, buf);
-      const lpf = ctx.createBiquadFilter();
-      lpf.type = 'lowpass'; lpf.frequency.value = 9000;
-      src.connect(lpf); lpf.connect(masterGain); src.start();
-      nodes.push(src, lpf);
-    }
-
-    noiseState.nodes = nodes;
-    noiseState.activeType = type;
-    updateNoiseButtons(type);
-
-  } catch(e) { console.warn('Audio error', e); }
-}
-
-function stopNoise(fade = true) {
-  if (!noiseState.activeType && noiseState.nodes.length === 0) return;
-  const nodes = noiseState.nodes;
-  const masterGain = nodes[0];
-
-  const doDisconnect = () => {
-    nodes.forEach(n => {
-      try { if (n.stop) n.stop(); } catch {}
-      try { n.disconnect(); } catch {}
-    });
-    noiseState.nodes = [];
-  };
-
-  if (fade && masterGain && noiseState.ctx) {
-    try {
-      const t = noiseState.ctx.currentTime;
-      masterGain.gain.setValueAtTime(masterGain.gain.value, t);
-      masterGain.gain.linearRampToValueAtTime(0, t + 0.5);
-      setTimeout(doDisconnect, 650);
-    } catch { doDisconnect(); }
-  } else {
-    doDisconnect();
-  }
-
-  noiseState.activeType = null;
-  updateNoiseButtons(null);
-}
-
-function updateNoiseButtons(active) {
-  ['sea','rain','forest','white'].forEach(t => {
-    const btn = document.getElementById(`noise-${t}`);
-    if (btn) btn.classList.toggle('active', t === active);
-  });
-}
-
-// ─── TAB ROUTING ──────────────────────────────────────────────────────────────
-function goTab(name) {
-  ['timer','tasks','stats'].forEach(t => {
-    document.getElementById(`tab-${t}`).classList.toggle('active', t === name);
-    document.getElementById(`panel-${t}`).classList.toggle('active', t === name);
-  });
-  if (name === 'timer') renderWorkingOn();
-  if (name === 'tasks') renderProjects();
-  if (name === 'stats') { renderStats(); renderChart(chartMode); renderProjectStats(); }
-}
-
-// ─── TIMER STATE ──────────────────────────────────────────────────────────────
-let tInterval    = null;
-let tRunning     = false;
-let tSecs        = 0;
-let tMode        = 'stopwatch';
-let cdDuration   = 25 * 60;
-let tStartTs     = null;
-let selProjectId = null;
-let selTaskId    = null;
-
-function setMode(m) {
-  tMode = m;
-  doReset();
-  document.getElementById('modeSwBtn').classList.toggle('active', m === 'stopwatch');
-  document.getElementById('modeCdBtn').classList.toggle('active', m === 'countdown');
-  document.getElementById('presetsRow').style.display = m === 'countdown' ? 'flex'  : 'none';
-  document.getElementById('cdBarWrap').style.display  = m === 'countdown' ? 'block' : 'none';
-  refreshDisplay();
-}
-
-function setPreset(min) {
-  cdDuration = min * 60;
-  document.querySelectorAll('.preset-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim() === `${min} min`);
-  });
-  doReset();
-}
-
-// ─── WORKING ON ───────────────────────────────────────────────────────────────
-function selectProject(id) {
-  selProjectId = (selProjectId === id) ? null : id;
-  selTaskId = null;
-  renderWorkingOn();
-}
-
-function selectTask(id) {
-  selTaskId = (selTaskId === id) ? null : id;
-  renderWorkingOn();
-}
-
-function renderWorkingOn() {
-  const projEl  = document.getElementById('woProjects');
-  const taskRow = document.getElementById('woTaskRow');
-  const taskEl  = document.getElementById('woTasks');
-  const box     = document.getElementById('workingOnBox');
-
-  box.classList.toggle('has-project', !!selProjectId);
-
-  if (S.projects.length === 0) {
-    projEl.innerHTML = `<span class="wo-empty">No projects yet — add one in Tasks</span>`;
-    taskRow.style.display = 'none';
-    return;
-  }
-
-  projEl.innerHTML = S.projects.map(p => {
-    const active = selProjectId === p.id;
-    return `<button class="wo-chip${active ? ' active' : ''}" onclick="selectProject(${p.id})">
-              <span class="proj-dot" style="background:${p.color}"></span>${esc(p.name)}
-            </button>`;
-  }).join('');
-
-  if (selProjectId) {
-    const activeTasks = S.tasks.filter(t => t.projectId === selProjectId && !t.done);
-    taskRow.style.display = 'block';
-    taskEl.innerHTML = activeTasks.length === 0
-      ? `<span class="wo-empty">No active tasks for this project</span>`
-      : activeTasks.map(t => `<button class="wo-chip${selTaskId === t.id ? ' active' : ''}"
-                        onclick="selectTask(${t.id})">${esc(t.text)}</button>`).join('');
-  } else {
-    taskRow.style.display = 'none';
-  }
-}
-
-function getFsInfo() {
-  const proj = S.projects.find(p => p.id === selProjectId);
-  const task = S.tasks.find(t => t.id === selTaskId);
-  return [proj?.name, task?.text].filter(Boolean).join(' / ');
-}
-
-// ─── TIMER CONTROLS ───────────────────────────────────────────────────────────
-function doToggle() { tRunning ? doPause() : doStart(); }
-
-function doStart() {
-  if (tMode === 'countdown' && tSecs === 0) tSecs = cdDuration;
-  if (!tStartTs) tStartTs = Date.now();
-  tRunning = true;
-
-  const overlay = document.getElementById('fsOverlay');
-  overlay.classList.add('open');
-  document.getElementById('fsModeLabel').textContent = tMode === 'stopwatch' ? 'STOPWATCH' : 'COUNTDOWN';
-  document.getElementById('fsBarWrap').style.display = tMode === 'countdown' ? 'block' : 'none';
-  document.getElementById('fsInfo').textContent = getFsInfo();
-
-  document.getElementById('startBtn').innerHTML = '<i class="ph ph-play"></i> Resume';
-  document.getElementById('timerDisplay').className = 'timer-display running';
-  document.getElementById('timerLabel').textContent = 'In session...';
-  document.getElementById('logBtn').style.display = 'inline-flex';
-
-  tInterval = setInterval(() => {
-    if (tMode === 'stopwatch') {
-      tSecs++;
-    } else {
-      tSecs--;
-      if (tSecs <= 5 && tSecs > 0) beep('tick');
-      if (tSecs <= 0) { tSecs = 0; refreshDisplay(); onCountdownEnd(); return; }
-    }
-    refreshDisplay();
-  }, 1000);
-}
-
-function doPause() {
-  tRunning = false;
-  clearInterval(tInterval); tInterval = null;
-  stopNoise(); // stop noise when paused
-  document.getElementById('fsOverlay').classList.remove('open');
-  document.getElementById('startBtn').innerHTML = '<i class="ph ph-play"></i> Resume';
-  document.getElementById('timerDisplay').className = 'timer-display paused';
-  document.getElementById('timerLabel').textContent = 'Paused';
-}
-
-function doReset() {
-  tRunning = false; clearInterval(tInterval); tInterval = null;
-  tSecs = 0; tStartTs = null;
-  stopNoise(); // stop noise on reset/discard
-  document.getElementById('fsOverlay').classList.remove('open');
-  document.getElementById('startBtn').innerHTML = '<i class="ph ph-play"></i> Start';
-  document.getElementById('timerDisplay').className = 'timer-display';
-  document.getElementById('timerLabel').textContent = 'Ready to focus?';
-  document.getElementById('logBtn').style.display = 'none';
-  refreshDisplay();
-}
-
-function doLog() {
-  const elapsed = tMode === 'stopwatch' ? tSecs : cdDuration - tSecs;
-  if (elapsed < 60) { toast('Session too short (min 1 min)', 'err'); return; }
-  pushSession(elapsed);
-  doReset();
-  toast('Session logged!', 'ok');
-  beep('done');
-}
-
-function onCountdownEnd() {
-  clearInterval(tInterval); tInterval = null;
-  tRunning = false;
-  beep('alarm');
-  pushSession(cdDuration);
-  stopNoise();
-  document.getElementById('fsOverlay').classList.remove('open');
-  document.getElementById('startBtn').innerHTML = '<i class="ph ph-play"></i> Start';
-  document.getElementById('timerDisplay').className = 'timer-display';
-  document.getElementById('timerLabel').textContent = 'Session complete!';
-  document.getElementById('logBtn').style.display = 'none';
-  toast('Session complete! Great work!', 'ok');
-}
-
-function refreshDisplay() {
-  const formatted = fmtTime(tSecs);
-  document.getElementById('timerDisplay').textContent = formatted;
-  document.getElementById('fsDisplay').textContent = formatted;
-  if (tMode === 'countdown') {
-    const pct = cdDuration > 0 ? (tSecs / cdDuration) * 100 : 100;
-    document.getElementById('cdBarFill').style.width = pct + '%';
-    document.getElementById('fsBarFill').style.width = pct + '%';
-  }
-}
-
-// ─── SESSIONS ─────────────────────────────────────────────────────────────────
-function pushSession(dur) {
-  const proj = S.projects.find(p => p.id === selProjectId) || null;
-  const task = S.tasks.find(t => t.id === selTaskId)       || null;
-  S.sessions.push({
-    id: Date.now(), date: today(), duration: dur, ts: Date.now(),
-    projectId:    proj?.id    ?? null,
-    projectName:  proj?.name  ?? null,
-    projectColor: proj?.color ?? null,
-    taskId:       task?.id    ?? null,
-    taskName:     task?.text  ?? null
-  });
-  bumpStreak(); saveS(); refreshTodaySummary(); refreshPomoDots();
-}
-
-function bumpStreak() {
-  const td = today(), lst = S.stats.lastDate;
-  if (!lst) { S.stats.streak = 1; }
-  else if (lst !== td) {
-    const yest = new Date(); yest.setDate(yest.getDate() - 1);
-    const ys = yest.toISOString().slice(0,10);
-    S.stats.streak = (lst === ys) ? (S.stats.streak || 0) + 1 : 1;
-  }
-  S.stats.lastDate = td;
-}
-
-function checkStreakDecay() {
-  if (!S.stats.lastDate) return;
-  const yest = new Date(); yest.setDate(yest.getDate()-1);
-  const ys = yest.toISOString().slice(0,10);
-  if (S.stats.lastDate !== today() && S.stats.lastDate !== ys) { S.stats.streak = 0; saveS(); }
-}
-
-function sessionsOn(d)     { return S.sessions.filter(s => s.date === d); }
-function sessionsFrom(from) { return S.sessions.filter(s => new Date(s.date) >= from); }
-
-function refreshTodaySummary() {
-  const ts = sessionsOn(today());
-  const mins = Math.floor(ts.reduce((a,s) => a + s.duration, 0) / 60);
-  document.getElementById('todaySessions').textContent = ts.length;
-  document.getElementById('todayMinutes').textContent  = mins;
-  document.getElementById('todayStreak').textContent   = S.stats.streak || 0;
-}
-
-function refreshPomoDots() {
-  const count = sessionsOn(today()).length;
-  const total = Math.max(4, count + 1);
-  document.getElementById('pomoDots').innerHTML =
-    Array.from({length: total}, (_,i) =>
-      `<div class="pomo-dot${i < count ? ' on' : ''}"></div>`
-    ).join('');
-}
-
-// ─── PROJECTS ─────────────────────────────────────────────────────────────────
-let pickedColor = PROJ_COLORS[0];
-
-function renderColorPicker() {
-  document.getElementById('colorPickerRow').innerHTML = PROJ_COLORS.map(c =>
-    `<button class="color-swatch${pickedColor === c ? ' selected' : ''}"
+    <div id="toasts"></div>
+
+    <script>
+      "use strict";
+
+      const KEY = "focusTimerApp_v3";
+      const PROJ_COLORS = [
+        "#e8430a",
+        "#1b8a4a",
+        "#3a7fd4",
+        "#d62828",
+        "#b8900a",
+        "#7c5cbf",
+      ];
+
+      const defaults = () => ({
+        projects: [],
+        tasks: [],
+        sessions: [],
+        stats: { streak: 0, lastDate: null },
+      });
+
+      let S = defaults();
+
+      function loadS() {
+        try {
+          const raw = localStorage.getItem(KEY);
+          if (raw) {
+            S = Object.assign(defaults(), JSON.parse(raw));
+          } else {
+            const old = localStorage.getItem("focusTimerApp_v2");
+            if (old) {
+              S = Object.assign(defaults(), JSON.parse(old));
+              saveS();
+            }
+          }
+        } catch {}
+      }
+
+      function saveS() {
+        try {
+          localStorage.setItem(KEY, JSON.stringify(S));
+        } catch {}
+      }
+
+      const fmtTime = (n) => {
+        const t = Math.max(0, n);
+        return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+      };
+
+      const fmtMins = (secs) => {
+        const m = Math.floor(secs / 60);
+        if (m === 0) return "0m";
+        return m >= 60 ? `${Math.floor(m / 60)}h ${m % 60}m` : `${m}m`;
+      };
+
+      const today = () => new Date().toISOString().slice(0, 10);
+
+      function weekStart() {
+        const d = new Date();
+        const day = d.getDay();
+        d.setDate(d.getDate() - (day === 0 ? 6 : day - 1));
+        d.setHours(0, 0, 0, 0);
+        return d;
+      }
+
+      function monthStart() {
+        const d = new Date();
+        return new Date(d.getFullYear(), d.getMonth(), 1);
+      }
+
+      function esc(s) {
+        const d = document.createElement("div");
+        d.appendChild(document.createTextNode(String(s)));
+        return d.innerHTML;
+      }
+
+      function beep(type) {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const play = (freq, start, dur, vol = 0.25, wave = "sine") => {
+            const o = ctx.createOscillator(),
+              g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.type = wave;
+            o.frequency.value = freq;
+            g.gain.setValueAtTime(vol, ctx.currentTime + start);
+            g.gain.exponentialRampToValueAtTime(
+              0.001,
+              ctx.currentTime + start + dur,
+            );
+            o.start(ctx.currentTime + start);
+            o.stop(ctx.currentTime + start + dur);
+          };
+          if (type === "done") {
+            play(440, 0.0, 0.3);
+            play(554, 0.12, 0.3);
+            play(659, 0.24, 0.3);
+            play(880, 0.36, 0.4);
+          }
+          if (type === "alarm") {
+            [0, 0.35, 0.7].forEach((d) => play(880, d, 0.28, 0.2, "square"));
+          }
+          if (type === "tick") {
+            play(800, 0, 0.05, 0.06, "square");
+          }
+          if (type === "pop") {
+            play(600, 0, 0.08, 0.1);
+          }
+        } catch {}
+      }
+
+      function toast(msg, cls = "") {
+        const el = Object.assign(document.createElement("div"), {
+          className: `toast ${cls}`,
+          textContent: msg,
+        });
+        document.getElementById("toasts").appendChild(el);
+        setTimeout(() => el.remove(), 3000);
+      }
+
+      // ─── THEME ────────────────────────────────────────────────────────────────────
+      const THEMES = ["", "dark", "cyber", "forest"];
+      const THEME_META = [
+        { icon: "ph-star" },
+        { icon: "ph-moon" },
+        { icon: "ph-lightning" },
+        { icon: "ph-leaf" },
+      ];
+      let themeIdx = 0;
+
+      function applyTheme(idx) {
+        themeIdx = ((idx % THEMES.length) + THEMES.length) % THEMES.length;
+        document.body.className = THEMES[themeIdx];
+        document.getElementById("themeIcon").className =
+          `ph ${THEME_META[themeIdx].icon}`;
+        document.querySelectorAll(".theme-opt").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            parseInt(btn.dataset.idx) === themeIdx,
+          );
+        });
+        try {
+          localStorage.setItem("foco_theme", String(themeIdx));
+        } catch {}
+      }
+
+      // ─── AMBIENT SOUNDS ──────────────────────────────────────────────────────────
+      const noiseSrc = {
+        seaside: "sounds/Seaside.wav",
+        rain: "sounds/Rain.wav",
+        riverside: "sounds/Riverside.wav",
+        lakeside: "sounds/Lakeside.wav",
+      };
+      const noiseState = {
+        audio: null,
+        activeType: null,
+        fadeTimer: null,
+        volume: 0.8,
+      };
+
+      function setNoiseVolume(v) {
+        noiseState.volume = parseFloat(v);
+        if (noiseState.audio) noiseState.audio.volume = noiseState.volume;
+      }
+
+      function playNoise(type) {
+        if (noiseState.activeType === type) {
+          stopNoise();
+          return;
+        }
+        stopNoise(false);
+        try {
+          const audio = new Audio(noiseSrc[type]);
+          audio.loop = true;
+          audio.volume = 0;
+          audio.play();
+          let vol = 0;
+          const target = noiseState.volume;
+          noiseState.fadeTimer = setInterval(() => {
+            vol = Math.min(vol + 0.025, target);
+            audio.volume = vol;
+            if (vol >= target) {
+              clearInterval(noiseState.fadeTimer);
+              noiseState.fadeTimer = null;
+            }
+          }, 30);
+          noiseState.audio = audio;
+          noiseState.activeType = type;
+          updateNoiseButtons(type);
+        } catch (e) {
+          console.warn("Audio error", e);
+        }
+      }
+
+      function stopNoise(fade = true) {
+        // abort any lofi crossfade in progress
+        if (lofi.secondary) {
+          try {
+            lofi.secondary.pause();
+            lofi.secondary.src = "";
+          } catch {}
+          lofi.secondary = null;
+        }
+        lofi.fading = false;
+
+        if (!noiseState.audio) return;
+        clearInterval(noiseState.fadeTimer);
+        noiseState.fadeTimer = null;
+        const audio = noiseState.audio;
+        noiseState.audio = null;
+        noiseState.activeType = null;
+        updateNoiseButtons(null);
+        if (fade) {
+          let vol = audio.volume;
+          const t = setInterval(() => {
+            vol = Math.max(vol - 0.05, 0);
+            audio.volume = vol;
+            if (vol <= 0) {
+              clearInterval(t);
+              audio.pause();
+              audio.src = "";
+            }
+          }, 30);
+        } else {
+          audio.pause();
+          audio.src = "";
+        }
+      }
+
+      function updateNoiseButtons(active) {
+        ["seaside", "rain", "riverside", "lakeside", "lofi"].forEach((t) => {
+          const btn = document.getElementById(`noise-${t}`);
+          if (btn) btn.classList.toggle("active", t === active);
+        });
+        const trigger = document.getElementById("soundTrigger");
+        const icon = document.getElementById("soundIcon");
+        if (trigger) trigger.classList.toggle("playing", !!active);
+        if (icon)
+          icon.className = active
+            ? "ph ph-speaker-high"
+            : "ph ph-speaker-slash";
+      }
+
+      // ─── LOFI PLAYLIST ───────────────────────────────────────────────────────────
+      const lofiFiles = [
+        "sounds/lofi/fassounds-good-night-lofi-cozy-chill-music-160166.mp3",
+        "sounds/lofi/fassounds-lofi-study-calm-peaceful-chill-hop-112191.mp3",
+        "sounds/lofi/freemusicforvideo-lofi-chill-music-495628.mp3",
+        "sounds/lofi/freepik-intimate-lo-fi.mp3",
+        "sounds/lofi/freepik-punto-fijo-lo-fi.mp3",
+        "sounds/lofi/monume-lofi-lofi-girl-lofi-chill-509453.mp3",
+      ];
+      const lofi = { idx: 0, primary: null, secondary: null, fading: false };
+
+      function playLofi() {
+        if (noiseState.activeType === "lofi") {
+          stopNoise();
+          return;
+        }
+        stopNoise(false);
+        lofi.idx = 0;
+        lofi.fading = false;
+        lofi.secondary = null;
+        _lofiLoad(0, true);
+      }
+
+      function _lofiLoad(idx, fadeIn) {
+        const audio = new Audio(lofiFiles[idx]);
+        audio.volume = fadeIn ? 0 : noiseState.volume;
+        audio.play().catch((e) => console.warn("Lofi play error", e));
+        audio.addEventListener("timeupdate", _lofiWatch);
+        lofi.primary = audio;
+        noiseState.audio = audio;
+        noiseState.activeType = "lofi";
+        updateNoiseButtons("lofi");
+        if (fadeIn) {
+          let v = 0;
+          const t = setInterval(() => {
+            if (lofi.primary !== audio) {
+              clearInterval(t);
+              return;
+            }
+            v = Math.min(v + 0.025, noiseState.volume);
+            audio.volume = v;
+            if (v >= noiseState.volume) clearInterval(t);
+          }, 30);
+        }
+      }
+
+      function _lofiWatch() {
+        const audio = this;
+        if (
+          lofi.primary !== audio ||
+          lofi.fading ||
+          !audio.duration ||
+          isNaN(audio.duration)
+        )
+          return;
+        const rem = audio.duration - audio.currentTime;
+        const BLEND = 3.5; // seconds of crossfade
+        if (rem > BLEND) return;
+        lofi.fading = true;
+        const nextIdx = (lofi.idx + 1) % lofiFiles.length;
+        const next = new Audio(lofiFiles[nextIdx]);
+        next.volume = 0;
+        next.play().catch(() => {});
+        lofi.secondary = next;
+        const steps = Math.round((BLEND * 1000) / 33);
+        let step = 0;
+        const fromVol = audio.volume;
+        const xfade = setInterval(() => {
+          if (lofi.primary !== audio) {
+            clearInterval(xfade);
+            return;
+          }
+          step++;
+          const p = Math.min(step / steps, 1);
+          audio.volume = fromVol * (1 - p);
+          next.volume = noiseState.volume * p;
+          if (p >= 1) {
+            clearInterval(xfade);
+            try {
+              audio.pause();
+            } catch {}
+            lofi.idx = nextIdx;
+            lofi.primary = next;
+            lofi.secondary = null;
+            lofi.fading = false;
+            noiseState.audio = next;
+            next.addEventListener("timeupdate", _lofiWatch);
+          }
+        }, 33);
+      }
+
+      // ─── TAB ROUTING ──────────────────────────────────────────────────────────────
+      function goTab(name) {
+        ["timer", "tasks", "stats"].forEach((t) => {
+          document
+            .getElementById(`tab-${t}`)
+            .classList.toggle("active", t === name);
+          document
+            .getElementById(`panel-${t}`)
+            .classList.toggle("active", t === name);
+        });
+        if (name === "timer") renderWorkingOn();
+        if (name === "tasks") renderProjects();
+        if (name === "stats") {
+          renderStats();
+          renderChart(chartMode);
+          renderProjectStats();
+        }
+      }
+
+      // ─── TIMER STATE ──────────────────────────────────────────────────────────────
+      let tInterval = null;
+      let tRunning = false;
+      let tSecs = 0;
+      let tSegmentSecs = 0; // elapsed secs in current project/task segment
+      let tMode = "stopwatch";
+      let cdDuration = 25 * 60;
+      let tStartTs = null;
+      let selProjectId = null;
+      let selTaskId = null;
+
+      function setMode(m) {
+        tMode = m;
+        doReset();
+        document
+          .getElementById("modeSwBtn")
+          .classList.toggle("active", m === "stopwatch");
+        document
+          .getElementById("modeCdBtn")
+          .classList.toggle("active", m === "countdown");
+        document.getElementById("presetsRow").style.display =
+          m === "countdown" ? "flex" : "none";
+        document.getElementById("cdBarWrap").style.display =
+          m === "countdown" ? "block" : "none";
+        refreshDisplay();
+      }
+
+      function setPreset(min) {
+        cdDuration = min * 60;
+        document.querySelectorAll(".preset-btn").forEach((b) => {
+          b.classList.toggle("active", b.textContent.trim() === `${min} min`);
+        });
+        doReset();
+      }
+
+      // ─── WORKING ON ───────────────────────────────────────────────────────────────
+      function selectProject(id) {
+        const newId = selProjectId === id ? null : id;
+        if (tRunning) {
+          _logSegmentAndSwitch(newId, null);
+        } else {
+          selProjectId = newId;
+          selTaskId = null;
+        }
+        renderWorkingOn();
+      }
+
+      function selectTask(id) {
+        const newId = selTaskId === id ? null : id;
+        if (tRunning) {
+          _logSegmentAndSwitch(selProjectId, newId);
+        } else {
+          selTaskId = newId;
+        }
+        renderWorkingOn();
+      }
+
+      function _logSegmentAndSwitch(newProjId, newTaskId) {
+        if (tSegmentSecs >= 60) {
+          pushSession(tSegmentSecs); // logs current selProjectId/selTaskId before switching
+          toast("Segment logged!", "ok");
+          beep("pop");
+        }
+        tSegmentSecs = 0;
+        selProjectId = newProjId;
+        selTaskId = newTaskId;
+        renderWorkingOn();
+      }
+
+      function _renderWoInto(projElId, taskElId, taskRowId, boxId) {
+        const projEl  = document.getElementById(projElId);
+        const taskRow = document.getElementById(taskRowId);
+        const taskEl  = document.getElementById(taskElId);
+        if (!projEl) return;
+        if (boxId) document.getElementById(boxId)?.classList.toggle("has-project", !!selProjectId);
+
+        if (S.projects.length === 0) {
+          projEl.innerHTML = `<span class="wo-empty">No projects yet</span>`;
+          if (taskRow) taskRow.style.display = "none";
+          return;
+        }
+
+        projEl.innerHTML = S.projects.map((p) => {
+          const active = selProjectId === p.id;
+          return `<button class="wo-chip${active ? " active" : ""}" onclick="selectProject(${p.id})">
+            <span class="proj-dot" style="background:${p.color}"></span>${esc(p.name)}
+          </button>`;
+        }).join("");
+
+        if (selProjectId) {
+          const activeTasks = S.tasks.filter((t) => t.projectId === selProjectId && !t.done);
+          if (taskRow) taskRow.classList.add("open");
+          if (taskEl) taskEl.innerHTML = activeTasks.length === 0
+            ? `<span class="wo-empty">No active tasks</span>`
+            : activeTasks.map((t) =>
+                `<button class="wo-chip${selTaskId === t.id ? " active" : ""}" onclick="selectTask(${t.id})">
+                  ${esc(t.text)}<i class="ph ph-check wo-chip-done" onclick="event.stopPropagation();completeTask(${t.id})" title="Mark done"></i>
+                </button>`
+              ).join("");
+        } else {
+          if (taskRow) taskRow.classList.remove("open");
+        }
+      }
+
+      function renderWorkingOn() {
+        _renderWoInto("woProjects",   "woTasks",   "woTaskRow",   "workingOnBox");
+        _renderWoInto("fsWoProjects", "fsWoTasks", "fsWoTaskRow", null);
+      }
+
+      // ─── TIMER CONTROLS ───────────────────────────────────────────────────────────
+      function doToggle() {
+        tRunning ? doPause() : doStart();
+      }
+
+      function doStart() {
+        if (tMode === "countdown" && tSecs === 0) tSecs = cdDuration;
+        if (!tStartTs) tStartTs = Date.now();
+        tRunning = true;
+
+        const overlay = document.getElementById("fsOverlay");
+        overlay.classList.add("open");
+        renderWorkingOn();
+        document.getElementById("fsModeLabel").textContent =
+          tMode === "stopwatch" ? "STOPWATCH" : "COUNTDOWN";
+        document.getElementById("fsBarWrap").style.display =
+          tMode === "countdown" ? "block" : "none";
+        document.getElementById("startBtn").innerHTML =
+          '<i class="ph ph-play"></i> Resume';
+        document.getElementById("timerDisplay").className =
+          "timer-display running";
+        document.getElementById("timerLabel").textContent = "In session...";
+        document.getElementById("logBtn").style.display = "inline-flex";
+
+        tInterval = setInterval(() => {
+          tSegmentSecs++;
+          if (tMode === "stopwatch") {
+            tSecs++;
+          } else {
+            tSecs--;
+            if (tSecs <= 5 && tSecs > 0) beep("tick");
+            if (tSecs <= 0) {
+              tSecs = 0;
+              refreshDisplay();
+              onCountdownEnd();
+              return;
+            }
+          }
+          refreshDisplay();
+        }, 1000);
+      }
+
+      function doPause() {
+        tRunning = false;
+        clearInterval(tInterval);
+        tInterval = null;
+        document.getElementById("fsOverlay").classList.remove("open");
+        document.getElementById("startBtn").innerHTML =
+          '<i class="ph ph-play"></i> Resume';
+        document.getElementById("timerDisplay").className =
+          "timer-display paused";
+        document.getElementById("timerLabel").textContent = "Paused";
+      }
+
+      function doReset() {
+        tRunning = false;
+        clearInterval(tInterval);
+        tInterval = null;
+        tSecs = 0;
+        tSegmentSecs = 0;
+        tStartTs = null;
+        document.getElementById("fsOverlay").classList.remove("open");
+        document.getElementById("startBtn").innerHTML =
+          '<i class="ph ph-play"></i> Start';
+        document.getElementById("timerDisplay").className = "timer-display";
+        document.getElementById("timerLabel").textContent = "Ready to focus?";
+        document.getElementById("logBtn").style.display = "none";
+        refreshDisplay();
+      }
+
+      function doLog() {
+        if (tSegmentSecs < 60) {
+          toast("Segment too short (min 1 min)", "err");
+          return;
+        }
+        pushSession(tSegmentSecs);
+        doReset();
+        toast("Session logged!", "ok");
+        beep("done");
+      }
+
+      function onCountdownEnd() {
+        clearInterval(tInterval);
+        tInterval = null;
+        tRunning = false;
+        beep("alarm");
+        pushSession(tSegmentSecs || cdDuration);
+        tSegmentSecs = 0;
+        document.getElementById("fsOverlay").classList.remove("open");
+        document.getElementById("startBtn").innerHTML =
+          '<i class="ph ph-play"></i> Start';
+        document.getElementById("timerDisplay").className = "timer-display";
+        document.getElementById("timerLabel").textContent = "Session complete!";
+        document.getElementById("logBtn").style.display = "none";
+        toast("Session complete! Great work!", "ok");
+      }
+
+      function refreshDisplay() {
+        const formatted = fmtTime(tSecs);
+        document.getElementById("timerDisplay").textContent = formatted;
+        document.getElementById("fsDisplay").textContent = formatted;
+        if (tMode === "countdown") {
+          const pct = cdDuration > 0 ? (tSecs / cdDuration) * 100 : 100;
+          document.getElementById("cdBarFill").style.width = pct + "%";
+          document.getElementById("fsBarFill").style.width = pct + "%";
+        }
+      }
+
+      // ─── SESSIONS ─────────────────────────────────────────────────────────────────
+      function pushSession(dur) {
+        const proj = S.projects.find((p) => p.id === selProjectId) || null;
+        const task = S.tasks.find((t) => t.id === selTaskId) || null;
+        S.sessions.push({
+          id: Date.now(),
+          date: today(),
+          duration: dur,
+          ts: Date.now(),
+          projectId: proj?.id ?? null,
+          projectName: proj?.name ?? null,
+          projectColor: proj?.color ?? null,
+          taskId: task?.id ?? null,
+          taskName: task?.text ?? null,
+        });
+        bumpStreak();
+        saveS();
+        refreshTodaySummary();
+        refreshPomoDots();
+      }
+
+      function bumpStreak() {
+        const td = today(),
+          lst = S.stats.lastDate;
+        if (!lst) {
+          S.stats.streak = 1;
+        } else if (lst !== td) {
+          const yest = new Date();
+          yest.setDate(yest.getDate() - 1);
+          const ys = yest.toISOString().slice(0, 10);
+          S.stats.streak = lst === ys ? (S.stats.streak || 0) + 1 : 1;
+        }
+        S.stats.lastDate = td;
+      }
+
+      function checkStreakDecay() {
+        if (!S.stats.lastDate) return;
+        const yest = new Date();
+        yest.setDate(yest.getDate() - 1);
+        const ys = yest.toISOString().slice(0, 10);
+        if (S.stats.lastDate !== today() && S.stats.lastDate !== ys) {
+          S.stats.streak = 0;
+          saveS();
+        }
+      }
+
+      function sessionsOn(d) {
+        return S.sessions.filter((s) => s.date === d);
+      }
+      function sessionsFrom(from) {
+        return S.sessions.filter((s) => new Date(s.date) >= from);
+      }
+
+      function refreshTodaySummary() {
+        const ts = sessionsOn(today());
+        const mins = Math.floor(ts.reduce((a, s) => a + s.duration, 0) / 60);
+        document.getElementById("todaySessions").textContent = ts.length;
+        document.getElementById("todayMinutes").textContent = mins;
+        document.getElementById("todayStreak").textContent =
+          S.stats.streak || 0;
+      }
+
+      function refreshPomoDots() {
+        const count = sessionsOn(today()).length;
+        const total = Math.max(4, count + 1);
+        document.getElementById("pomoDots").innerHTML = Array.from(
+          { length: total },
+          (_, i) => `<div class="pomo-dot${i < count ? " on" : ""}"></div>`,
+        ).join("");
+      }
+
+      // ─── PROJECTS ─────────────────────────────────────────────────────────────────
+      let pickedColor = PROJ_COLORS[0];
+
+      function renderColorPicker() {
+        document.getElementById("colorPickerRow").innerHTML = PROJ_COLORS.map(
+          (c) =>
+            `<button class="color-swatch${pickedColor === c ? " selected" : ""}"
              style="background:${c}" onclick="pickColor('${c}')"
-             aria-label="Select color"></button>`
-  ).join('');
-}
+             aria-label="Select color"></button>`,
+        ).join("");
+      }
 
-function pickColor(c) { pickedColor = c; renderColorPicker(); }
+      function pickColor(c) {
+        pickedColor = c;
+        renderColorPicker();
+      }
 
-function addProject() {
-  const inp = document.getElementById('projInput');
-  const name = inp.value.trim();
-  if (!name) { inp.focus(); return; }
-  S.projects.push({ id: Date.now(), name, color: pickedColor, createdAt: Date.now() });
-  pickedColor = PROJ_COLORS[(PROJ_COLORS.indexOf(pickedColor) + 1) % PROJ_COLORS.length];
-  inp.value = '';
-  saveS(); renderColorPicker(); renderProjects(); renderWorkingOn(); beep('pop');
-}
+      function addProject() {
+        const inp = document.getElementById("projInput");
+        const name = inp.value.trim();
+        if (!name) {
+          inp.focus();
+          return;
+        }
+        S.projects.push({
+          id: Date.now(),
+          name,
+          color: pickedColor,
+          createdAt: Date.now(),
+        });
+        pickedColor =
+          PROJ_COLORS[
+            (PROJ_COLORS.indexOf(pickedColor) + 1) % PROJ_COLORS.length
+          ];
+        inp.value = "";
+        saveS();
+        renderColorPicker();
+        renderProjects();
+        renderWorkingOn();
+        beep("pop");
+      }
 
-function deleteProject(id) {
-  if (!confirm('Delete this project and all its tasks?')) return;
-  S.tasks    = S.tasks.filter(t => t.projectId !== id);
-  S.projects = S.projects.filter(p => p.id !== id);
-  if (selProjectId === id) { selProjectId = null; selTaskId = null; }
-  saveS(); renderProjects(); renderWorkingOn();
-}
+      function deleteProject(id) {
+        if (!confirm("Delete this project and all its tasks?")) return;
+        S.tasks = S.tasks.filter((t) => t.projectId !== id);
+        S.projects = S.projects.filter((p) => p.id !== id);
+        if (selProjectId === id) {
+          selProjectId = null;
+          selTaskId = null;
+        }
+        saveS();
+        renderProjects();
+        renderWorkingOn();
+      }
 
-function renderProjects() {
-  const el = document.getElementById('projectsList');
-  if (S.projects.length === 0) {
-    el.innerHTML = `<div class="empty-state"><i class="ph ph-folder-open"></i>No projects yet — create one above!</div>`;
-    return;
-  }
-  el.innerHTML = '';
-  S.projects.forEach(p => {
-    const tasks  = S.tasks.filter(t => t.projectId === p.id);
-    const active = tasks.filter(t => !t.done);
-    const done   = tasks.filter(t =>  t.done);
-    const sec = document.createElement('div');
-    sec.className = 'project-section';
-    sec.innerHTML = `
+      function renderProjects() {
+        const el = document.getElementById("projectsList");
+        if (S.projects.length === 0) {
+          el.innerHTML = `<div class="empty-state"><i class="ph ph-folder-open"></i>No projects yet — create one above!</div>`;
+          return;
+        }
+        el.innerHTML = "";
+        S.projects.forEach((p) => {
+          const tasks = S.tasks.filter((t) => t.projectId === p.id);
+          const active = tasks.filter((t) => !t.done);
+          const done = tasks.filter((t) => t.done);
+          const sec = document.createElement("div");
+          sec.className = "project-section";
+          sec.innerHTML = `
       <div class="project-header">
         <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};flex-shrink:0"></span>
         <span class="project-header-name">${esc(p.name)}</span>
@@ -2116,194 +2959,304 @@ function renderProjects() {
         </div>
         <div class="task-list" id="taskList_${p.id}"></div>
       </div>`;
-    el.appendChild(sec);
-    const listEl = sec.querySelector(`#taskList_${p.id}`);
-    const all = [...active, ...done];
-    if (all.length === 0) {
-      listEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text2);padding:4px 2px;font-style:italic">No tasks yet</div>`;
-    } else {
-      all.forEach(t => listEl.appendChild(makeTaskItem(t)));
-    }
-  });
-}
+          el.appendChild(sec);
+          const listEl = sec.querySelector(`#taskList_${p.id}`);
+          const all = [...active, ...done];
+          if (all.length === 0) {
+            listEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text2);padding:4px 2px;font-style:italic">No tasks yet</div>`;
+          } else {
+            all.forEach((t) => listEl.appendChild(makeTaskItem(t)));
+          }
+        });
+      }
 
-function makeTaskItem(t) {
-  const d = document.createElement('div');
-  d.className = `task-item${t.done ? ' done' : ''}`;
-  d.innerHTML = `
-    <div class="task-cb${t.done ? ' on' : ''}" role="checkbox" aria-checked="${t.done}" tabindex="0"
+      function makeTaskItem(t) {
+        const d = document.createElement("div");
+        d.className = `task-item${t.done ? " done" : ""}`;
+        d.innerHTML = `
+    <div class="task-cb${t.done ? " on" : ""}" role="checkbox" aria-checked="${t.done}" tabindex="0"
          onclick="toggleTask(${t.id})"
          onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(${t.id})"
-    >${t.done ? '<i class="ph ph-check"></i>' : ''}</div>
-    <span class="task-txt${t.done ? ' done' : ''}" onclick="toggleTask(${t.id})">${esc(t.text)}</span>
+    >${t.done ? '<i class="ph ph-check"></i>' : ""}</div>
+    <span class="task-txt${t.done ? " done" : ""}" onclick="toggleTask(${t.id})">${esc(t.text)}</span>
     <button class="task-del" onclick="deleteTask(${t.id})" aria-label="Delete"><i class="ph ph-x"></i></button>`;
-  return d;
-}
+        return d;
+      }
 
-// ─── TASKS ────────────────────────────────────────────────────────────────────
-function addTask(projectId) {
-  const inp = document.getElementById(`taskInp_${projectId}`);
-  const txt = inp.value.trim();
-  if (!txt) { inp.focus(); return; }
-  S.tasks.push({ id: Date.now(), projectId, text: txt, done: false, createdAt: Date.now() });
-  inp.value = '';
-  saveS(); renderProjects(); renderWorkingOn(); beep('pop');
-}
+      // ─── TASKS ────────────────────────────────────────────────────────────────────
+      function addTask(projectId) {
+        const inp = document.getElementById(`taskInp_${projectId}`);
+        const txt = inp.value.trim();
+        if (!txt) {
+          inp.focus();
+          return;
+        }
+        S.tasks.push({
+          id: Date.now(),
+          projectId,
+          text: txt,
+          done: false,
+          createdAt: Date.now(),
+        });
+        inp.value = "";
+        saveS();
+        renderProjects();
+        renderWorkingOn();
+        beep("pop");
+      }
 
-function toggleTask(id) {
-  const t = S.tasks.find(t => t.id === id);
-  if (!t) return;
-  t.done = !t.done; t.doneAt = t.done ? Date.now() : undefined;
-  if (t.done) { toast('Task done!', 'ok'); beep('done'); if (selTaskId === id) { selTaskId = null; renderWorkingOn(); } }
-  saveS(); renderProjects();
-}
+      function completeTask(id) {
+        if (selTaskId === id && tRunning) {
+          _logSegmentAndSwitch(selProjectId, null);
+        } else if (selTaskId === id) {
+          selTaskId = null;
+        }
+        const t = S.tasks.find((t) => t.id === id);
+        if (t) {
+          t.done = true;
+          t.doneAt = Date.now();
+        }
+        toast("Task done!", "ok");
+        beep("done");
+        saveS();
+        renderProjects();
+        renderWorkingOn();
+      }
 
-function deleteTask(id) {
-  if (selTaskId === id) { selTaskId = null; renderWorkingOn(); }
-  S.tasks = S.tasks.filter(t => t.id !== id);
-  saveS(); renderProjects();
-}
+      function toggleTask(id) {
+        const t = S.tasks.find((t) => t.id === id);
+        if (!t) return;
+        t.done = !t.done;
+        t.doneAt = t.done ? Date.now() : undefined;
+        if (t.done) {
+          toast("Task done!", "ok");
+          beep("done");
+          if (selTaskId === id) {
+            selTaskId = null;
+            renderWorkingOn();
+          }
+        }
+        saveS();
+        renderProjects();
+      }
 
-// ─── STATS ────────────────────────────────────────────────────────────────────
-function renderStats() {
-  document.getElementById('statStreak').textContent  = S.stats.streak || 0;
-  document.getElementById('statToday').textContent   = sessionsOn(today()).length;
-  document.getElementById('statWeek').textContent    = sessionsFrom(weekStart()).length;
-  document.getElementById('statMonth').textContent   = sessionsFrom(monthStart()).length;
-  document.getElementById('statMinutes').textContent = Math.floor(S.sessions.reduce((a,s) => a + s.duration, 0) / 60);
-}
+      function deleteTask(id) {
+        if (selTaskId === id) {
+          selTaskId = null;
+          renderWorkingOn();
+        }
+        S.tasks = S.tasks.filter((t) => t.id !== id);
+        saveS();
+        renderProjects();
+      }
 
-function renderProjectStats() {
-  const el = document.getElementById('projectBreakdown');
-  if (S.sessions.length === 0) {
-    el.innerHTML = `<div class="empty-state" style="padding:16px 0"><i class="ph ph-chart-bar"></i>Log some sessions to see breakdowns!</div>`;
-    return;
-  }
-  const map = {};
-  S.sessions.forEach(s => {
-    const key = s.projectId ? String(s.projectId) : 'untracked';
-    if (!map[key]) map[key] = { name: s.projectName || 'Focus time', color: s.projectColor || '#9a9790', totalSecs: 0, tasks: {} };
-    map[key].totalSecs += s.duration;
-    if (s.taskId) {
-      const tk = String(s.taskId);
-      if (!map[key].tasks[tk]) map[key].tasks[tk] = { name: s.taskName, secs: 0 };
-      map[key].tasks[tk].secs += s.duration;
-    }
-  });
-  S.projects.forEach(p => {
-    const key = String(p.id);
-    if (!map[key]) map[key] = { name: p.name, color: p.color, totalSecs: 0, tasks: {} };
-    else map[key].color = p.color;
-  });
-  const entries = Object.values(map).sort((a,b) => b.totalSecs - a.totalSecs);
-  const maxSecs = Math.max(...entries.map(e => e.totalSecs), 1);
-  el.innerHTML = entries.map(e => {
-    const pct     = e.totalSecs > 0 ? Math.max(3, (e.totalSecs / maxSecs) * 100) : 0;
-    const timeStr = e.totalSecs > 0 ? fmtMins(e.totalSecs) : '—';
-    const taskRows = Object.values(e.tasks).sort((a,b) => b.secs - a.secs).map(tk => {
-      const tkPct = e.totalSecs > 0 ? Math.max(3, (tk.secs / e.totalSecs) * 100) : 0;
-      return `<div class="breakdown-task-row">
+      // ─── STATS ────────────────────────────────────────────────────────────────────
+      function renderStats() {
+        document.getElementById("statStreak").textContent = S.stats.streak || 0;
+        document.getElementById("statToday").textContent =
+          sessionsOn(today()).length;
+        document.getElementById("statWeek").textContent =
+          sessionsFrom(weekStart()).length;
+        document.getElementById("statMonth").textContent =
+          sessionsFrom(monthStart()).length;
+        document.getElementById("statMinutes").textContent = Math.floor(
+          S.sessions.reduce((a, s) => a + s.duration, 0) / 60,
+        );
+      }
+
+      function renderProjectStats() {
+        const el = document.getElementById("projectBreakdown");
+        if (S.sessions.length === 0) {
+          el.innerHTML = `<div class="empty-state" style="padding:16px 0"><i class="ph ph-chart-bar"></i>Log some sessions to see breakdowns!</div>`;
+          return;
+        }
+        const map = {};
+        S.sessions.forEach((s) => {
+          const key = s.projectId ? String(s.projectId) : "untracked";
+          if (!map[key])
+            map[key] = {
+              name: s.projectName || "Focus time",
+              color: s.projectColor || "#9a9790",
+              totalSecs: 0,
+              tasks: {},
+            };
+          map[key].totalSecs += s.duration;
+          if (s.taskId) {
+            const tk = String(s.taskId);
+            if (!map[key].tasks[tk])
+              map[key].tasks[tk] = { name: s.taskName, secs: 0 };
+            map[key].tasks[tk].secs += s.duration;
+          }
+        });
+        S.projects.forEach((p) => {
+          const key = String(p.id);
+          if (!map[key])
+            map[key] = {
+              name: p.name,
+              color: p.color,
+              totalSecs: 0,
+              tasks: {},
+            };
+          else map[key].color = p.color;
+        });
+        const entries = Object.values(map).sort(
+          (a, b) => b.totalSecs - a.totalSecs,
+        );
+        const maxSecs = Math.max(...entries.map((e) => e.totalSecs), 1);
+        el.innerHTML = entries
+          .map((e) => {
+            const pct =
+              e.totalSecs > 0 ? Math.max(3, (e.totalSecs / maxSecs) * 100) : 0;
+            const timeStr = e.totalSecs > 0 ? fmtMins(e.totalSecs) : "—";
+            const taskRows = Object.values(e.tasks)
+              .sort((a, b) => b.secs - a.secs)
+              .map((tk) => {
+                const tkPct =
+                  e.totalSecs > 0
+                    ? Math.max(3, (tk.secs / e.totalSecs) * 100)
+                    : 0;
+                return `<div class="breakdown-task-row">
         <div class="breakdown-task-name" title="${esc(tk.name)}">↳ ${esc(tk.name)}</div>
         <div class="breakdown-task-bar-wrap"><div class="breakdown-task-bar" style="width:${tkPct}%;background:${e.color}"></div></div>
         <div class="breakdown-task-time">${fmtMins(tk.secs)}</div>
       </div>`;
-    }).join('');
-    return `<div class="breakdown-row">
+              })
+              .join("");
+            return `<div class="breakdown-row">
         <div class="breakdown-name"><span class="proj-dot" style="background:${e.color}"></span><span title="${esc(e.name)}">${esc(e.name)}</span></div>
         <div class="breakdown-bar-wrap"><div class="breakdown-bar" style="width:${pct}%;background:${e.color}"></div></div>
         <div class="breakdown-time">${timeStr}</div>
-      </div>${taskRows ? `<div class="breakdown-tasks">${taskRows}</div>` : ''}`;
-  }).join('');
-}
+      </div>${taskRows ? `<div class="breakdown-tasks">${taskRows}</div>` : ""}`;
+          })
+          .join("");
+      }
 
-// ─── CHART ────────────────────────────────────────────────────────────────────
-let chartMode = 'week';
+      // ─── CHART ────────────────────────────────────────────────────────────────────
+      let chartMode = "week";
 
-function switchChart(m) {
-  chartMode = m;
-  document.getElementById('ctWeek').classList.toggle('active',  m === 'week');
-  document.getElementById('ctMonth').classList.toggle('active', m === 'month');
-  renderChart(m);
-}
+      function switchChart(m) {
+        chartMode = m;
+        document
+          .getElementById("ctWeek")
+          .classList.toggle("active", m === "week");
+        document
+          .getElementById("ctMonth")
+          .classList.toggle("active", m === "month");
+        renderChart(m);
+      }
 
-function renderChart(m) {
-  const el = document.getElementById('barChart');
-  el.innerHTML = '';
-  const td = today(), N = m === 'week' ? 7 : 30;
-  const DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-  let labels = [], counts = [];
-  for (let i = N-1; i >= 0; i--) {
-    const d = new Date(); d.setDate(d.getDate() - i);
-    counts.push(sessionsOn(d.toISOString().slice(0,10)).length);
-    labels.push(m === 'week' ? DAYS[d.getDay()] : (i % 5 === 0 ? String(d.getDate()) : ''));
-  }
-  const maxVal = Math.max(...counts, 1);
-  counts.forEach((v, i) => {
-    const daysAgo = N - 1 - i;
-    const d = new Date(); d.setDate(d.getDate() - daysAgo);
-    const isToday = d.toISOString().slice(0,10) === td;
-    const col = document.createElement('div');
-    col.className = 'bar-col'; col.style.position = 'relative';
-    const bar = document.createElement('div');
-    bar.className = `bar${isToday ? ' today-bar' : ''}${v === 0 ? ' empty-bar' : ''}`;
-    bar.style.height = v > 0 ? Math.max(5, (v / maxVal) * 92) + '%' : '0';
-    if (v > 0) {
-      const tip = document.createElement('div');
-      tip.className = 'bar-tip';
-      tip.textContent = `${v} session${v!==1?'s':''}`;
-      bar.appendChild(tip);
-    }
-    const lbl = document.createElement('div');
-    lbl.className = 'bar-lbl'; lbl.textContent = labels[i];
-    col.appendChild(bar); col.appendChild(lbl); el.appendChild(col);
-  });
-}
+      function renderChart(m) {
+        const el = document.getElementById("barChart");
+        el.innerHTML = "";
+        const td = today(),
+          N = m === "week" ? 7 : 30;
+        const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        let labels = [],
+          counts = [];
+        for (let i = N - 1; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          counts.push(sessionsOn(d.toISOString().slice(0, 10)).length);
+          labels.push(
+            m === "week"
+              ? DAYS[d.getDay()]
+              : i % 5 === 0
+                ? String(d.getDate())
+                : "",
+          );
+        }
+        const maxVal = Math.max(...counts, 1);
+        counts.forEach((v, i) => {
+          const daysAgo = N - 1 - i;
+          const d = new Date();
+          d.setDate(d.getDate() - daysAgo);
+          const isToday = d.toISOString().slice(0, 10) === td;
+          const col = document.createElement("div");
+          col.className = "bar-col";
+          col.style.position = "relative";
+          const bar = document.createElement("div");
+          bar.className = `bar${isToday ? " today-bar" : ""}${v === 0 ? " empty-bar" : ""}`;
+          bar.style.height = v > 0 ? Math.max(5, (v / maxVal) * 92) + "%" : "0";
+          if (v > 0) {
+            const tip = document.createElement("div");
+            tip.className = "bar-tip";
+            tip.textContent = `${v} session${v !== 1 ? "s" : ""}`;
+            bar.appendChild(tip);
+          }
+          const lbl = document.createElement("div");
+          lbl.className = "bar-lbl";
+          lbl.textContent = labels[i];
+          col.appendChild(bar);
+          col.appendChild(lbl);
+          el.appendChild(col);
+        });
+      }
 
-// ─── EXPORT / IMPORT ──────────────────────────────────────────────────────────
-function exportData() {
-  const blob = new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `foco-${today()}.json`; a.click();
-  URL.revokeObjectURL(a.href); toast('Exported!', 'ok');
-}
+      // ─── EXPORT / IMPORT ──────────────────────────────────────────────────────────
+      function exportData() {
+        const blob = new Blob([JSON.stringify(S, null, 2)], {
+          type: "application/json",
+        });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `foco-${today()}.json`;
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast("Exported!", "ok");
+      }
 
-function importData(ev) {
-  const file = ev.target.files[0]; if (!file) return;
-  const r = new FileReader();
-  r.onload = e => {
-    try {
-      const imp = JSON.parse(e.target.result);
-      if (!Array.isArray(imp.sessions)) throw new Error();
-      S = Object.assign(defaults(), imp); saveS();
-      renderProjects(); renderWorkingOn(); renderStats();
-      renderChart(chartMode); renderProjectStats();
-      refreshTodaySummary(); refreshPomoDots();
-      toast('Imported!', 'ok');
-    } catch { toast('Invalid file', 'err'); }
-    ev.target.value = '';
-  };
-  r.readAsText(file);
-}
+      function importData(ev) {
+        const file = ev.target.files[0];
+        if (!file) return;
+        const r = new FileReader();
+        r.onload = (e) => {
+          try {
+            const imp = JSON.parse(e.target.result);
+            if (!Array.isArray(imp.sessions)) throw new Error();
+            S = Object.assign(defaults(), imp);
+            saveS();
+            renderProjects();
+            renderWorkingOn();
+            renderStats();
+            renderChart(chartMode);
+            renderProjectStats();
+            refreshTodaySummary();
+            refreshPomoDots();
+            toast("Imported!", "ok");
+          } catch {
+            toast("Invalid file", "err");
+          }
+          ev.target.value = "";
+        };
+        r.readAsText(file);
+      }
 
-// ─── KEYBOARD ─────────────────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT') return;
-  if (e.code === 'Space')  { e.preventDefault(); doToggle(); }
-  if (e.code === 'KeyR' && !tRunning) doReset();
-  if (e.code === 'Escape' && tRunning) doPause();
-});
+      // ─── KEYBOARD ─────────────────────────────────────────────────────────────────
+      document.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "INPUT") return;
+        if (e.code === "Space") {
+          e.preventDefault();
+          doToggle();
+        }
+        if (e.code === "KeyR" && !tRunning) doReset();
+        if (e.code === "Escape" && tRunning) doPause();
+      });
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-(function init() {
-  loadS(); checkStreakDecay();
-  refreshTodaySummary(); refreshPomoDots(); refreshDisplay();
-  renderColorPicker(); renderProjects(); renderWorkingOn();
-  try {
-    const saved = localStorage.getItem('foco_theme');
-    if (saved !== null) applyTheme(parseInt(saved, 10) || 0);
-  } catch {}
-})();
-</script>
-</body>
+      // ─── INIT ─────────────────────────────────────────────────────────────────────
+      (function init() {
+        loadS();
+        checkStreakDecay();
+        refreshTodaySummary();
+        refreshPomoDots();
+        refreshDisplay();
+        renderColorPicker();
+        renderProjects();
+        renderWorkingOn();
+        try {
+          const saved = localStorage.getItem("foco_theme");
+          if (saved !== null) applyTheme(parseInt(saved, 10) || 0);
+        } catch {}
+      })();
+    </script>
+  </body>
 </html>
