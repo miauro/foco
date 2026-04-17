@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foco</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><path fill='%237c3aed' d='M216,40H40a8,8,0,0,0,0,16H48V80a8,8,0,0,0,2.34,5.66L100.68,128,50.34,170.34A8,8,0,0,0,48,176v24H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16h-8V176a8,8,0,0,0-2.34-5.66L155.32,128l50.34-42.34A8,8,0,0,0,208,80V56h8a8,8,0,0,0,0-16ZM192,80.37,138.55,128,192,175.63V200H64V175.63L117.45,128,64,80.37V56H192Z'/></svg>"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap"
@@ -218,7 +223,7 @@
         font-family: var(--mono);
         font-size: 2.6rem;
         font-weight: 700;
-        letter-spacing: 10px;
+        letter-spacing: 4px;
         text-transform: uppercase;
         color: var(--text);
         line-height: 1;
@@ -226,6 +231,7 @@
       }
       .logo-mark span {
         color: var(--accent);
+        letter-spacing: 1px;
         transition: color 0.35s;
       }
       .logo-sub {
@@ -760,24 +766,6 @@
         color: var(--verde);
         box-shadow: 1px 2px 0 var(--verde);
       }
-      .wo-chip-done {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 5px;
-        width: 16px; height: 16px;
-        border-radius: 3px;
-        font-size: 0.7rem;
-        opacity: 0.45;
-        transition: opacity 0.15s, background 0.15s, color 0.15s;
-        cursor: pointer;
-        flex-shrink: 0;
-      }
-      .wo-chip-done:hover {
-        opacity: 1;
-        background: var(--verde-bg);
-        color: var(--verde);
-      }
 
       .wo-task-row {
         overflow: hidden;
@@ -786,17 +774,19 @@
         margin-top: 0;
         padding-top: 0;
         border-top: 1px dashed transparent;
-        transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1),
-                    opacity 0.25s ease,
-                    padding-top 0.25s ease,
-                    margin-top 0.25s ease,
-                    border-color 0.25s ease;
+        transition:
+          max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.25s ease,
+          padding-top 0.25s ease,
+          margin-top 0.25s ease,
+          border-color 0.25s ease;
       }
       .wo-task-row.open {
-        max-height: 300px;
+        max-height: 500px;
         opacity: 1;
         margin-top: 10px;
         padding-top: 10px;
+        padding-bottom: 4px;
         border-top-color: var(--border);
       }
 
@@ -1172,45 +1162,11 @@
         transition: all 0.18s;
         animation: slideIn 0.2s cubic-bezier(0.22, 1, 0.36, 1);
       }
-      .task-item.done {
-        opacity: 0.5;
-        background: var(--p-green);
-        border-color: var(--verde);
-      }
-
-      .task-cb {
-        width: 18px;
-        height: 18px;
-        border: 1.5px solid var(--border);
-        background: var(--surface);
-        flex-shrink: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        border-radius: 4px;
-        transition: all 0.18s;
-      }
-      .task-cb:hover {
-        border-color: var(--verde);
-      }
-      .task-cb.on {
-        background: var(--verde);
-        border-color: var(--verde);
-        color: #fff;
-      }
-
       .task-txt {
         flex: 1;
         font-family: var(--sans);
         font-size: 0.875rem;
-        cursor: pointer;
         word-break: break-word;
-      }
-      .task-txt.done {
-        text-decoration: line-through;
-        color: var(--text2);
       }
 
       .task-del {
@@ -1278,6 +1234,10 @@
       }
       .sc-streak i {
         font-size: 2.2rem;
+        background: linear-gradient(to top, #e53e00, #ff9500);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         animation: flameDance 2s ease-in-out infinite;
       }
 
@@ -1659,7 +1619,9 @@
         align-items: center;
         gap: 8px;
       }
-      .fs-wo .wo-chips { justify-content: center; }
+      .fs-wo .wo-chips {
+        justify-content: center;
+      }
       .fs-wo-task-row {
         overflow: hidden;
         max-height: 0;
@@ -1669,18 +1631,22 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        transition: max-height 0.32s cubic-bezier(0.22,1,0.36,1),
-                    opacity 0.25s ease,
-                    padding-top 0.25s ease,
-                    border-color 0.25s ease;
+        transition:
+          max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.25s ease,
+          padding-top 0.25s ease,
+          border-color 0.25s ease;
       }
       .fs-wo-task-row.open {
-        max-height: 200px;
+        max-height: 300px;
         opacity: 1;
         padding-top: 8px;
+        padding-bottom: 4px;
         border-top-color: var(--border);
       }
-      .fs-wo .wo-empty { color: var(--text2); }
+      .fs-wo .wo-empty {
+        color: var(--text2);
+      }
 
       .fs-controls {
         display: flex;
@@ -1792,6 +1758,133 @@
       /* ============================================
        RESPONSIVE
     ============================================ */
+      /* ============================================
+       MODALS
+    ============================================ */
+      .modal-bg {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.48);
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.15s ease;
+      }
+      .modal {
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-lg);
+        box-shadow: var(--card-shadow);
+        padding: 24px;
+        min-width: 280px;
+        max-width: 380px;
+        width: 90%;
+      }
+      .modal-title {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+      }
+      .modal-footer {
+        margin-top: 16px;
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .assign-proj-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+      .assign-proj-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-md);
+        background: var(--surface);
+        cursor: pointer;
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        text-align: left;
+        transition: all 0.15s;
+        color: var(--text);
+      }
+      .assign-proj-btn:hover {
+        border-color: var(--accent);
+        background: var(--accent-bg);
+      }
+
+      /* ============================================
+       SESSION LOG
+    ============================================ */
+      .session-log-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .session-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 4px;
+        border-bottom: 1px solid var(--border);
+      }
+      .session-item:last-child {
+        border-bottom: none;
+      }
+      .session-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .session-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .session-proj {
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .session-meta {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--text2);
+        margin-top: 2px;
+      }
+      .session-dur {
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .session-edit {
+        background: none;
+        border: none;
+        color: var(--text2);
+        cursor: pointer;
+        padding: 5px;
+        border-radius: var(--r-sm);
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+      }
+      .session-edit:hover {
+        color: var(--accent);
+        background: var(--accent-bg);
+      }
+
       @media (max-width: 640px) {
         .app {
           padding: 0 12px 80px;
@@ -1846,7 +1939,13 @@
         <button class="btn btn-lg" onclick="doPause()">
           <i class="ph ph-pause"></i> Pausar
         </button>
-        <button class="btn btn-discard btn-lg" onclick="doReset()">
+        <button
+          class="btn btn-discard btn-lg"
+          onclick="
+            beep('cancel');
+            doReset();
+          "
+        >
           <i class="ph ph-trash"></i> Descartar
         </button>
       </div>
@@ -1858,8 +1957,8 @@
     <div class="app">
       <!-- LOGO -->
       <div class="logo-wrap">
-        <div class="logo-mark">FO<span>:</span>CO</div>
-        <div class="logo-sub">foco · tiempo</div>
+        <div class="logo-mark">F<span>O:C</span>O</div>
+        <div class="logo-sub">haz cosas y mira cuánto tardas</div>
       </div>
 
       <!-- TABS -->
@@ -1878,7 +1977,7 @@
           onclick="goTab('tasks')"
           role="tab"
         >
-          <i class="ph ph-folder"></i> Tareas
+          <i class="ph ph-folder"></i> Proyectos
         </button>
         <button
           class="tab-btn"
@@ -1887,6 +1986,14 @@
           role="tab"
         >
           <i class="ph ph-chart-bar"></i> Stats
+        </button>
+        <button
+          class="tab-btn"
+          id="tab-sessions"
+          onclick="goTab('sessions')"
+          role="tab"
+        >
+          <i class="ph ph-clock-clockwise"></i> Registro
         </button>
       </nav>
 
@@ -1914,7 +2021,7 @@
             <div class="wo-label">Trabajando en</div>
             <div class="wo-chips" id="woProjects"></div>
             <div class="wo-task-row" id="woTaskRow">
-              <div class="wo-task-label">Tarea (opcional)</div>
+              <div class="wo-task-label">Tarea</div>
               <div class="wo-chips" id="woTasks"></div>
             </div>
           </div>
@@ -1937,7 +2044,14 @@
           <p class="timer-label" id="timerLabel">¿Listo para enfocarte?</p>
 
           <div class="timer-controls">
-            <button class="btn" id="resetBtn" onclick="doReset()">
+            <button
+              class="btn"
+              id="resetBtn"
+              onclick="
+                beep('reset');
+                doReset();
+              "
+            >
               <i class="ph ph-arrow-counter-clockwise"></i> Reiniciar
             </button>
             <button
@@ -1961,9 +2075,7 @@
         </div>
 
         <div class="card">
-          <div class="card-title">
-            <i class="ph ph-calendar-blank"></i> Hoy
-          </div>
+          <div class="card-title"><i class="ph ph-calendar-blank"></i> Hoy</div>
           <div class="summary-row">
             <div class="sum-item">
               <div class="sum-val" id="todaySessions">0</div>
@@ -2025,6 +2137,7 @@
               <div class="sc-val" id="statStreak">0</div>
               <div class="sc-lbl">Racha de días</div>
             </div>
+            <i class="ph-fill ph-fire"></i>
           </div>
           <div class="stat-card">
             <div class="sc-val" id="statToday">0</div>
@@ -2105,7 +2218,7 @@
               class="btn-data"
               onclick="document.getElementById('importFile').click()"
             >
-              <i class="ph ph-import"></i> Importar
+              <i class="ph ph-download-simple"></i> Importar
             </button>
           </div>
           <input
@@ -2117,8 +2230,50 @@
         </div>
       </div>
       <!-- /panel-stats -->
+
+      <!-- SESSIONS PANEL -->
+      <div class="panel" id="panel-sessions">
+        <div class="card">
+          <div class="card-title">
+            <i class="ph ph-clock-clockwise"></i> Registro de sesiones
+          </div>
+          <div class="session-log-list" id="sessionLog"></div>
+        </div>
+      </div>
+      <!-- /panel-sessions -->
     </div>
     <!-- /.app -->
+
+    <!-- ASSIGN PROJECT MODAL (shown when logging without project) -->
+    <div id="assignModal" class="modal-bg" style="display: none">
+      <div class="modal">
+        <div class="modal-title">¿A qué proyecto asignar esta sesión?</div>
+        <div class="assign-proj-list" id="assignProjList"></div>
+        <div class="modal-footer">
+          <button class="btn btn-discard" onclick="closeAssignModal(null)">
+            Sin proyecto
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REASSIGN SESSION MODAL -->
+    <div id="reassignModal" class="modal-bg" style="display: none">
+      <div class="modal">
+        <div class="modal-title" id="reassignTitle">Reasignar sesión</div>
+        <div class="assign-proj-list" id="reassignProjList"></div>
+        <div class="modal-footer">
+          <button class="btn" onclick="closeReassignModal()">Cancelar</button>
+          <button
+            class="btn btn-discard"
+            id="reassignNoneBtn"
+            onclick="saveReassign(null, null)"
+          >
+            Sin proyecto
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- SOUND PANEL (left) -->
     <div class="side-panel sound-side" id="soundPanel">
@@ -2342,6 +2497,23 @@
           if (type === "pop") {
             play(600, 0, 0.08, 0.1);
           }
+          if (type === "start") {
+            play(523, 0, 0.13, 0.12, "sine"); // C5
+            play(659, 0.13, 0.13, 0.1, "sine"); // E5
+            play(784, 0.26, 0.2, 0.08, "sine"); // G5
+          }
+          if (type === "pause") {
+            play(494, 0, 0.1, 0.09, "sine"); // B4
+            play(440, 0.09, 0.16, 0.07, "sine"); // A4 — small half-step down, suspended feel
+          }
+          if (type === "reset") {
+            play(440, 0, 0.12, 0.09, "sine"); // A4
+            play(330, 0.1, 0.18, 0.06, "sine"); // E4 — soft descending step
+          }
+          if (type === "cancel") {
+            play(349, 0, 0.1, 0.09, "sine"); // F4
+            play(220, 0.08, 0.18, 0.07, "sine"); // A3 — bigger drop, definitive
+          }
         } catch {}
       }
 
@@ -2479,12 +2651,12 @@
 
       // ─── LOFI PLAYLIST ───────────────────────────────────────────────────────────
       const lofiFiles = [
-        "sounds/lofi/fassounds-good-night-lofi-cozy-chill-music-160166.mp3",
-        "sounds/lofi/fassounds-lofi-study-calm-peaceful-chill-hop-112191.mp3",
-        "sounds/lofi/freemusicforvideo-lofi-chill-music-495628.mp3",
-        "sounds/lofi/freepik-intimate-lo-fi.mp3",
-        "sounds/lofi/freepik-punto-fijo-lo-fi.mp3",
-        "sounds/lofi/monume-lofi-lofi-girl-lofi-chill-509453.mp3",
+        "sounds/Lofi/fassounds-good-night-lofi-cozy-chill-music-160166.mp3",
+        "sounds/Lofi/fassounds-lofi-study-calm-peaceful-chill-hop-112191.mp3",
+        "sounds/Lofi/freemusicforvideo-lofi-chill-music-495628.mp3",
+        "sounds/Lofi/freepik-intimate-lo-fi.mp3",
+        "sounds/Lofi/freepik-punto-fijo-lo-fi.mp3",
+        "sounds/Lofi/monume-lofi-lofi-girl-lofi-chill-509453.mp3",
       ];
       const lofi = { idx: 0, primary: null, secondary: null, fading: false };
 
@@ -2570,7 +2742,7 @@
 
       // ─── TAB ROUTING ──────────────────────────────────────────────────────────────
       function goTab(name) {
-        ["timer", "tasks", "stats"].forEach((t) => {
+        ["timer", "tasks", "stats", "sessions"].forEach((t) => {
           document
             .getElementById(`tab-${t}`)
             .classList.toggle("active", t === name);
@@ -2585,16 +2757,38 @@
           renderChart(chartMode);
           renderProjectStats();
         }
+        if (name === "sessions") renderSessionLog();
       }
 
       // ─── TIMER STATE ──────────────────────────────────────────────────────────────
       let tInterval = null;
       let tRunning = false;
-      let tSecs = 0;
-      let tSegmentSecs = 0; // elapsed secs in current project/task segment
       let tMode = "stopwatch";
       let cdDuration = 25 * 60;
-      let tStartTs = null;
+
+      // Timestamp-based display — immune to tab throttling
+      let tDisplayBase = 0; // accumulated display secs before current run
+      let tDisplayStartTs = null; // Date.now() when current run began
+
+      // Segment tracking (per-project/sub-project block)
+      let tSegBase = 0; // accumulated segment secs before current run
+      let tSegStartTs = null; // Date.now() when current segment run began
+
+      let lastTickSec = -1; // for countdown beep dedup
+
+      function getDisplaySecs() {
+        if (!tDisplayStartTs) return tDisplayBase;
+        const elapsed = Math.floor((Date.now() - tDisplayStartTs) / 1000);
+        return tMode === "stopwatch"
+          ? tDisplayBase + elapsed
+          : Math.max(0, tDisplayBase - elapsed);
+      }
+
+      function getSegmentSecs() {
+        if (!tSegStartTs) return tSegBase;
+        return tSegBase + Math.floor((Date.now() - tSegStartTs) / 1000);
+      }
+
       let selProjectId = null;
       let selTaskId = null;
 
@@ -2645,23 +2839,28 @@
       }
 
       function _logSegmentAndSwitch(newProjId, newTaskId) {
-        if (tSegmentSecs >= 60) {
-          pushSession(tSegmentSecs); // logs current selProjectId/selTaskId before switching
+        const secs = getSegmentSecs();
+        if (secs >= 60) {
+          pushSession(secs);
           toast("¡Segmento registrado!", "ok");
           beep("pop");
         }
-        tSegmentSecs = 0;
+        tSegBase = 0;
+        tSegStartTs = tRunning ? Date.now() : null;
         selProjectId = newProjId;
         selTaskId = newTaskId;
         renderWorkingOn();
       }
 
       function _renderWoInto(projElId, taskElId, taskRowId, boxId) {
-        const projEl  = document.getElementById(projElId);
+        const projEl = document.getElementById(projElId);
         const taskRow = document.getElementById(taskRowId);
-        const taskEl  = document.getElementById(taskElId);
+        const taskEl = document.getElementById(taskElId);
         if (!projEl) return;
-        if (boxId) document.getElementById(boxId)?.classList.toggle("has-project", !!selProjectId);
+        if (boxId)
+          document
+            .getElementById(boxId)
+            ?.classList.toggle("has-project", !!selProjectId);
 
         if (S.projects.length === 0) {
           projEl.innerHTML = `<span class="wo-empty">Sin proyectos aún</span>`;
@@ -2669,30 +2868,35 @@
           return;
         }
 
-        projEl.innerHTML = S.projects.map((p) => {
-          const active = selProjectId === p.id;
-          return `<button class="wo-chip${active ? " active" : ""}" onclick="selectProject(${p.id})">
+        projEl.innerHTML = S.projects
+          .map((p) => {
+            const active = selProjectId === p.id;
+            return `<button class="wo-chip${active ? " active" : ""}" onclick="selectProject(${p.id})">
             <span class="proj-dot" style="background:${p.color}"></span>${esc(p.name)}
           </button>`;
-        }).join("");
+          })
+          .join("");
 
         if (selProjectId) {
-          const activeTasks = S.tasks.filter((t) => t.projectId === selProjectId && !t.done);
+          const subs = S.tasks.filter((t) => t.projectId === selProjectId);
           if (taskRow) taskRow.classList.add("open");
-          if (taskEl) taskEl.innerHTML = activeTasks.length === 0
-            ? `<span class="wo-empty">Sin tareas activas</span>`
-            : activeTasks.map((t) =>
-                `<button class="wo-chip${selTaskId === t.id ? " active" : ""}" onclick="selectTask(${t.id})">
-                  ${esc(t.text)}<i class="ph ph-check wo-chip-done" onclick="event.stopPropagation();completeTask(${t.id})" title="Marcar como hecha"></i>
-                </button>`
-              ).join("");
+          if (taskEl)
+            taskEl.innerHTML =
+              subs.length === 0
+                ? `<span class="wo-empty">Sin tareas</span>`
+                : subs
+                    .map(
+                      (t) =>
+                        `<button class="wo-chip${selTaskId === t.id ? " active" : ""}" onclick="selectTask(${t.id})">${esc(t.text)}</button>`,
+                    )
+                    .join("");
         } else {
           if (taskRow) taskRow.classList.remove("open");
         }
       }
 
       function renderWorkingOn() {
-        _renderWoInto("woProjects",   "woTasks",   "woTaskRow",   "workingOnBox");
+        _renderWoInto("woProjects", "woTasks", "woTaskRow", "workingOnBox");
         _renderWoInto("fsWoProjects", "fsWoTasks", "fsWoTaskRow", null);
       }
 
@@ -2702,9 +2906,12 @@
       }
 
       function doStart() {
-        if (tMode === "countdown" && tSecs === 0) tSecs = cdDuration;
-        if (!tStartTs) tStartTs = Date.now();
+        if (tMode === "countdown" && tDisplayBase === 0)
+          tDisplayBase = cdDuration;
+        tDisplayStartTs = Date.now();
+        tSegStartTs = Date.now();
         tRunning = true;
+        beep("start");
 
         const overlay = document.getElementById("fsOverlay");
         overlay.classList.add("open");
@@ -2721,24 +2928,28 @@
         document.getElementById("logBtn").style.display = "inline-flex";
 
         tInterval = setInterval(() => {
-          tSegmentSecs++;
-          if (tMode === "stopwatch") {
-            tSecs++;
-          } else {
-            tSecs--;
-            if (tSecs <= 5 && tSecs > 0) beep("tick");
-            if (tSecs <= 0) {
-              tSecs = 0;
+          const disp = getDisplaySecs();
+          if (tMode === "countdown") {
+            if (disp <= 5 && disp > 0 && disp !== lastTickSec) {
+              lastTickSec = disp;
+              beep("tick");
+            }
+            if (disp <= 0) {
               refreshDisplay();
               onCountdownEnd();
               return;
             }
           }
           refreshDisplay();
-        }, 1000);
+        }, 500);
       }
 
       function doPause() {
+        beep("pause");
+        tDisplayBase = getDisplaySecs();
+        tDisplayStartTs = null;
+        tSegBase = getSegmentSecs();
+        tSegStartTs = null;
         tRunning = false;
         clearInterval(tInterval);
         tInterval = null;
@@ -2751,54 +2962,67 @@
       }
 
       function doReset() {
+        tDisplayBase = 0;
+        tDisplayStartTs = null;
+        tSegBase = 0;
+        tSegStartTs = null;
+        lastTickSec = -1;
         tRunning = false;
         clearInterval(tInterval);
         tInterval = null;
-        tSecs = 0;
-        tSegmentSecs = 0;
-        tStartTs = null;
         document.getElementById("fsOverlay").classList.remove("open");
         document.getElementById("startBtn").innerHTML =
           '<i class="ph ph-play"></i> Iniciar';
         document.getElementById("timerDisplay").className = "timer-display";
-        document.getElementById("timerLabel").textContent = "¿Listo para enfocarte?";
+        document.getElementById("timerLabel").textContent =
+          "¿Listo para enfocarte?";
         document.getElementById("logBtn").style.display = "none";
         refreshDisplay();
       }
 
       function doLog() {
-        if (tSegmentSecs < 60) {
+        const secs = getSegmentSecs();
+        if (secs < 60) {
           toast("Segmento muy corto (mín. 1 min)", "err");
           return;
         }
-        pushSession(tSegmentSecs);
-        doReset();
-        toast("¡Sesión registrada!", "ok");
-        beep("done");
+        maybeAssignProject(secs, () => {
+          doReset();
+          toast("¡Sesión registrada!", "ok");
+          beep("done");
+        });
       }
 
       function onCountdownEnd() {
+        const secs = getSegmentSecs() || cdDuration;
+        tDisplayBase = 0;
+        tDisplayStartTs = null;
+        tSegBase = 0;
+        tSegStartTs = null;
+        lastTickSec = -1;
+        tRunning = false;
         clearInterval(tInterval);
         tInterval = null;
-        tRunning = false;
         beep("alarm");
-        pushSession(tSegmentSecs || cdDuration);
-        tSegmentSecs = 0;
         document.getElementById("fsOverlay").classList.remove("open");
         document.getElementById("startBtn").innerHTML =
           '<i class="ph ph-play"></i> Iniciar';
         document.getElementById("timerDisplay").className = "timer-display";
         document.getElementById("timerLabel").textContent = "¡Sesión completa!";
         document.getElementById("logBtn").style.display = "none";
-        toast("¡Sesión completa! ¡Buen trabajo!", "ok");
+        maybeAssignProject(secs, () => {
+          toast("¡Sesión completa! ¡Buen trabajo!", "ok");
+          refreshDisplay();
+        });
       }
 
       function refreshDisplay() {
-        const formatted = fmtTime(tSecs);
+        const formatted = fmtTime(getDisplaySecs());
         document.getElementById("timerDisplay").textContent = formatted;
         document.getElementById("fsDisplay").textContent = formatted;
         if (tMode === "countdown") {
-          const pct = cdDuration > 0 ? (tSecs / cdDuration) * 100 : 100;
+          const pct =
+            cdDuration > 0 ? (getDisplaySecs() / cdDuration) * 100 : 100;
           document.getElementById("cdBarFill").style.width = pct + "%";
           document.getElementById("fsBarFill").style.width = pct + "%";
         }
@@ -2918,7 +3142,7 @@
       }
 
       function deleteProject(id) {
-        if (!confirm("Delete this project and all its tasks?")) return;
+        if (!confirm("¿Eliminar este proyecto y sus tareas?")) return;
         S.tasks = S.tasks.filter((t) => t.projectId !== id);
         S.projects = S.projects.filter((p) => p.id !== id);
         if (selProjectId === id) {
@@ -2938,16 +3162,14 @@
         }
         el.innerHTML = "";
         S.projects.forEach((p) => {
-          const tasks = S.tasks.filter((t) => t.projectId === p.id);
-          const active = tasks.filter((t) => !t.done);
-          const done = tasks.filter((t) => t.done);
+          const subs = S.tasks.filter((t) => t.projectId === p.id);
           const sec = document.createElement("div");
           sec.className = "project-section";
           sec.innerHTML = `
       <div class="project-header">
         <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};flex-shrink:0"></span>
         <span class="project-header-name">${esc(p.name)}</span>
-        <span class="proj-task-count">${active.length} active</span>
+        <span class="proj-task-count">${subs.length} tarea${subs.length !== 1 ? "s" : ""}</span>
         <button class="proj-del-btn" onclick="deleteProject(${p.id})" aria-label="Eliminar"><i class="ph ph-x"></i></button>
       </div>
       <div class="project-body">
@@ -2961,24 +3183,19 @@
       </div>`;
           el.appendChild(sec);
           const listEl = sec.querySelector(`#taskList_${p.id}`);
-          const all = [...active, ...done];
-          if (all.length === 0) {
+          if (subs.length === 0) {
             listEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text2);padding:4px 2px;font-style:italic">Sin tareas aún</div>`;
           } else {
-            all.forEach((t) => listEl.appendChild(makeTaskItem(t)));
+            subs.forEach((t) => listEl.appendChild(makeTaskItem(t)));
           }
         });
       }
 
       function makeTaskItem(t) {
         const d = document.createElement("div");
-        d.className = `task-item${t.done ? " done" : ""}`;
+        d.className = "task-item";
         d.innerHTML = `
-    <div class="task-cb${t.done ? " on" : ""}" role="checkbox" aria-checked="${t.done}" tabindex="0"
-         onclick="toggleTask(${t.id})"
-         onkeydown="if(event.key==='Enter'||event.key===' ')toggleTask(${t.id})"
-    >${t.done ? '<i class="ph ph-check"></i>' : ""}</div>
-    <span class="task-txt${t.done ? " done" : ""}" onclick="toggleTask(${t.id})">${esc(t.text)}</span>
+    <span class="task-txt">${esc(t.text)}</span>
     <button class="task-del" onclick="deleteTask(${t.id})" aria-label="Eliminar"><i class="ph ph-x"></i></button>`;
         return d;
       }
@@ -2995,7 +3212,6 @@
           id: Date.now(),
           projectId,
           text: txt,
-          done: false,
           createdAt: Date.now(),
         });
         inp.value = "";
@@ -3003,41 +3219,6 @@
         renderProjects();
         renderWorkingOn();
         beep("pop");
-      }
-
-      function completeTask(id) {
-        if (selTaskId === id && tRunning) {
-          _logSegmentAndSwitch(selProjectId, null);
-        } else if (selTaskId === id) {
-          selTaskId = null;
-        }
-        const t = S.tasks.find((t) => t.id === id);
-        if (t) {
-          t.done = true;
-          t.doneAt = Date.now();
-        }
-        toast("¡Tarea completada!", "ok");
-        beep("done");
-        saveS();
-        renderProjects();
-        renderWorkingOn();
-      }
-
-      function toggleTask(id) {
-        const t = S.tasks.find((t) => t.id === id);
-        if (!t) return;
-        t.done = !t.done;
-        t.doneAt = t.done ? Date.now() : undefined;
-        if (t.done) {
-          toast("¡Tarea completada!", "ok");
-          beep("done");
-          if (selTaskId === id) {
-            selTaskId = null;
-            renderWorkingOn();
-          }
-        }
-        saveS();
-        renderProjects();
       }
 
       function deleteTask(id) {
@@ -3075,7 +3256,7 @@
           const key = s.projectId ? String(s.projectId) : "untracked";
           if (!map[key])
             map[key] = {
-              name: s.projectName || "Focus time",
+              name: s.projectName || "Tiempo de foco",
               color: s.projectColor || "#9a9790",
               totalSecs: 0,
               tasks: {},
@@ -3131,6 +3312,189 @@
           .join("");
       }
 
+      // ─── SESSION LOG ──────────────────────────────────────────────────────────────
+      function renderSessionLog() {
+        const el = document.getElementById("sessionLog");
+        if (!el) return;
+        if (S.sessions.length === 0) {
+          el.innerHTML = `<div class="empty-state" style="padding:24px 0"><i class="ph ph-clock-clockwise"></i>Sin sesiones registradas aún</div>`;
+          return;
+        }
+        const sorted = [...S.sessions].sort((a, b) => b.ts - a.ts);
+        el.innerHTML = sorted
+          .map((s) => {
+            const color = s.projectColor || "#9a9790";
+            const proj = s.projectName || "Sin proyecto";
+            const sub = s.taskName
+              ? `<span style="opacity:0.6"> · ${esc(s.taskName)}</span>`
+              : "";
+            const dt = new Date(s.ts);
+            const dateStr = dt.toLocaleDateString("es", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            });
+            const timeStr = dt.toLocaleTimeString("es", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+            return `<div class="session-item">
+            <div class="session-dot" style="background:${color}"></div>
+            <div class="session-info">
+              <div class="session-proj">${esc(proj)}${sub}</div>
+              <div class="session-meta">${dateStr} · ${timeStr}</div>
+            </div>
+            <div class="session-dur">${fmtMins(s.duration)}</div>
+            <button class="session-edit" onclick="openReassignModal(${s.id})" title="Reasignar"><i class="ph ph-pencil-simple"></i></button>
+            <button class="session-edit" onclick="deleteSession(${s.id})" title="Eliminar" style="color:var(--rojo)"><i class="ph ph-trash"></i></button>
+          </div>`;
+          })
+          .join("");
+      }
+
+      function deleteSession(id) {
+        S.sessions = S.sessions.filter((s) => s.id !== id);
+        saveS();
+        renderSessionLog();
+        renderStats();
+        renderProjectStats();
+        refreshTodaySummary();
+        refreshPomoDots();
+      }
+
+      // ─── ASSIGN PROJECT MODAL ────────────────────────────────────────────────────
+      let _pendingDur = 0;
+      let _pendingCb = null;
+
+      function maybeAssignProject(dur, afterCb) {
+        if (selProjectId !== null) {
+          pushSession(dur);
+          afterCb();
+          return;
+        }
+        _pendingDur = dur;
+        _pendingCb = afterCb;
+        const list = document.getElementById("assignProjList");
+        list.innerHTML =
+          S.projects
+            .map(
+              (p) =>
+                `<button class="assign-proj-btn" onclick="closeAssignModal(${p.id})">
+            <span style="width:10px;height:10px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
+            ${esc(p.name)}
+          </button>`,
+            )
+            .join("") ||
+          `<div style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);padding:8px 0">Sin proyectos — crea uno en Tareas</div>`;
+        document.getElementById("assignModal").style.display = "flex";
+      }
+
+      function closeAssignModal(projectId) {
+        document.getElementById("assignModal").style.display = "none";
+        if (projectId !== null && projectId !== undefined) {
+          const proj = S.projects.find((p) => p.id === projectId);
+          if (proj) {
+            selProjectId = proj.id;
+          }
+        }
+        pushSession(_pendingDur);
+        if (_pendingCb) _pendingCb();
+        _pendingDur = 0;
+        _pendingCb = null;
+        selProjectId = null; // reset after saving
+        renderWorkingOn();
+      }
+
+      // ─── REASSIGN SESSION MODAL ───────────────────────────────────────────────────
+      let _reassignId = null;
+      let _reassignProjId = null; // set after step 1, used in step 2
+
+      function openReassignModal(sessionId) {
+        _reassignId = sessionId;
+        _reassignProjId = null;
+        _showReassignStep1();
+        document.getElementById("reassignModal").style.display = "flex";
+      }
+
+      function _showReassignStep1() {
+        document.getElementById("reassignTitle").textContent =
+          "Reasignar sesión — Proyecto";
+        const noneBtn = document.getElementById("reassignNoneBtn");
+        noneBtn.style.display = "inline-flex";
+        noneBtn.textContent = "Sin proyecto";
+        noneBtn.onclick = () => saveReassign(null, null);
+        const list = document.getElementById("reassignProjList");
+        list.innerHTML =
+          S.projects
+            .map(
+              (p) =>
+                `<button class="assign-proj-btn" onclick="_onReassignProjPick(${p.id})">
+            <span style="width:10px;height:10px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
+            ${esc(p.name)}
+          </button>`,
+            )
+            .join("") ||
+          `<div style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);padding:8px 0">Sin proyectos</div>`;
+      }
+
+      function _onReassignProjPick(projectId) {
+        _reassignProjId = projectId;
+        const subs = S.tasks.filter((t) => t.projectId === projectId);
+        if (subs.length === 0) {
+          saveReassign(projectId, null);
+          return;
+        }
+        // Step 2: pick sub-project
+        document.getElementById("reassignTitle").textContent =
+          "Reasignar sesión — Tarea";
+        document.getElementById("reassignNoneBtn").style.display =
+          "inline-flex";
+        document.getElementById("reassignNoneBtn").textContent = "Sin tarea";
+        document.getElementById("reassignNoneBtn").onclick = () =>
+          saveReassign(projectId, null);
+        const list = document.getElementById("reassignProjList");
+        const proj = S.projects.find((p) => p.id === projectId);
+        list.innerHTML = subs
+          .map(
+            (t) =>
+              `<button class="assign-proj-btn" onclick="saveReassign(${projectId}, ${t.id})">
+            <span style="width:10px;height:10px;border-radius:50%;background:${proj?.color || "#9a9790"};display:inline-block;flex-shrink:0"></span>
+            ${esc(t.text)}
+          </button>`,
+          )
+          .join("");
+      }
+
+      function closeReassignModal() {
+        document.getElementById("reassignModal").style.display = "none";
+        _reassignId = null;
+        _reassignProjId = null;
+      }
+
+      function saveReassign(projectId, taskId) {
+        const s = S.sessions.find((x) => x.id === _reassignId);
+        if (s) {
+          const proj =
+            projectId !== null
+              ? S.projects.find((p) => p.id === projectId)
+              : null;
+          const task =
+            taskId !== null && taskId !== undefined
+              ? S.tasks.find((t) => t.id === taskId)
+              : null;
+          s.projectId = proj?.id ?? null;
+          s.projectName = proj?.name ?? null;
+          s.projectColor = proj?.color ?? null;
+          s.taskId = task?.id ?? null;
+          s.taskName = task?.text ?? null;
+          saveS();
+          renderSessionLog();
+          renderProjectStats();
+        }
+        closeReassignModal();
+        toast("Sesión actualizada", "ok");
+      }
+
       // ─── CHART ────────────────────────────────────────────────────────────────────
       let chartMode = "week";
 
@@ -3150,7 +3514,7 @@
         el.innerHTML = "";
         const td = today(),
           N = m === "week" ? 7 : 30;
-        const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        const DAYS = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
         let labels = [],
           counts = [];
         for (let i = N - 1; i >= 0; i--) {
@@ -3220,6 +3584,7 @@
             renderStats();
             renderChart(chartMode);
             renderProjectStats();
+            renderSessionLog();
             refreshTodaySummary();
             refreshPomoDots();
             toast("¡Importado!", "ok");
