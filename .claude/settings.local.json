@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(curl -s \"https://www.ikea.com/es/es/stylesheets/main.db436e2384760c2a85ba.css\")",
-      "Bash(curl -s \"https://www.ikea.com/es/es/header-footer/styles/main.6dd4096a640d525c1754.css\")",
-      "Bash(curl -s \"https://www.ikea.com/es/es/products/stylesheets/price-package-styles.3d0dc18e15368db65948.css\")"
-    ]
-  }
-}
