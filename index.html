@@ -1922,6 +1922,246 @@
           display: none;
         }
       }
+
+      /* ============================================
+       REGISTRO LAYOUT
+      ============================================ */
+      .registro-layout {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .registro-cal-col {
+        flex-shrink: 0;
+        width: 176px;
+      }
+      .registro-sessions-col {
+        flex: 1;
+        min-width: 0;
+      }
+
+      /* Mini calendar */
+      .mini-cal {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 12px 10px;
+        box-shadow: var(--card-shadow);
+        position: sticky;
+        top: 16px;
+      }
+      .mini-cal-hd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .mini-cal-month {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: center;
+        flex: 1;
+      }
+      .mini-cal-nav {
+        background: none;
+        border: none;
+        color: var(--text2);
+        cursor: pointer;
+        padding: 2px 5px;
+        border-radius: var(--r-sm);
+        font-size: 0.85rem;
+        line-height: 1;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+      }
+      .mini-cal-nav:hover {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .mini-cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+      }
+      .mini-cal-dow {
+        font-family: var(--mono);
+        font-size: 0.48rem;
+        text-align: center;
+        color: var(--text2);
+        padding-bottom: 3px;
+      }
+      .mini-cal-day {
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-size: 0.56rem;
+        font-weight: 700;
+        border-radius: 3px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.12s;
+        gap: 1px;
+        color: var(--text2);
+      }
+      .mini-cal-day.cal-empty { cursor: default; }
+      .mini-cal-day:not(.cal-empty):hover {
+        background: var(--surface2);
+        border-color: var(--border);
+        color: var(--text);
+      }
+      .mini-cal-day.cal-today { color: var(--accent); border-color: var(--border); }
+      .mini-cal-day.cal-has-data { color: var(--text); }
+      .mini-cal-day.cal-selected {
+        background: var(--accent-bg) !important;
+        border-color: var(--accent) !important;
+        color: var(--accent) !important;
+      }
+      .cal-dot-row { display: flex; gap: 1px; }
+      .cal-dot-s {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.55;
+      }
+
+      /* Session day total badge */
+      .session-day-total {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        color: var(--text2);
+        margin-left: auto;
+      }
+
+      /* Edit session modal */
+      .edit-dur-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed var(--border);
+      }
+      .edit-dur-label {
+        font-family: var(--mono);
+        font-size: 0.64rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+        flex-shrink: 0;
+      }
+      .edit-dur-input {
+        width: 62px;
+        padding: 7px 8px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        font-family: var(--mono);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+        border-radius: var(--r-sm);
+        outline: none;
+        text-align: center;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .edit-dur-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-bg);
+      }
+      .edit-dur-unit {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        color: var(--text2);
+      }
+      .edit-sec-lbl {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text2);
+        margin-bottom: 7px;
+      }
+
+      /* Lose-time warning modal */
+      .warn-icon {
+        font-size: 2.2rem;
+        color: var(--amarillo);
+        text-align: center;
+        margin-bottom: 6px;
+        display: block;
+      }
+      .warn-msg {
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        text-align: center;
+        color: var(--text2);
+        margin-bottom: 18px;
+        line-height: 1.5;
+      }
+      .warn-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* Task inline edit */
+      .task-edit-input {
+        flex: 1;
+        padding: 5px 8px;
+        border: 1px solid var(--verde);
+        background: var(--surface);
+        font-family: var(--sans);
+        font-size: 0.875rem;
+        color: var(--text);
+        border-radius: var(--r-sm);
+        outline: none;
+        box-shadow: 0 0 0 2px var(--verde-bg);
+      }
+      .task-pen-btn {
+        background: none;
+        border: none;
+        color: var(--text2);
+        cursor: pointer;
+        font-size: 0.85rem;
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        border-radius: var(--r-sm);
+        transition: all 0.15s;
+      }
+      .task-pen-btn:hover { color: var(--azul); background: var(--p-blue); }
+
+      /* Stat values showing time strings */
+      .sc-val.sc-time { font-size: 1.4rem; }
+
+      /* Touch-device panel popup override */
+      @media (hover: none) {
+        .side-panel:hover .panel-popup {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+      .panel-popup.touch-open {
+        opacity: 1 !important;
+        pointer-events: all !important;
+        transform: translateX(0) !important;
+      }
+
+      @media (max-width: 820px) {
+        .registro-layout { flex-direction: column; }
+        .registro-cal-col { width: 100%; }
+        .mini-cal { position: static; }
+      }
     </style>
   </head>
   <body>
@@ -2140,20 +2380,20 @@
             <i class="ph-fill ph-fire"></i>
           </div>
           <div class="stat-card">
-            <div class="sc-val" id="statToday">0</div>
+            <div class="sc-val sc-time" id="statToday">0m</div>
             <div class="sc-lbl">Hoy</div>
           </div>
           <div class="stat-card">
-            <div class="sc-val" id="statWeek">0</div>
+            <div class="sc-val sc-time" id="statWeek">0m</div>
             <div class="sc-lbl">Esta semana</div>
           </div>
           <div class="stat-card">
-            <div class="sc-val" id="statMonth">0</div>
+            <div class="sc-val sc-time" id="statMonth">0m</div>
             <div class="sc-lbl">Este mes</div>
           </div>
           <div class="stat-card">
-            <div class="sc-val" id="statMinutes">0</div>
-            <div class="sc-lbl">Mins totales</div>
+            <div class="sc-val sc-time" id="statMinutes">0m</div>
+            <div class="sc-lbl">Total</div>
           </div>
         </div>
 
@@ -2233,11 +2473,29 @@
 
       <!-- SESSIONS PANEL -->
       <div class="panel" id="panel-sessions">
-        <div class="card">
-          <div class="card-title">
-            <i class="ph ph-clock-clockwise"></i> Registro de sesiones
+        <div class="registro-layout">
+          <!-- Mini calendar -->
+          <div class="registro-cal-col">
+            <div class="mini-cal">
+              <div class="mini-cal-hd">
+                <button class="mini-cal-nav" onclick="calPrevMonth()" aria-label="Mes anterior"><i class="ph ph-caret-left"></i></button>
+                <div class="mini-cal-month" id="calMonthLabel"></div>
+                <button class="mini-cal-nav" onclick="calNextMonth()" aria-label="Mes siguiente"><i class="ph ph-caret-right"></i></button>
+              </div>
+              <div class="mini-cal-grid" id="calGrid"></div>
+            </div>
           </div>
-          <div class="session-log-list" id="sessionLog"></div>
+          <!-- Sessions for selected day -->
+          <div class="registro-sessions-col">
+            <div class="card" style="margin-bottom:0">
+              <div class="card-title">
+                <i class="ph ph-clock-clockwise"></i>
+                <span id="sessionDayTitle">Hoy</span>
+                <span class="session-day-total" id="sessionDayTotal"></span>
+              </div>
+              <div class="session-log-list" id="sessionLog"></div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- /panel-sessions -->
@@ -2257,19 +2515,42 @@
       </div>
     </div>
 
-    <!-- REASSIGN SESSION MODAL -->
-    <div id="reassignModal" class="modal-bg" style="display: none">
+    <!-- EDIT SESSION MODAL -->
+    <div id="editSessionModal" class="modal-bg" style="display: none">
       <div class="modal">
-        <div class="modal-title" id="reassignTitle">Reasignar sesión</div>
-        <div class="assign-proj-list" id="reassignProjList"></div>
+        <div class="modal-title">Editar sesión</div>
+        <div class="edit-dur-row">
+          <span class="edit-dur-label">Duración</span>
+          <input type="number" class="edit-dur-input" id="editDurInput" min="1" max="999" />
+          <span class="edit-dur-unit">min</span>
+        </div>
+        <div class="edit-sec-lbl">Proyecto</div>
+        <div class="assign-proj-list" id="editProjList" style="max-height:160px"></div>
+        <div id="editTaskSection" style="display:none;margin-top:12px">
+          <div class="edit-sec-lbl">Tarea</div>
+          <div class="assign-proj-list" id="editTaskList" style="max-height:120px"></div>
+        </div>
         <div class="modal-footer">
-          <button class="btn" onclick="closeReassignModal()">Cancelar</button>
-          <button
-            class="btn btn-discard"
-            id="reassignNoneBtn"
-            onclick="saveReassign(null, null)"
-          >
-            Sin proyecto
+          <button class="btn" onclick="closeEditSession()">Cancelar</button>
+          <button class="btn btn-primary" onclick="confirmEditSession()"><i class="ph ph-check"></i> Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOSE TIME WARNING MODAL -->
+    <div id="loseTimeModal" class="modal-bg" style="display: none">
+      <div class="modal">
+        <i class="ph ph-warning warn-icon"></i>
+        <p class="warn-msg">Tienes tiempo sin registrar.<br>¿Qué quieres hacer?</p>
+        <div class="warn-actions">
+          <button class="btn btn-primary" onclick="loseTimeAction('log')">
+            <i class="ph ph-flag-checkered"></i> Registrar y continuar
+          </button>
+          <button class="btn btn-discard" onclick="loseTimeAction('discard')">
+            <i class="ph ph-trash"></i> Descartar tiempo
+          </button>
+          <button class="btn" onclick="loseTimeAction('cancel')">
+            <i class="ph ph-arrow-left"></i> Volver
           </button>
         </div>
       </div>
@@ -2281,7 +2562,6 @@
         class="panel-trigger"
         id="soundTrigger"
         aria-label="Sonidos ambientales"
-        onclick="if (noiseState.activeType) stopNoise();"
       >
         <i class="ph ph-speaker-slash" id="soundIcon"></i>
       </button>
@@ -2677,6 +2957,12 @@
         audio.volume = fadeIn ? 0 : noiseState.volume;
         audio.play().catch((e) => console.warn("Lofi play error", e));
         audio.addEventListener("timeupdate", _lofiWatch);
+        audio.addEventListener("ended", () => {
+          if (lofi.primary !== audio || lofi.fading) return;
+          lofi.fading = false;
+          lofi.idx = (idx + 1) % lofiFiles.length;
+          _lofiLoad(lofi.idx, true);
+        });
         lofi.primary = audio;
         noiseState.audio = audio;
         noiseState.activeType = "lofi";
@@ -2742,6 +3028,13 @@
 
       // ─── TAB ROUTING ──────────────────────────────────────────────────────────────
       function goTab(name) {
+        const currentTab = document
+          .querySelector(".tab-btn.active")
+          ?.id?.replace("tab-", "");
+        if (currentTab === "timer" && name !== "timer" && hasUnloggedTime()) {
+          showLoseTimeWarning(() => goTab(name), () => goTab(name), null);
+          return;
+        }
         ["timer", "tasks", "stats", "sessions"].forEach((t) => {
           document
             .getElementById(`tab-${t}`)
@@ -2757,7 +3050,10 @@
           renderChart(chartMode);
           renderProjectStats();
         }
-        if (name === "sessions") renderSessionLog();
+        if (name === "sessions") {
+          renderCalendar();
+          renderDaySessions();
+        }
       }
 
       // ─── TIMER STATE ──────────────────────────────────────────────────────────────
@@ -2793,6 +3089,10 @@
       let selTaskId = null;
 
       function setMode(m) {
+        if (hasUnloggedTime()) {
+          showLoseTimeWarning(() => setMode(m), () => setMode(m), null);
+          return;
+        }
         tMode = m;
         doReset();
         document
@@ -2980,7 +3280,7 @@
         refreshDisplay();
       }
 
-      function doLog() {
+      function doLog(afterCb) {
         const secs = getSegmentSecs();
         if (secs < 60) {
           toast("Segmento muy corto (mín. 1 min)", "err");
@@ -2990,6 +3290,7 @@
           doReset();
           toast("¡Sesión registrada!", "ok");
           beep("done");
+          if (afterCb) afterCb();
         });
       }
 
@@ -3194,10 +3495,40 @@
       function makeTaskItem(t) {
         const d = document.createElement("div");
         d.className = "task-item";
+        d.id = `taskItem_${t.id}`;
         d.innerHTML = `
     <span class="task-txt">${esc(t.text)}</span>
+    <button class="task-pen-btn" onclick="startEditTask(${t.id})" aria-label="Editar"><i class="ph ph-pencil-simple"></i></button>
     <button class="task-del" onclick="deleteTask(${t.id})" aria-label="Eliminar"><i class="ph ph-x"></i></button>`;
         return d;
+      }
+
+      function startEditTask(id) {
+        const item = document.getElementById(`taskItem_${id}`);
+        if (!item) return;
+        const txt = S.tasks.find((t) => t.id === id)?.text || "";
+        item.innerHTML = `
+    <input class="task-edit-input" id="taskEditInp_${id}" value="${esc(txt)}" maxlength="150"
+           onkeydown="if(event.key==='Enter')saveTaskEdit(${id});if(event.key==='Escape')renderProjects();" />
+    <button class="task-pen-btn" onclick="saveTaskEdit(${id})" aria-label="Guardar" style="color:var(--verde)"><i class="ph ph-check"></i></button>
+    <button class="task-del" onclick="renderProjects()" aria-label="Cancelar"><i class="ph ph-x"></i></button>`;
+        const inp = document.getElementById(`taskEditInp_${id}`);
+        if (inp) { inp.focus(); inp.select(); }
+      }
+
+      function saveTaskEdit(id) {
+        const inp = document.getElementById(`taskEditInp_${id}`);
+        if (!inp) return;
+        const newText = inp.value.trim();
+        if (!newText) return;
+        const task = S.tasks.find((t) => t.id === id);
+        if (!task) return;
+        task.text = newText;
+        S.sessions.forEach((s) => { if (s.taskId === id) s.taskName = newText; });
+        saveS();
+        renderProjects();
+        renderWorkingOn();
+        beep("pop");
       }
 
       // ─── TASKS ────────────────────────────────────────────────────────────────────
@@ -3233,16 +3564,16 @@
 
       // ─── STATS ────────────────────────────────────────────────────────────────────
       function renderStats() {
+        const sumSecs = (arr) => arr.reduce((a, s) => a + s.duration, 0);
         document.getElementById("statStreak").textContent = S.stats.streak || 0;
         document.getElementById("statToday").textContent =
-          sessionsOn(today()).length;
+          fmtMins(sumSecs(sessionsOn(today())));
         document.getElementById("statWeek").textContent =
-          sessionsFrom(weekStart()).length;
+          fmtMins(sumSecs(sessionsFrom(weekStart())));
         document.getElementById("statMonth").textContent =
-          sessionsFrom(monthStart()).length;
-        document.getElementById("statMinutes").textContent = Math.floor(
-          S.sessions.reduce((a, s) => a + s.duration, 0) / 60,
-        );
+          fmtMins(sumSecs(sessionsFrom(monthStart())));
+        document.getElementById("statMinutes").textContent =
+          fmtMins(sumSecs(S.sessions));
       }
 
       function renderProjectStats() {
@@ -3312,52 +3643,11 @@
           .join("");
       }
 
-      // ─── SESSION LOG ──────────────────────────────────────────────────────────────
-      function renderSessionLog() {
-        const el = document.getElementById("sessionLog");
-        if (!el) return;
-        if (S.sessions.length === 0) {
-          el.innerHTML = `<div class="empty-state" style="padding:24px 0"><i class="ph ph-clock-clockwise"></i>Sin sesiones registradas aún</div>`;
-          return;
-        }
-        const sorted = [...S.sessions].sort((a, b) => b.ts - a.ts);
-        el.innerHTML = sorted
-          .map((s) => {
-            const color = s.projectColor || "#9a9790";
-            const proj = s.projectName || "Sin proyecto";
-            const sub = s.taskName
-              ? `<span style="opacity:0.6"> · ${esc(s.taskName)}</span>`
-              : "";
-            const dt = new Date(s.ts);
-            const dateStr = dt.toLocaleDateString("es", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            });
-            const timeStr = dt.toLocaleTimeString("es", {
-              hour: "2-digit",
-              minute: "2-digit",
-            });
-            return `<div class="session-item">
-            <div class="session-dot" style="background:${color}"></div>
-            <div class="session-info">
-              <div class="session-proj">${esc(proj)}${sub}</div>
-              <div class="session-meta">${dateStr} · ${timeStr}</div>
-            </div>
-            <div class="session-dur">${fmtMins(s.duration)}</div>
-            <button class="session-edit" onclick="openReassignModal(${s.id})" title="Reasignar"><i class="ph ph-pencil-simple"></i></button>
-            <button class="session-edit" onclick="deleteSession(${s.id})" title="Eliminar" style="color:var(--rojo)"><i class="ph ph-trash"></i></button>
-          </div>`;
-          })
-          .join("");
-      }
-
       function deleteSession(id) {
         S.sessions = S.sessions.filter((s) => s.id !== id);
         saveS();
-        renderSessionLog();
-        renderStats();
-        renderProjectStats();
+        renderCalendar();
+        renderDaySessions();
         refreshTodaySummary();
         refreshPomoDots();
       }
@@ -3405,94 +3695,237 @@
         renderWorkingOn();
       }
 
-      // ─── REASSIGN SESSION MODAL ───────────────────────────────────────────────────
-      let _reassignId = null;
-      let _reassignProjId = null; // set after step 1, used in step 2
+      // ─── REGISTRO — CALENDAR ──────────────────────────────────────────────────────
+      let calYear = new Date().getFullYear();
+      let calMonth = new Date().getMonth();
+      let selectedDate = today();
 
-      function openReassignModal(sessionId) {
-        _reassignId = sessionId;
-        _reassignProjId = null;
-        _showReassignStep1();
-        document.getElementById("reassignModal").style.display = "flex";
+      function calPrevMonth() {
+        calMonth--;
+        if (calMonth < 0) { calMonth = 11; calYear--; }
+        renderCalendar();
+      }
+      function calNextMonth() {
+        calMonth++;
+        if (calMonth > 11) { calMonth = 0; calYear++; }
+        renderCalendar();
       }
 
-      function _showReassignStep1() {
-        document.getElementById("reassignTitle").textContent =
-          "Reasignar sesión — Proyecto";
-        const noneBtn = document.getElementById("reassignNoneBtn");
-        noneBtn.style.display = "inline-flex";
-        noneBtn.textContent = "Sin proyecto";
-        noneBtn.onclick = () => saveReassign(null, null);
-        const list = document.getElementById("reassignProjList");
-        list.innerHTML =
-          S.projects
-            .map(
-              (p) =>
-                `<button class="assign-proj-btn" onclick="_onReassignProjPick(${p.id})">
-            <span style="width:10px;height:10px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
-            ${esc(p.name)}
-          </button>`,
-            )
-            .join("") ||
-          `<div style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);padding:8px 0">Sin proyectos</div>`;
+      function renderCalendar() {
+        const MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio",
+                        "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+        const label = document.getElementById("calMonthLabel");
+        const grid  = document.getElementById("calGrid");
+        if (!label || !grid) return;
+        label.textContent = `${MONTHS[calMonth]} ${calYear}`;
+        grid.innerHTML = "";
+        ["L","M","X","J","V","S","D"].forEach((d) => {
+          const h = document.createElement("div");
+          h.className = "mini-cal-dow";
+          h.textContent = d;
+          grid.appendChild(h);
+        });
+        const firstDow = new Date(calYear, calMonth, 1).getDay();
+        const offset = firstDow === 0 ? 6 : firstDow - 1;
+        const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+        const td = today();
+        for (let i = 0; i < offset; i++) {
+          const e = document.createElement("div");
+          e.className = "mini-cal-day cal-empty";
+          grid.appendChild(e);
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+          const ds = `${calYear}-${String(calMonth + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+          const el = document.createElement("div");
+          const sess = sessionsOn(ds);
+          let cls = "mini-cal-day";
+          if (ds === td) cls += " cal-today";
+          if (ds === selectedDate) cls += " cal-selected";
+          if (sess.length > 0) cls += " cal-has-data";
+          el.className = cls;
+          el.innerHTML = `<span>${d}</span>`;
+          if (sess.length > 0) {
+            const dots = document.createElement("div");
+            dots.className = "cal-dot-row";
+            for (let k = 0; k < Math.min(sess.length, 3); k++) {
+              const dot = document.createElement("div");
+              dot.className = "cal-dot-s";
+              dots.appendChild(dot);
+            }
+            el.appendChild(dots);
+          }
+          el.addEventListener("click", () => selectCalDate(ds));
+          grid.appendChild(el);
+        }
       }
 
-      function _onReassignProjPick(projectId) {
-        _reassignProjId = projectId;
-        const subs = S.tasks.filter((t) => t.projectId === projectId);
-        if (subs.length === 0) {
-          saveReassign(projectId, null);
+      function selectCalDate(ds) {
+        selectedDate = ds;
+        renderCalendar();
+        renderDaySessions();
+      }
+
+      function renderDaySessions() {
+        const el = document.getElementById("sessionLog");
+        const titleEl = document.getElementById("sessionDayTitle");
+        const totalEl = document.getElementById("sessionDayTotal");
+        if (!el) return;
+        const td = today();
+        if (selectedDate === td) {
+          titleEl.textContent = "Hoy";
+        } else {
+          const d = new Date(selectedDate + "T00:00:00");
+          titleEl.textContent = d.toLocaleDateString("es", {
+            day: "numeric", month: "long", year: "numeric"
+          });
+        }
+        const sessions = sessionsOn(selectedDate).sort((a, b) => b.ts - a.ts);
+        if (totalEl) {
+          const secs = sessions.reduce((a, s) => a + s.duration, 0);
+          totalEl.textContent = secs > 0 ? fmtMins(secs) : "";
+        }
+        if (sessions.length === 0) {
+          el.innerHTML = `<div class="empty-state" style="padding:24px 0"><i class="ph ph-clock-clockwise"></i>Sin sesiones este día</div>`;
           return;
         }
-        // Step 2: pick sub-project
-        document.getElementById("reassignTitle").textContent =
-          "Reasignar sesión — Tarea";
-        document.getElementById("reassignNoneBtn").style.display =
-          "inline-flex";
-        document.getElementById("reassignNoneBtn").textContent = "Sin tarea";
-        document.getElementById("reassignNoneBtn").onclick = () =>
-          saveReassign(projectId, null);
-        const list = document.getElementById("reassignProjList");
-        const proj = S.projects.find((p) => p.id === projectId);
-        list.innerHTML = subs
-          .map(
-            (t) =>
-              `<button class="assign-proj-btn" onclick="saveReassign(${projectId}, ${t.id})">
+        el.innerHTML = sessions.map((s) => {
+          const color = s.projectColor || "#9a9790";
+          const proj  = s.projectName  || "Sin proyecto";
+          const sub   = s.taskName
+            ? `<span style="opacity:0.6"> · ${esc(s.taskName)}</span>` : "";
+          const timeStr = new Date(s.ts).toLocaleTimeString("es", {
+            hour: "2-digit", minute: "2-digit"
+          });
+          return `<div class="session-item">
+            <div class="session-dot" style="background:${color}"></div>
+            <div class="session-info">
+              <div class="session-proj">${esc(proj)}${sub}</div>
+              <div class="session-meta">${timeStr}</div>
+            </div>
+            <div class="session-dur">${fmtMins(s.duration)}</div>
+            <button class="session-edit" onclick="openEditSession(${s.id})" title="Editar"><i class="ph ph-pencil-simple"></i></button>
+            <button class="session-edit" onclick="deleteSession(${s.id})" title="Eliminar" style="color:var(--rojo)"><i class="ph ph-trash"></i></button>
+          </div>`;
+        }).join("");
+      }
+
+      // ─── EDIT SESSION MODAL ───────────────────────────────────────────────────────
+      let _editSessionId = null;
+      let _editProjId = null;
+      let _editTaskId = null;
+
+      function openEditSession(sessionId) {
+        const s = S.sessions.find((x) => x.id === sessionId);
+        if (!s) return;
+        _editSessionId = sessionId;
+        _editProjId = s.projectId;
+        _editTaskId = s.taskId;
+        document.getElementById("editDurInput").value = Math.max(1, Math.round(s.duration / 60));
+        _renderEditProjList();
+        _renderEditTaskList();
+        document.getElementById("editSessionModal").style.display = "flex";
+      }
+
+      function _renderEditProjList() {
+        const list = document.getElementById("editProjList");
+        const noProj = `<button class="assign-proj-btn" style="${_editProjId === null ? "border-color:var(--accent);background:var(--accent-bg)" : ""}" onclick="_editPickProj(null)">
+            <span style="width:10px;height:10px;border-radius:50%;background:var(--gris);display:inline-block;flex-shrink:0"></span>
+            Sin proyecto
+          </button>`;
+        const rows = S.projects.map((p) =>
+          `<button class="assign-proj-btn" style="${_editProjId === p.id ? "border-color:var(--accent);background:var(--accent-bg)" : ""}" onclick="_editPickProj(${p.id})">
+            <span style="width:10px;height:10px;border-radius:50%;background:${p.color};display:inline-block;flex-shrink:0"></span>
+            ${esc(p.name)}
+          </button>`).join("");
+        list.innerHTML = noProj + rows || `<div style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);padding:8px 0">Sin proyectos — crea uno en Proyectos</div>`;
+      }
+
+      function _renderEditTaskList() {
+        const section = document.getElementById("editTaskSection");
+        if (!_editProjId) { section.style.display = "none"; return; }
+        const tasks = S.tasks.filter((t) => t.projectId === _editProjId);
+        if (tasks.length === 0) { section.style.display = "none"; return; }
+        section.style.display = "block";
+        const proj = S.projects.find((p) => p.id === _editProjId);
+        const noTask = `<button class="assign-proj-btn" style="${_editTaskId === null ? "border-color:var(--accent);background:var(--accent-bg)" : ""}" onclick="_editPickTask(null)">Sin tarea específica</button>`;
+        const rows = tasks.map((t) =>
+          `<button class="assign-proj-btn" style="${_editTaskId === t.id ? "border-color:var(--accent);background:var(--accent-bg)" : ""}" onclick="_editPickTask(${t.id})">
             <span style="width:10px;height:10px;border-radius:50%;background:${proj?.color || "#9a9790"};display:inline-block;flex-shrink:0"></span>
             ${esc(t.text)}
-          </button>`,
-          )
-          .join("");
+          </button>`).join("");
+        document.getElementById("editTaskList").innerHTML = noTask + rows;
       }
 
-      function closeReassignModal() {
-        document.getElementById("reassignModal").style.display = "none";
-        _reassignId = null;
-        _reassignProjId = null;
+      function _editPickProj(id) {
+        _editProjId = id;
+        _editTaskId = null;
+        _renderEditProjList();
+        _renderEditTaskList();
       }
 
-      function saveReassign(projectId, taskId) {
-        const s = S.sessions.find((x) => x.id === _reassignId);
-        if (s) {
-          const proj =
-            projectId !== null
-              ? S.projects.find((p) => p.id === projectId)
-              : null;
-          const task =
-            taskId !== null && taskId !== undefined
-              ? S.tasks.find((t) => t.id === taskId)
-              : null;
-          s.projectId = proj?.id ?? null;
-          s.projectName = proj?.name ?? null;
-          s.projectColor = proj?.color ?? null;
-          s.taskId = task?.id ?? null;
-          s.taskName = task?.text ?? null;
-          saveS();
-          renderSessionLog();
-          renderProjectStats();
+      function _editPickTask(id) {
+        _editTaskId = id;
+        _renderEditTaskList();
+      }
+
+      function confirmEditSession() {
+        const s = S.sessions.find((x) => x.id === _editSessionId);
+        if (!s) { closeEditSession(); return; }
+        const mins = parseInt(document.getElementById("editDurInput").value, 10);
+        if (isNaN(mins) || mins < 1) {
+          document.getElementById("editDurInput").focus();
+          return;
         }
-        closeReassignModal();
+        s.duration = mins * 60;
+        const proj = _editProjId !== null ? S.projects.find((p) => p.id === _editProjId) : null;
+        const task = _editTaskId !== null ? S.tasks.find((t) => t.id === _editTaskId) : null;
+        s.projectId    = proj?.id    ?? null;
+        s.projectName  = proj?.name  ?? null;
+        s.projectColor = proj?.color ?? null;
+        s.taskId   = task?.id   ?? null;
+        s.taskName = task?.text ?? null;
+        saveS();
+        closeEditSession();
+        renderCalendar();
+        renderDaySessions();
+        refreshTodaySummary();
+        refreshPomoDots();
         toast("Sesión actualizada", "ok");
+      }
+
+      function closeEditSession() {
+        document.getElementById("editSessionModal").style.display = "none";
+        _editSessionId = _editProjId = _editTaskId = null;
+      }
+
+      // ─── LOSE-TIME WARNING ────────────────────────────────────────────────────────
+      let _loseTimeCb = null;
+
+      function hasUnloggedTime() {
+        return getSegmentSecs() >= 60;
+      }
+
+      function showLoseTimeWarning(onLog, onDiscard, onCancel) {
+        _loseTimeCb = { onLog, onDiscard, onCancel };
+        document.getElementById("loseTimeModal").style.display = "flex";
+      }
+
+      function loseTimeAction(action) {
+        document.getElementById("loseTimeModal").style.display = "none";
+        const cb = _loseTimeCb;
+        _loseTimeCb = null;
+        if (action === "cancel") {
+          if (cb?.onCancel) cb.onCancel();
+          return;
+        }
+        if (action === "log") {
+          doLog(cb?.onLog);
+          return;
+        }
+        if (action === "discard") {
+          doReset();
+          if (cb?.onDiscard) cb.onDiscard();
+        }
       }
 
       // ─── CHART ────────────────────────────────────────────────────────────────────
@@ -3520,7 +3953,8 @@
         for (let i = N - 1; i >= 0; i--) {
           const d = new Date();
           d.setDate(d.getDate() - i);
-          counts.push(sessionsOn(d.toISOString().slice(0, 10)).length);
+          const ds = sessionsOn(d.toISOString().slice(0, 10));
+          counts.push(Math.floor(ds.reduce((a, s) => a + s.duration, 0) / 60));
           labels.push(
             m === "week"
               ? DAYS[d.getDay()]
@@ -3544,7 +3978,7 @@
           if (v > 0) {
             const tip = document.createElement("div");
             tip.className = "bar-tip";
-            tip.textContent = `${v} sesión${v !== 1 ? "es" : ""}`;
+            tip.textContent = `${v}m`;
             bar.appendChild(tip);
           }
           const lbl = document.createElement("div");
@@ -3584,7 +4018,8 @@
             renderStats();
             renderChart(chartMode);
             renderProjectStats();
-            renderSessionLog();
+            renderCalendar();
+            renderDaySessions();
             refreshTodaySummary();
             refreshPomoDots();
             toast("¡Importado!", "ok");
@@ -3621,6 +4056,40 @@
           const saved = localStorage.getItem("foco_theme");
           if (saved !== null) applyTheme(parseInt(saved, 10) || 0);
         } catch {}
+
+        // ── beforeunload guard ──
+        window.addEventListener("beforeunload", (e) => {
+          if (hasUnloggedTime() || tRunning) {
+            e.preventDefault();
+            e.returnValue = "";
+          }
+        });
+
+        // ── iPad / touch panel handling ──
+        const isTouch = navigator.maxTouchPoints > 0;
+        if (isTouch) {
+          const soundPopup = document.querySelector(".sound-side .panel-popup");
+          const themePopup = document.querySelector(".theme-side .panel-popup");
+          document.getElementById("soundTrigger").addEventListener("click", (e) => {
+            e.stopPropagation();
+            const open = soundPopup.classList.toggle("touch-open");
+            if (open) themePopup.classList.remove("touch-open");
+          });
+          document.getElementById("themeTrigger").addEventListener("click", (e) => {
+            e.stopPropagation();
+            const open = themePopup.classList.toggle("touch-open");
+            if (open) soundPopup.classList.remove("touch-open");
+          });
+          document.addEventListener("click", () => {
+            soundPopup.classList.remove("touch-open");
+            themePopup.classList.remove("touch-open");
+          });
+        } else {
+          // Desktop: clicking sound trigger stops music if playing
+          document.getElementById("soundTrigger").addEventListener("click", () => {
+            if (noiseState.activeType) stopNoise();
+          });
+        }
       })();
     </script>
   </body>
