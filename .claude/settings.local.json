@@ -5,7 +5,10 @@
       "Bash(npm install *)",
       "Bash(npm run *)",
       "Bash(npx next *)",
-      "Bash(curl -s http://localhost:3001)"
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(git fetch *)",
+      "Bash(git commit -m 'UI polish: login cleanup, HIW doodles + animations, share card quality *)",
+      "Bash(git push *)"
     ]
   }
 }
