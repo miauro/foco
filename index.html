@@ -255,6 +255,12 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        /* The container box is as tall as the popup: don't let its empty
+           area open the menu or block clicks — only the trigger reacts */
+        pointer-events: none;
+      }
+      .side-panel .panel-trigger {
+        pointer-events: auto;
       }
       .sound-side {
         left: 16px;
@@ -301,6 +307,7 @@
       }
 
       .panel-popup {
+        position: relative;
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: var(--r-lg);
@@ -322,6 +329,21 @@
         opacity: 1;
         pointer-events: all;
         transform: translateX(0);
+      }
+      /* Invisible bridge over the gap so the pointer can travel
+         from the trigger to the open popup without closing it */
+      .panel-popup::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 12px;
+      }
+      .sound-side .panel-popup::before {
+        left: -12px;
+      }
+      .theme-side .panel-popup::before {
+        right: -12px;
       }
 
       .noise-row-panel {
