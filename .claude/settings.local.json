@@ -8,7 +8,20 @@
       "Bash(curl -s http://localhost:3001)",
       "Bash(git fetch *)",
       "Bash(git commit -m 'UI polish: login cleanup, HIW doodles + animations, share card quality *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "PowerShell(Rename-Item \"C:\\\\Users\\\\mario\\\\Documents\\\\MARIO\\\\2026\\\\Opo\\\\Ex�menes\\\\simulacros_bomberos.html\" \"simulacretto.html\")",
+      "Read(//tmp/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(node --input-type=module)",
+      "Bash(node -e ' *)",
+      "Bash(npx playwright *)",
+      "Bash(mkdir -p /tmp/pwtest)",
+      "Bash(npm init *)",
+      "Bash(node --check \"C:\\\\Users\\\\mario\\\\AppData\\\\Local\\\\Temp\\\\script_only.js\")",
+      "Bash(python3)",
+      "Bash(rm examenes_preview.png)"
     ]
   }
 }
